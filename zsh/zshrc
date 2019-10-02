@@ -1,0 +1,33 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# ZSH theme. See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="agnoster"
+
+# Use case-sensitive completion.
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+source $ZSH/oh-my-zsh.sh
+# ZSH plugins to load
+# Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
+plugins=( git fzf zsh-syntax-highlighting )
+
+# You may need to manually set your language environment
+export LANG="en_US.UTF-8"
+
+# Custom pager for man pages
+export PAGER="most"
+
+# Custom aliases that doesn't fit elsewhere
+alias tiga="tig --all"
+
+source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

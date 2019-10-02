@@ -1,0 +1,29 @@
+[user]
+	name = Aurélien Moutaux
+	email = aurelien.moutaux@gadz.org
+
+[alias]
+	graph = log --graph \
+	--pretty=format:'%C(auto) %h (%an%Cred %cr%C(auto)) %Cgreen%s %C(auto)%d %n %b'
+	gph="git push"
+	gphf="git push -f"
+	gpl="git pull"
+	gcm="git commit -m"
+	gcom="git checkout master"
+
+[core]
+	editor = nvim
+	# Ignore files specified in ~/.gitgnore (not only in local .gitignore)
+	excludesfile = ~/.gitignore
+
+[merge]
+	# Add merged commits messages to resulting commit message
+	log = true
+
+[rebase]
+	# Automatically squash fixup commits
+	autosquash = true
+
+[diff]
+	# git diff will detect copies as well as renames
+	renames = copies
