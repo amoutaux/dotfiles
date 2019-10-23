@@ -5,6 +5,7 @@ call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'Raimondi/delimitMate'
 Plug 'pseewald/vim-anyfold'
+Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-syntastic/syntastic'
@@ -76,6 +77,9 @@ hi DiffText gui=NONE guifg=red guibg=black
 "KEY MAPS
 "Set mapleader (overwrite default '\')
 let mapleader = ','
+"Toggle NERDTree and FZF
+noremap <leader>f :FZF<CR>
+noremap <leader>t :NERDTreeToggle<CR>
 "next/previous word
 noremap L e
 noremap H b
@@ -86,6 +90,7 @@ noremap J }
 noremap fh 0
 noremap fl $
 "escape
+tnoremap nn <Esc>
 inoremap nn <Esc>
 vnoremap nn <Esc>
 "Set completion on TAB
