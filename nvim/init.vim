@@ -20,6 +20,7 @@ Plug 'ervandew/supertab'
 
 call plug#end()
 
+"Plugins customization
 "Set airline theme
 let g:airline_theme='luna'
 let g:airline_section_y=''
@@ -93,8 +94,6 @@ noremap fl $
 tnoremap nn <Esc>
 inoremap nn <Esc>
 vnoremap nn <Esc>
-"Set completion on TAB
-noremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "Set timeout for double key
 set timeoutlen=200
 "Switch tabs easily
