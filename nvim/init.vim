@@ -15,6 +15,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ervandew/supertab'
 
 call plug#end()
 
@@ -67,11 +68,14 @@ set textwidth=80
 set number
 "Highligh search results
 set hlsearch
+set incsearch
 "Custom colors for diffs
 hi DiffText gui=NONE guifg=red guibg=black
 
 
 "KEY MAPS
+"Set mapleader (overwrite default '\')
+let mapleader = ','
 "next/previous word
 noremap L e
 noremap H b
