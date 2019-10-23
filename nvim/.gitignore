@@ -1,2 +1,4 @@
 # Ignore installed plugins
 plugged/**
+# Ignore .netrwhist
+.netrwhist
