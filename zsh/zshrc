@@ -21,6 +21,10 @@ source $ZSH/oh-my-zsh.sh
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
 plugins=( git fzf zsh-syntax-highlighting )
 
+#Overwrite some git plugin aliases
+alias gcm="git commit -m"
+alias gcom="git checkout master"
+
 # You may need to manually set your language environment
 export LANG="en_US.UTF-8"
 # Set terminal to use 256 colors
