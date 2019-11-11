@@ -47,6 +47,9 @@ let g:syntastic_python_pylint_args = "--load-plugins pyling_django"
 set updatetime=1000
 
 
+"Set swap files directory
+set directory=~/.config/nvim/tmp
+
 "DISPLAY
 "Enable syntax /!\ syntax on overwrite with default values
 syntax enable
