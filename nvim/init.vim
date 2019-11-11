@@ -100,6 +100,9 @@ noremap U <C-i>
 tnoremap nn <Esc>
 inoremap nn <Esc>
 vnoremap nn <Esc>
+"tab indentation
+set expandtab
+set shiftwidth=4
 "Set timeout for double key
 set timeoutlen=200
 "Switch tabs easily
