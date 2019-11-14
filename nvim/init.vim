@@ -82,7 +82,7 @@ let mapleader = ','
 noremap <leader>f :FZF<CR>
 noremap <leader>t :NERDTreeToggle<CR>
 "next/previous word
-noremap L e
+noremap L w
 noremap H b
 "next/previous block
 noremap K {
@@ -90,6 +90,9 @@ noremap J }
 "start/end of line
 noremap fh 0
 noremap fl $
+"next/previous cursor position
+noremap I <C-o>
+noremap U <C-i>
 "escape
 tnoremap nn <Esc>
 inoremap nn <Esc>
