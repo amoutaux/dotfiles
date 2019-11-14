@@ -30,12 +30,11 @@ let g:airline_skip_empty_sections = 1
 let g:deoplete#enable_at_startup = 1
 "Open Gdiff in vertical splits
 set diffopt+=vertical
-"Set syntastic to python3 instead of python2
-let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 "More customization for python-mode plugin
 let g:pymode_lint_on_fly = 1
 let g:pymode_rope_completion = 1
 "More customization for syntastic plugin
+let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -43,6 +42,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_pylint_args = "--load-plugins pyling_django"
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 
