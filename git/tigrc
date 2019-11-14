@@ -1,8 +1,8 @@
 # Short date
-set main-view = line-number:no id:yes date:no author:no commit-title:yes,graph,refs,overflow=no
+set main-view = line-number:no id:yes date:relative-compact author:abbreviated commit-title:yes,graph,refs,overflow=no
 
 # Type of characters for line drawing
-set line-graphics = utf-8
+set line-graphics = default
 
 # Custom colors (color {elem} {foreground} {background})
 color "---"			blue	default
