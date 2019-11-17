@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+source ./shell/utils.sh
+
+e_header "Dotfiles installation."
+
+# Exit on failure
+set -e
+
+DOTFILES_DIR=~/dotfiles
+
+# Platform identification
+case $(uname) in
+    'Linux')
+        platform='linux';;
+    'Darwin')
+        platform='osx';;
+    *)
+    echo "Unknown platform: only 'Linux' or 'Darwin' supported for \$uname.";
+    exit 1;;
+esac
+
+install_brew() {
+    if ! type_exists 'brew'; then
+        e_header "Installing Homebrew"
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        e_bold "Updating Homebrew"
+        brew update
+        brew doctor
+    fi
+}
+
+setup_apt_get() {
+    e_header "Setuping apt-get..."
+    sudo apt-get update
+    sudo apt-get upgrade
+
+    local -a packages=(
+    'build-essential'
+    'software-properties-common'
+    )
+    # Install all packages
+    sudo apt-get install -y $( printf "%s " "${packages[@]}" )
+}
+
+install_packages() {
+
+    e_header "Installing packages..."
+    for package in $@; do
+        if ! type_exists $package; then
+            case $platform in
+                'osx')
+                    brew install $package;;
+                'linux')
+                    sudo apt-get install -y $package;;
+            esac
+            e_bold "$package installed. Check everything went fine."
+        else
+            e_warning "$package already installed."
+        fi
+    done
+}
+
+install_powerline_fonts() {
+    e_bold "Installing powerline fonts..."
+    git clone https://github.com/powerline/fonts ~/fonts
+    ~/fonts/install.sh
+    rm -rf ~/fonts
+}
+
+# Install/Setup package manager
+if [[ $platform == 'osx' ]]; then
+    install_brew
+elif [[ $platform == 'linux' ]]; then
+    setup_apt_get
+fi
+
+# Install packages
+packages=(
+    'git'
+    'zsh'
+    'tig'
+)
+install_packages ${packages[@]}
+
+# Install powerline fonts
+install_powerline_fonts
+
+# Create symlinks
+ln -nsf $DOTFILES_DIR/nvim ~/.config/nvim
+ln -nsf $DOTFILES_DIR/git/gitignore ~/.gitignore
+ln -nsf $DOTFILES_DIR/git/gitconfig ~/.gitconfig
+ln -nsf $DOTFILES_DIR/git/tigrc ~/.tigrc
+ln -nsf $DOTFILES_DIR/zsh/zshrc ~/.zshrc
+
+# Add zsh syntax highlighting to oh-my-zsh plugins
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+
