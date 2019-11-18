@@ -5,6 +5,7 @@ set -e
 
 DOTFILES_DIR=$HOME/dotfiles
 DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/master"
+DOTFILES_GIT_REMOTE="git@github.com:amoutaux/dotfiles.git"
 
 
 # Download the entire repository into $DOTFILES_DIR via tarball
@@ -121,6 +122,20 @@ install_powerline_fonts() {
     fi
 }
 
+init_git() {
+    # Link downloaded dotfiles directory to the git repository
+    cd $DOTFILES_DIR
+    if ! is_git_repository; then
+        e_header "Initializing git repository..."
+        git init
+        git remote add origin $DOTFILES_GIT_REMOTE
+        git fetch origin master
+        git reset --hard FETCH_HEAD
+        git clean -fd # Remove any untracked files
+        git checkout master
+    fi
+}
+
 # Install/Setup package manager
 if [[ $platform == 'osx' ]]; then
     install_brew
@@ -167,4 +182,6 @@ if type_exists 'nvim'; then
 else
     e_error "Cannot install neovim plugins: neovim isn't installed."
 fi
+
+init_git
 
