@@ -21,6 +21,8 @@ Plug 'ervandew/supertab'
 call plug#end()
 
 "Plugins customization
+"Set supertab autocompletion cycle from top to bottom
+let g:SuperTabDefaultCompletionType = "<c-n>"
 "Set airline theme
 let g:airline_theme='luna'
 let g:airline_section_y=''
