@@ -15,8 +15,6 @@ if [[ ! -d $DOTFILES_DIR ]]; then
     tar -zxf ~/dotfiles.tar.gz --strip-components 1 -C $DOTFILES_DIR
     rm -rf ~/dotfiles.tar.gz
 fi
-# source utils since they are needed here
-source $DOTFILES_DIR/shell/utils.sh
 
 # Options
 options=('--no-fonts --no-apt-setup')
@@ -32,6 +30,9 @@ for opt in $@; do
             exit 1;;
     esac
 done
+
+# source utils since they are needed here
+source $DOTFILES_DIR/shell/utils.sh
 
 e_header "Dotfiles installation"
 
@@ -73,6 +74,14 @@ setup_apt_get() {
 
 install_packages() {
 
+    if [[ $platform == 'osx' ]]; then
+        install_brew
+        cmd="brew install"
+    elif [[ $platform == 'linux' ]]; then
+        setup_apt_get
+        cmd="sudo apt-get install -y"
+    fi
+
     e_header "Installing packages..."
 
     local -a packages=(
@@ -85,25 +94,13 @@ install_packages() {
         'nvim'
     )
 
-    install() {
-        case $platform in
-            'osx')
-                cmd="brew install $1";;
-            'linux')
-                cmd="sudo apt-get install -y $1";;
-            *)
-        esac
-        e_bold "$1 installation launched. Check everything goes fine."
-        $cmd
-    }
-
     # Install package if not already present
     for package in ${packages[@]}; do
         if ! type_exists $package; then
             if [[ $package == 'nvim' ]]; then
-                install 'neovim'
+                $cmd 'neovim'
             else
-                install $package
+                $cmd $package
             fi
         else
             e_warning "$package already installed."
@@ -136,53 +133,52 @@ init_git() {
     fi
 }
 
-# Install/Setup package manager
-if [[ $platform == 'osx' ]]; then
-    install_brew
-elif [[ $platform == 'linux' ]]; then
-    setup_apt_get
-fi
+setup_zsh() {
+    e_header "Setuping ZSH shell..."
+    # Set zsh as default shell
+    e_bold "Settings zsh as default shell"
+    sudo chsh -s /usr/bin/zsh
+    # Add zsh syntax highlighting to oh-my-zsh plugins
+    e_bold "Installing zsh-syntax-highlighting plugin"
+    if [[ ! -d "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" ]]; then
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+            ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+    else
+        e_warning "Zsh-syntax-highlighting already installed."
+    fi
+    # Source zshrc
+    zsh -c "source ~/.zshrc"
+}
 
-# Install packages
+install_nvim_plugins() {
+    if type_exists 'nvim'; then
+        e_header "Installing all neovim plugins..."
+        nvim +UpdateRemotePlugins +PlugInstall +qall
+        nvim -c "source ~/.config/nvim/init.vim" +qall
+    else
+        e_error "Cannot install neovim plugins: neovim isn't installed."
+    fi
+}
+
+create_symlinks() {
+    # git
+    ln -nsf $DOTFILES_DIR/git/gitignore ~/.gitignore
+    ln -nsf $DOTFILES_DIR/git/gitconfig ~/.gitconfig
+    ln -nsf $DOTFILES_DIR/git/tigrc ~/.tigrc
+    # nvim
+    ln -nsf $DOTFILES_DIR/nvim ~/.config/nvim
+    # shell
+    ln -nsf $DOTFILES_DIR/shell/utils.sh ~/.utils.sh
+    #tmux
+    ln -nsf $DOTFILES_DIR/tmux/tmux.conf ~/.tmux.conf
+    # zsh
+    ln -nsf $DOTFILES_DIR/zsh/zshrc ~/.zshrc
+}
+
 install_packages
-
-# Install powerline fonts
 install_powerline_fonts
-
-# Create symlinks
-# git
-ln -nsf $DOTFILES_DIR/git/gitignore ~/.gitignore
-ln -nsf $DOTFILES_DIR/git/gitconfig ~/.gitconfig
-ln -nsf $DOTFILES_DIR/git/tigrc ~/.tigrc
-# nvim
-ln -nsf $DOTFILES_DIR/nvim ~/.config/nvim
-# shell
-ln -nsf $DOTFILES_DIR/shell/utils.sh ~/.utils.sh
-#tmux
-ln -nsf $DOTFILES_DIR/tmux/tmux.conf ~/.tmux.conf
-# zsh
-ln -nsf $DOTFILES_DIR/zsh/zshrc ~/.zshrc
-
-# Set zsh as default shell
-sudo chsh -s /usr/bin/zsh
-# Add zsh syntax highlighting to oh-my-zsh plugins
-if [[ ! -d "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" ]]; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-        ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
-else
-    e_warning "Zsh-syntax-highlighting already installed."
-fi
-# Source zshrc
-zsh -c "source ~/.zshrc"
-
-# Install neovim plugins
-if type_exists 'nvim'; then
-    e_header "Installing all neovim plugins..."
-    nvim +UpdateRemotePlugins +PlugInstall +qall
-    nvim -c "source ~/.config/nvim/init.vim" +qall
-else
-    e_error "Cannot install neovim plugins: neovim isn't installed."
-fi
-
+create_symlinks
+install_nvim_plugins
+setup_zsh
 init_git
 
