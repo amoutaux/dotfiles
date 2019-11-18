@@ -7,6 +7,21 @@ e_header "Dotfiles installation."
 set -e
 
 DOTFILES_DIR=~/dotfiles
+# Options
+options=('--no-fonts --no-apt-setup')
+for opt in $@; do
+    case $opt in
+        '--no-fonts')
+            no_fonts=true;;
+        '--no-apt-setup')
+            no_apt_setup=true;;
+        *)
+            e_error "Unrecognized option $opt"
+            e_info "Available options: $options"
+            exit 1;;
+    esac
+done
+
 
 # Platform identification
 case $(uname) in
@@ -30,16 +45,18 @@ install_brew() {
 }
 
 setup_apt_get() {
-    e_header "Setuping apt-get..."
-    sudo apt-get update
-    sudo apt-get upgrade
+    if [[ ! $no_apt_setup ]]; then
+        e_header "Setuping apt-get..."
+        sudo apt-get update
+        sudo apt-get upgrade
 
-    local -a packages=(
-    'build-essential'
-    'software-properties-common'
-    )
-    # Install all packages
-    sudo apt-get install -y $( printf "%s " "${packages[@]}" )
+        local -a packages=(
+            'build-essential'
+            'software-properties-common'
+            )
+        # Install all packages
+        sudo apt-get install -y $( printf "%s " "${packages[@]}" )
+    fi
 }
 
 install_packages() {
@@ -61,10 +78,14 @@ install_packages() {
 }
 
 install_powerline_fonts() {
-    e_bold "Installing powerline fonts..."
-    git clone https://github.com/powerline/fonts ~/fonts
-    ~/fonts/install.sh
-    rm -rf ~/fonts
+    if [[ ! $no_fonts ]]; then
+        e_header "Installing powerline fonts..."
+        git clone https://github.com/powerline/fonts ~/fonts
+        ~/fonts/install.sh
+        rm -rf ~/fonts
+    else
+        e_warning "Powerline fonts were not installed."
+    fi
 }
 
 # Install/Setup package manager
