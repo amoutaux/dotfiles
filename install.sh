@@ -81,7 +81,7 @@ install_packages() {
         'tig'
         'tmux'
         'python3'
-        'neovim'
+        'nvim'
     )
 
     install() {
@@ -98,12 +98,12 @@ install_packages() {
 
     # Install package if not already present
     for package in ${packages[@]}; do
-        if [[ $package == 'neovim' ]]; then
-            if ! type_exists 'nvim'; then
+        if ! type_exists $package; then
+            if [[ $package == 'nvim' ]]; then
+                install 'neovim'
+            else
                 install $package
             fi
-        elif ! type_exists $package; then
-            install $package
         else
             e_warning "$package already installed."
         fi
