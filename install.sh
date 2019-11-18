@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-source ./shell/utils.sh
-
-e_header "Dotfiles installation."
 
 # Exit on failure
 set -e
@@ -17,6 +14,9 @@ if [[ ! -d $DOTFILES_DIR ]]; then
     tar -zxf ~/dotfiles.tar.gz --strip-components 1 -C $DOTFILES_DIR
     rm -rf ~/dotfiles.tar.gz
 fi
+# source utils since they are needed here
+source ./shell/utils.sh
+
 # Options
 options=('--no-fonts --no-apt-setup')
 for opt in $@; do
@@ -32,6 +32,7 @@ for opt in $@; do
     esac
 done
 
+e_header "Dotfiles installation."
 
 # Platform identification
 case $(uname) in
@@ -40,8 +41,8 @@ case $(uname) in
     'Darwin')
         platform='osx';;
     *)
-    echo "Unknown platform: only 'Linux' or 'Darwin' supported for \$uname.";
-    exit 1;;
+        echo "Unknown platform: only 'Linux' or 'Darwin' supported for \$uname.";
+        exit 1;;
 esac
 
 install_brew() {
