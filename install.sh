@@ -15,7 +15,7 @@ if [[ ! -d $DOTFILES_DIR ]]; then
     rm -rf ~/dotfiles.tar.gz
 fi
 # source utils since they are needed here
-source ./shell/utils.sh
+source $DOTFILES_DIR/shell/utils.sh
 
 # Options
 options=('--no-fonts --no-apt-setup')
@@ -135,10 +135,17 @@ install_packages
 install_powerline_fonts
 
 # Create symlinks
-ln -nsf $DOTFILES_DIR/nvim ~/.config/nvim
+# git
 ln -nsf $DOTFILES_DIR/git/gitignore ~/.gitignore
 ln -nsf $DOTFILES_DIR/git/gitconfig ~/.gitconfig
 ln -nsf $DOTFILES_DIR/git/tigrc ~/.tigrc
+# nvim
+ln -nsf $DOTFILES_DIR/nvim ~/.config/nvim
+# shell
+ln -nsf $DOTFILES_DIR/shell/utils.sh ~/.utils.sh
+#tmux
+ln -nsf $DOTFILES_DIR/tmux/tmux.conf ~/.tmux.conf
+# zsh
 ln -nsf $DOTFILES_DIR/zsh/zshrc ~/.zshrc
 
 # Set zsh as default shell
