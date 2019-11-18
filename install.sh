@@ -3,7 +3,7 @@
 # Exit on failure
 set -e
 
-DOTFILES_DIR=~/dotfiles
+DOTFILES_DIR=$HOME/dotfiles
 DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/master"
 
 
@@ -32,7 +32,7 @@ for opt in $@; do
     esac
 done
 
-e_header "Dotfiles installation."
+e_header "Dotfiles installation"
 
 # Platform identification
 case $(uname) in
@@ -149,19 +149,20 @@ ln -nsf $DOTFILES_DIR/tmux/tmux.conf ~/.tmux.conf
 ln -nsf $DOTFILES_DIR/zsh/zshrc ~/.zshrc
 
 # Set zsh as default shell
-chsh -s /usr/bin/zsh
+sudo chsh -s /usr/bin/zsh
 # Add zsh syntax highlighting to oh-my-zsh plugins
-if [[ ! -d '.oh-my-zsh/plugins/zsh-syntax-highlighting' ]]; then
+if [[ ! -d "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" ]]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
         ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
 else
     e_warning "Zsh-syntax-highlighting already installed."
 fi
 # Source zshrc
-source ~/.zshrc
+zsh -c "source ~/.zshrc"
 
 # Install neovim plugins
 if type_exists 'nvim'; then
+    e_header "Installing all neovim plugins..."
     nvim +UpdateRemotePlugins +PlugInstall +qall
 else
     e_error "Cannot install neovim plugins: neovim isn't installed."
