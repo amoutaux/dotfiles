@@ -130,6 +130,8 @@ ln -nsf $DOTFILES_DIR/git/gitconfig ~/.gitconfig
 ln -nsf $DOTFILES_DIR/git/tigrc ~/.tigrc
 ln -nsf $DOTFILES_DIR/zsh/zshrc ~/.zshrc
 
+# Set zsh as default shell
+chsh -s /usr/bin/zsh
 # Add zsh syntax highlighting to oh-my-zsh plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
 
