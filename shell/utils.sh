@@ -73,3 +73,14 @@ type_exists() {
     return 1
 }
 
+# Test whether the current directory is a Git repository
+is_git_repository() {
+  # Check if the current directory is in a Git repository.
+  if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+    # Check if the current directory is in .git before running git checks
+    if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
+      return 0;
+    fi;
+  fi;
+  return 1;
+}
