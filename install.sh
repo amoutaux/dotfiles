@@ -139,6 +139,9 @@ if [[ ! -d '.oh-my-zsh/plugins/zsh-syntax-highlighting' ]]; then
 else
     e_warning "Zsh-syntax-highlighting already installed."
 fi
+# Source zshrc
+source ~/.zshrc
+
 # Install neovim plugins
 if type_exists 'nvim'; then
     nvim +UpdateRemotePlugins +PlugInstall +qall
