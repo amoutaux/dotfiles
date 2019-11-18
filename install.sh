@@ -7,6 +7,16 @@ e_header "Dotfiles installation."
 set -e
 
 DOTFILES_DIR=~/dotfiles
+DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/master"
+
+
+# Download the entire repository into $DOTFILES_DIR via tarball
+if [[ ! -d $DOTFILES_DIR ]]; then
+    curl -fsSLo ~/dotfiles.tar.gz $DOTFILES_TARBALL_URL
+    mkdir $DOTFILES_DIR
+    tar -zxf ~/dotfiles.tar.gz --strip-components 1 -C $DOTFILES_DIR
+    rm -rf ~/dotfiles.tar.gz
+fi
 # Options
 options=('--no-fonts --no-apt-setup')
 for opt in $@; do
