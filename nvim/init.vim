@@ -64,8 +64,10 @@ autocmd Filetype * AnyFoldActivate "activate AnyFold plugin for all filetypes
 set foldlevel=0 "close all folds by default
 "Colorscheme
 set termguicolors
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+if finddir("~/.config/nvim/plugged/gruvbox") != ""
+    let g:gruvbox_contrast_dark = 'hard'
+    colorscheme gruvbox
+endif
 "display trailing whitespaces
 set listchars=trail:~,tab:..
 set list
