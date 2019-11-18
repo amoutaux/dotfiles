@@ -133,5 +133,10 @@ ln -nsf $DOTFILES_DIR/zsh/zshrc ~/.zshrc
 # Set zsh as default shell
 chsh -s /usr/bin/zsh
 # Add zsh syntax highlighting to oh-my-zsh plugins
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+if [[ ! -d '.oh-my-zsh/plugins/zsh-syntax-highlighting' ]]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+        ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+else
+    e_warning "Zsh-syntax-highlighting already installed."
+fi
 
