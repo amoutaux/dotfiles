@@ -178,6 +178,7 @@ zsh -c "source ~/.zshrc"
 if type_exists 'nvim'; then
     e_header "Installing all neovim plugins..."
     nvim +UpdateRemotePlugins +PlugInstall +qall
+    nvim -c "source ~/.config/nvim/init.vim" +qall
 else
     e_error "Cannot install neovim plugins: neovim isn't installed."
 fi
