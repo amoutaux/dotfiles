@@ -132,7 +132,6 @@ init_git() {
         git fetch origin master
         git reset --hard FETCH_HEAD
         git clean -fd # Remove any untracked files
-        git checkout master
     fi
 }
 
