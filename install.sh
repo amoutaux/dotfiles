@@ -62,15 +62,37 @@ setup_apt_get() {
 install_packages() {
 
     e_header "Installing packages..."
-    for package in $@; do
-        if ! type_exists $package; then
-            case $platform in
-                'osx')
-                    brew install $package;;
-                'linux')
-                    sudo apt-get install -y $package;;
-            esac
-            e_bold "$package installed. Check everything went fine."
+
+    local -a packages=(
+        'most'
+        'git'
+        'zsh'
+        'tig'
+        'tmux'
+        'python3'
+        'neovim'
+    )
+
+    install() {
+        case $platform in
+            'osx')
+                cmd="brew install $1";;
+            'linux')
+                cmd="sudo apt-get install -y $1";;
+            *)
+        esac
+        e_bold "$1 installation launched. Check everything goes fine."
+        $cmd
+    }
+
+    # Install package if not already present
+    for package in ${packages[@]}; do
+        if [[ $package == 'neovim' ]]; then
+            if ! type_exists 'nvim'; then
+                install $package
+            fi
+        elif ! type_exists $package; then
+            install $package
         else
             e_warning "$package already installed."
         fi
@@ -96,12 +118,7 @@ elif [[ $platform == 'linux' ]]; then
 fi
 
 # Install packages
-packages=(
-    'git'
-    'zsh'
-    'tig'
-)
-install_packages ${packages[@]}
+install_packages
 
 # Install powerline fonts
 install_powerline_fonts
