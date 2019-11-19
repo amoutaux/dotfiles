@@ -79,7 +79,10 @@ set number
 set hlsearch
 set incsearch
 "Custom colors for diffs
-hi DiffText gui=NONE guifg=red guibg=black
+hi DiffAdd ctermbg=235 ctermfg=95 cterm=reverse guibg=#262626 guifg=#5f875f gui=reverse
+hi DiffDelete ctermbg=235 ctermfg=95 cterm=reverse guibg=#262626 guifg=#875f5f gui=reverse
+hi DiffChange ctermbg=235 ctermfg=65 cterm=reverse guibg=#262626 guifg=#5f875f gui=reverse
+hi DiffText ctermbg=235 ctermfg=65 cterm=reverse guibg=#262626 guifg=#5f875f gui=reverse
 
 
 "KEY MAPS
