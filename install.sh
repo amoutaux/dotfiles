@@ -85,6 +85,7 @@ install_packages() {
     e_header "Installing packages..."
 
     local -a packages=(
+        'tree'
         'most'
         'git'
         'zsh'
