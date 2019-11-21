@@ -1,29 +1,31 @@
 [user]
-	name = Aurélien Moutaux
-	email = aurelien.moutaux@gadz.org
+    name = Aurélien Moutaux
+    email = aurelien.moutaux@gadz.org
 
 [alias]
-	graph = log --graph \
-	--pretty=format:'%C(auto) %h (%an%Cred %cr%C(auto)) %Cgreen%s %C(auto)%d %n %b'
-	gph="git push"
-	gphf="git push -f"
-	gpl="git pull"
-	gcm="git commit -m"
-	gcom="git checkout master"
+    graph = log --graph \
+    --pretty=format:'%C(auto) %h (%an%Cred %cr%C(auto)) %Cgreen%s %C(auto)%d %n %b'
+
+    # Stash changes, checkout given branch, pop changes
+    scp = "!f() {\
+        git stash save "stashtopop";\
+        git checkout $1;\
+        git stash pop $(git stash list | grep "stashtopop" | grep -o "stash@{[0-9]*}");\
+    }; f"
 
 [core]
-	editor = nvim
-	# Ignore files specified in ~/.gitgnore (not only in local .gitignore)
-	excludesfile = ~/.gitignore
+    editor = nvim
+    # Ignore files specified in ~/.gitgnore (not only in local .gitignore)
+    excludesfile = ~/.gitignore
 
 [merge]
-	# Add merged commits messages to resulting commit message
-	log = true
+    # Add merged commits messages to resulting commit message
+    log = true
 
 [rebase]
-	# Automatically squash fixup commits
-	autosquash = true
+    # Automatically squash fixup commits
+    autosquash = true
 
 [diff]
-	# git diff will detect copies as well as renames
-	renames = copies
+    # git diff will detect copies as well as renames
+    renames = copies
