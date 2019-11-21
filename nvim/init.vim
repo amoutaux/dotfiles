@@ -88,6 +88,11 @@ hi DiffText ctermbg=235 ctermfg=65 cterm=reverse guibg=#262626 guifg=#5f875f gui
 "KEY MAPS
 "Set mapleader (overwrite default '\')
 let mapleader = ','
+"Panes switching
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 "Toggle NERDTree and FZF
 noremap <leader>f :FZF<CR>
 noremap <leader>t :NERDTreeToggle<CR>
