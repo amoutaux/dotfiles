@@ -151,6 +151,12 @@ setup_zsh() {
     # Set zsh as default shell
     e_bold "Settings zsh as default shell"
     sudo chsh -s /usr/bin/zsh
+    # Install oh-my-zsh
+    if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+        git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+    else
+        e_warning "oh-my-zsh already installed."
+    fi
     # Add zsh syntax highlighting to oh-my-zsh plugins
     e_bold "Installing zsh-syntax-highlighting plugin"
     if [[ ! -d "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" ]]; then
