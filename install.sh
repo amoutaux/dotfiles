@@ -5,7 +5,7 @@ set -e
 
 DOTFILES_DIR=$HOME/dotfiles
 DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/master"
-DOTFILES_GIT_REMOTE="git@github.com:amoutaux/dotfiles.git"
+DOTFILES_GIT_REMOTE="https://github.com/amoutaux/dotfiles.git"
 
 
 # Download the entire repository into $DOTFILES_DIR via tarball
