@@ -95,6 +95,13 @@ install_packages() {
         'nvim'
     )
 
+    local -a python_packages=(
+        'pipenv'
+        'ipython'
+        'ipdb'
+        'tox'
+    )
+
     # Install package if not already present
     for package in ${packages[@]}; do
         if ! type_exists $package; then
@@ -106,6 +113,11 @@ install_packages() {
         else
             e_warning "$package already installed."
         fi
+    done
+
+    # Install python packages
+    for package in ${python_packages[@]}; do
+        python3 -m pip install --user $package
     done
 }
 
