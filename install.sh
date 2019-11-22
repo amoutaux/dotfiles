@@ -74,17 +74,7 @@ setup_apt_get() {
 
 install_packages() {
 
-    if [[ $platform == 'osx' ]]; then
-        install_brew
-        cmd="brew install"
-    elif [[ $platform == 'linux' ]]; then
-        setup_apt_get
-        cmd="sudo apt-get install -y"
-    fi
-
-    e_header "Installing packages..."
-
-    local -a packages=(
+    local -a generic=(
         'tree'
         'most'
         'git'
@@ -92,9 +82,36 @@ install_packages() {
         'tig'
         'tmux'
         'python3'
-        'nvim'
+        'neovim'
     )
 
+    local -a linux_only=(
+        'python3-pip' # pip comes along with python3 on mac
+    )
+
+    local -a mac_only=(
+    )
+
+    # Setup package managers and package list based on platform
+    if [[ $platform == 'osx' ]]; then
+        install_brew
+        cmd="brew install"
+        packages=( "${generic[@]}" "${mac_only[@]}")
+    elif [[ $platform == 'linux' ]]; then
+        setup_apt_get
+        cmd="sudo apt-get install -y"
+        packages=( "${generic[@]}" "${linux_only[@]}")
+    fi
+
+    e_header "Installing packages..."
+
+    for package in ${packages[@]}; do
+        # Brew will throw an error if a package is already installed
+        $cmd $package || e_warning "$package installation failed"
+    done
+
+    e_header "Installing Python packages..."
+    # Install python packages
     local -a python_packages=(
         'pipenv'
         'ipython'
@@ -102,20 +119,6 @@ install_packages() {
         'tox'
     )
 
-    # Install package if not already present
-    for package in ${packages[@]}; do
-        if ! type_exists $package; then
-            if [[ $package == 'nvim' ]]; then
-                $cmd 'neovim'
-            else
-                $cmd $package
-            fi
-        else
-            e_warning "$package already installed."
-        fi
-    done
-
-    # Install python packages
     for package in ${python_packages[@]}; do
         python3 -m pip install --user $package
     done
