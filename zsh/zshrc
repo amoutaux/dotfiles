@@ -16,10 +16,11 @@ ENABLE_CORRECTION="true"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-source $ZSH/oh-my-zsh.sh
 # ZSH plugins to load
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
 plugins=( git fzf zsh-syntax-highlighting )
+source $ZSH/oh-my-zsh.sh
+source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #Overwrite some git plugin aliases
 alias gcm="git commit -m"
@@ -36,4 +37,3 @@ export PAGER="most"
 alias letsgo="pip install neovim" # For virtual environments setup
 alias tiga="tig --all"
 
-source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
