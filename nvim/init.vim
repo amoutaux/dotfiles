@@ -65,6 +65,7 @@ set foldlevel=0 "close all folds by default
 "Colorscheme
 set termguicolors
 if finddir("~/.config/nvim/plugged/gruvbox") != ""
+    set bg=dark
     let g:gruvbox_contrast_dark = 'hard'
     colorscheme gruvbox
 endif
