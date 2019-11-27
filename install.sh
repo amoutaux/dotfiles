@@ -192,6 +192,8 @@ install_nvim_plugins() {
 }
 
 create_symlinks() {
+    # Create necessary directories
+    mkdir -p ~/.config
     # git
     ln -nsf $DOTFILES_DIR/git/gitignore ~/.gitignore
     ln -nsf $DOTFILES_DIR/git/gitconfig ~/.gitconfig
