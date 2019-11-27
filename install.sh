@@ -117,6 +117,7 @@ install_packages() {
         'ipython'
         'ipdb'
         'tox'
+        'pynvim'
     )
 
     for package in ${python_packages[@]}; do
