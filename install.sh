@@ -87,31 +87,16 @@ install_packages() {
 
     local -a linux_only=(
         'python3-pip' # pip comes along with python3 on mac
+        'terminator'
     )
 
     local -a mac_only=(
     )
 
-    # Setup package managers and package list based on platform
-    if [[ $platform == 'osx' ]]; then
-        install_brew
-        cmd="brew install"
-        packages=( "${generic[@]}" "${mac_only[@]}")
-    elif [[ $platform == 'linux' ]]; then
-        setup_apt_get
-        cmd="sudo apt-get install -y"
-        packages=( "${generic[@]}" "${linux_only[@]}")
-    fi
+    local -a brew_cask=(
+        'iterm2'
+    )
 
-    e_header "Installing packages..."
-
-    for package in ${packages[@]}; do
-        # Brew will throw an error if a package is already installed
-        $cmd $package || e_warning "$package installation failed"
-    done
-
-    e_header "Installing Python packages..."
-    # Install python packages
     local -a python_packages=(
         'pipenv'
         'ipython'
@@ -120,9 +105,32 @@ install_packages() {
         'pynvim'
     )
 
+    # Setup package managers and package list based on platform
+    if [[ $platform == 'osx' ]]; then
+        install_brew
+        cmd="brew install"
+        packages=( "${generic[@]}" "${mac_only[@]}")
+        e_header "Installing brew cask packages..."
+        for package in ${brew_cask[@]}; do
+            brew cask install $package || e_warning "$package install failed."
+        done
+    elif [[ $platform == 'linux' ]]; then
+        setup_apt_get
+        cmd="sudo apt-get install -y"
+        packages=( "${generic[@]}" "${linux_only[@]}")
+    fi
+
+    e_header "Installing generic packages..."
+    for package in ${packages[@]}; do
+        # Brew will throw an error if a package is already installed
+        $cmd $package || e_warning "$package installation failed"
+    done
+
+    e_header "Installing Python packages..."
     for package in ${python_packages[@]}; do
         python3 -m pip install --user $package
     done
+
 }
 
 install_powerline_fonts() {
