@@ -107,8 +107,8 @@ noremap J }
 noremap fh 0
 noremap fl $
 "next/previous cursor position
-noremap I <C-o>
-noremap U <C-i>
+nnoremap I <C-o>
+nnoremap U <C-i>
 "escape
 tnoremap nn <Esc>
 inoremap nn <Esc>
