@@ -34,6 +34,6 @@ export TERM="screen-256color"
 export PAGER="most"
 
 # Custom aliases that doesn't fit elsewhere
-alias letsgo="pip install neovim" # For virtual environments setup
+alias letsgo="pipenv install neovim" # For virtual environments setup
 alias tiga="tig --all"
 
