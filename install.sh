@@ -162,7 +162,7 @@ setup_zsh() {
     e_header "Setuping ZSH shell..."
     # Set zsh as default shell
     e_bold "Settings zsh as default shell"
-    chsh -s $(which zsh) $(whoami)
+    chsh -s $(which zsh) $(whoami) || e_error "Failed to setup default shell."
     # Install oh-my-zsh
     if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
         git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
