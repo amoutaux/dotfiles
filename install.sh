@@ -181,6 +181,15 @@ setup_zsh() {
     zsh -c "source ~/.zshrc"
 }
 
+setup_tmux_plugin_manager() {
+    e_header "Setuping TPM..."
+    if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    else
+        e_warning "Tmux plugin manager already installed."
+    fi
+}
+
 install_nvim_plugins() {
     if type_exists 'nvim'; then
         e_header "Installing all neovim plugins..."
@@ -193,7 +202,8 @@ install_nvim_plugins() {
 
 create_symlinks() {
     # Create necessary directories
-    mkdir -p ~/.config
+    mkdir -p $HOME/.config
+    mkdir -p $HOME/.tmux/plugins
     # git
     ln -nsf $DOTFILES_DIR/git/gitignore ~/.gitignore
     ln -nsf $DOTFILES_DIR/git/gitconfig ~/.gitconfig
@@ -213,5 +223,6 @@ install_powerline_fonts
 create_symlinks
 install_nvim_plugins
 setup_zsh
+setup_tmux_plugin_manager
 init_git
 
