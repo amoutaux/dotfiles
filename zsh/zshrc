@@ -1,5 +1,7 @@
 # Add user-installed binaries to PATH
 export PATH=/usr/local/bin:$PATH
+# Add python3.7 binaries to PATH
+export PATH=$HOME/Library/Python/3.7/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -37,3 +39,5 @@ export PAGER="most"
 alias letsgo="pipenv install neovim" # For virtual environments setup
 alias tiga="tig --all"
 
+# Hook direnv into shell
+eval "$(direnv hook zsh)"
