@@ -36,6 +36,7 @@ export TERM="screen-256color"
 export PAGER="most"
 
 # Custom aliases that doesn't fit elsewhere
+alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
 alias letsgo="pipenv install neovim" # For virtual environments setup
 alias tiga="tig --all"
 
