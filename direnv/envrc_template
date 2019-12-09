@@ -1,0 +1,2 @@
+layout pipenv
+export PROMPT=%{%F{red}%}"($(basename $VIRTUAL_ENV))"$PROMPT
