@@ -40,5 +40,13 @@ alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
 alias letsgo="pipenv install neovim" # For virtual environments setup
 alias tiga="tig --all"
 
+# Create function used in direnv .envrc to setup PROMPT
+show_virtual_env() {
+    if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+        echo "($(basename $VIRTUAL_ENV))"
+    fi
+}
+export PROMPT=%{%F{red}%}$(show_virtual_env)$PROMPT
+
 # Hook direnv into shell
 eval "$(direnv hook zsh)"
