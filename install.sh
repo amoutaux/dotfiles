@@ -83,6 +83,7 @@ install_packages() {
         'tmux'
         'python3'
         'neovim'
+        'direnv'
     )
 
     local -a linux_only=(
