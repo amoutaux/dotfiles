@@ -155,7 +155,7 @@ init_git() {
         git fetch origin master
         git reset --hard FETCH_HEAD
         git clean -fd # Remove any untracked files
-        git push -u origin master
+        git push -u origin master || e_error "Couldn't run 'git push -u origin master'"
     fi
 }
 
