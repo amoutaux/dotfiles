@@ -96,6 +96,7 @@ install_packages() {
 
     local -a brew_cask=(
         'iterm2'
+        'google-chrome'
     )
 
     local -a python_packages=(
