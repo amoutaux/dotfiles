@@ -8,6 +8,33 @@ DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/master"
 DOTFILES_GIT_REMOTE="https://github.com/amoutaux/dotfiles.git"
 
 
+# Options
+for opt in $@; do
+    case $opt in
+        '--no-fonts')
+            no_fonts=true;;
+        '--no-apt-setup')
+            no_apt_setup=true;;
+        '--no-nvim')
+            no_nvim=true;;
+        '--no-packages')
+            no_packages=true;;
+        '--no-symlinks')
+            no_symlinks=true;;
+        '--no-zsh')
+            no_zsh=true;;
+        '--no-tmux')
+            no_tmux=true;;
+        *)
+            printf "%s\n" "Available options:" "--no-fonts" "--no-apt-setup" \
+                "--no-nvim" "--no-packages" "--no-symlinks" "--no-zsh" \
+                "--no-tmux"
+            printf "%s" "WARNING: to avoid installing a package, just" \
+                "remove it from the list in the install_packages method."
+            exit 1;;
+    esac
+done
+
 # Download the entire repository into $DOTFILES_DIR via tarball
 if [[ ! -d $DOTFILES_DIR ]]; then
     curl -fsSLo ~/dotfiles.tar.gz $DOTFILES_TARBALL_URL
@@ -15,21 +42,6 @@ if [[ ! -d $DOTFILES_DIR ]]; then
     tar -zxf ~/dotfiles.tar.gz --strip-components 1 -C $DOTFILES_DIR
     rm -rf ~/dotfiles.tar.gz
 fi
-
-# Options
-options=('--no-fonts --no-apt-setup')
-for opt in $@; do
-    case $opt in
-        '--no-fonts')
-            no_fonts=true;;
-        '--no-apt-setup')
-            no_apt_setup=true;;
-        *)
-            e_error "Unrecognized option $opt"
-            e_info "Available options: $options"
-            exit 1;;
-    esac
-done
 
 # source utils since they are needed here
 source $DOTFILES_DIR/shell/utils.sh
@@ -58,21 +70,28 @@ install_brew() {
 }
 
 setup_apt_get() {
-    if [[ ! $no_apt_setup ]]; then
-        e_header "Setuping apt-get..."
-        sudo apt-get update
-        sudo apt-get upgrade
 
-        local -a packages=(
-            'build-essential'
-            'software-properties-common'
-            )
-        # Install all packages
-        sudo apt-get install -y $( printf "%s " "${packages[@]}" )
+    if [[ $no_apt_setup ]]; then
+        return
     fi
+
+    e_header "Setuping apt-get..."
+    sudo apt-get update
+    sudo apt-get upgrade
+
+    local -a packages=(
+        'build-essential'
+        'software-properties-common'
+        )
+    # Install all packages
+    sudo apt-get install -y $( printf "%s " "${packages[@]}" )
 }
 
 install_packages() {
+
+    if [[ $no_packages ]]; then
+        return
+    fi
 
     local -a generic=(
         'tree'
@@ -136,14 +155,15 @@ install_packages() {
 }
 
 install_powerline_fonts() {
-    if [[ ! $no_fonts ]]; then
-        e_header "Installing powerline fonts..."
-        git clone https://github.com/powerline/fonts ~/fonts
-        ~/fonts/install.sh
-        rm -rf ~/fonts
-    else
-        e_warning "Powerline fonts were not installed."
+
+    if [[ $no_fonts ]]; then
+        return
     fi
+
+    e_header "Installing powerline fonts..."
+    git clone https://github.com/powerline/fonts ~/fonts
+    ~/fonts/install.sh
+    rm -rf ~/fonts
 }
 
 init_git() {
@@ -161,16 +181,28 @@ init_git() {
 }
 
 setup_zsh() {
-    e_header "Setuping ZSH shell..."
-    # Set zsh as default shell
-    e_bold "Settings zsh as default shell"
-    chsh -s $(which zsh) $(whoami) || e_error "Failed to setup default shell."
+
+    if [[ $no_zsh ]]; then
+        return
+    fi
+    e_header "Setuping ZSH..."
+
+    # Setup default shell
+    seek_confirmation "Add $(which zsh) to /etc/shells and set it as default shell?"
+    if is_confirmed; then
+        if ! grep -Fxq "$(which zsh)" /etc/shells; then
+            sudo sh -c 'echo "$(which zsh)" >> /etc/shells'
+        fi
+        chsh -s $(which zsh) $(whoami) || e_error "Failed to setup default shell."
+    fi
+
     # Install oh-my-zsh
     if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
         git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
     else
         e_warning "oh-my-zsh already installed."
     fi
+
     # Add zsh syntax highlighting to oh-my-zsh plugins
     e_bold "Installing zsh-syntax-highlighting plugin"
     if [[ ! -d "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" ]]; then
@@ -179,11 +211,17 @@ setup_zsh() {
     else
         e_warning "Zsh-syntax-highlighting already installed."
     fi
+
     # Source zshrc
     zsh -c "source ~/.zshrc"
 }
 
 setup_tmux_plugin_manager() {
+
+    if [[ $no_tmux ]]; then
+        return
+    fi
+
     e_header "Setuping TPM..."
     if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
         git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -193,6 +231,11 @@ setup_tmux_plugin_manager() {
 }
 
 install_nvim_plugins() {
+
+    if [[ $no_nvim ]]; then
+        return
+    fi
+
     if type_exists 'nvim'; then
         e_header "Installing all neovim plugins..."
         nvim +UpdateRemotePlugins +PlugInstall +qall
@@ -203,6 +246,11 @@ install_nvim_plugins() {
 }
 
 create_symlinks() {
+
+    if $no_symlinks; then
+        return
+    fi
+
     # Create necessary directories
     mkdir -p $HOME/.config
     mkdir -p $HOME/.tmux/plugins
@@ -228,3 +276,8 @@ setup_zsh
 setup_tmux_plugin_manager
 init_git
 
+printf "WARNING: Don't forget to:\
+\n-Run 'Prefix + I' inside tmux to install \
+tpm plugins.\
+\n-Check the 'Applications in terminal may acces clipboard' \
+option in iterm2"
