@@ -11,6 +11,8 @@ DOTFILES_GIT_REMOTE="https://github.com/amoutaux/dotfiles.git"
 # Options
 for opt in $@; do
     case $opt in
+        '--bepo')
+            bepo=true;;
         '--no-fonts')
             no_fonts=true;;
         '--no-apt-setup')
@@ -28,7 +30,7 @@ for opt in $@; do
         *)
             printf "%s\n" "Available options:" "--no-fonts" "--no-apt-setup" \
                 "--no-nvim" "--no-packages" "--no-symlinks" "--no-zsh" \
-                "--no-tmux"
+                "--no-tmux" "--bepo"
             printf "%s" "WARNING: to avoid installing a package, just" \
                 "remove it from the list in the install_packages method."
             exit 1;;
@@ -245,6 +247,14 @@ install_nvim_plugins() {
     fi
 }
 
+setup_bepo() {
+    if [[ $bepo ]]; then
+        e_header "Installing bepo bundle..."
+        sudo cp -R $DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle /Library/Keyboard\ Layouts
+        cp -R $DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle ~/Library/Keyboard\ Layouts
+    fi
+}
+
 create_symlinks() {
 
     if $no_symlinks; then
@@ -275,6 +285,7 @@ install_nvim_plugins
 setup_zsh
 setup_tmux_plugin_manager
 init_git
+setup_bepo
 
 printf "WARNING: Don't forget to:\
 \n-Run 'Prefix + I' inside tmux to install \
