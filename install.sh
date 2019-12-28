@@ -278,6 +278,19 @@ create_symlinks() {
     ln -nsf $DOTFILES_DIR/zsh/zshrc ~/.zshrc
 }
 
+instructions() {
+    e_header "Additional instructions..."
+    if [[ $bepo ]]; then
+        printf "%s\n" "BEPO:"\
+        "-Settings > Keyboard > Input sources > Display input sources in menu bar"\
+        "-Select 'Dvorak français' input" ""
+    fi
+    if [[ ! $no_tmux ]]; then
+        printf "%s\n" "TMUX: Don't forget to run 'Prefix + I' inside tmux to install tpm plugins" ""
+    fi
+    printf "%s\n" "TERMINAL: Check the 'Applications in terminal may access clipboard' option in chosen terminal" ""
+}
+
 install_packages
 install_powerline_fonts
 create_symlinks
@@ -286,9 +299,5 @@ setup_zsh
 setup_tmux_plugin_manager
 init_git
 setup_bepo
+instructions
 
-printf "WARNING: Don't forget to:\
-\n-Run 'Prefix + I' inside tmux to install \
-tpm plugins.\
-\n-Check the 'Applications in terminal may acces clipboard' \
-option in iterm2"
