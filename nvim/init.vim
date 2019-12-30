@@ -85,30 +85,12 @@ hi DiffDelete ctermbg=235 ctermfg=95 cterm=reverse guibg=#262626 guifg=#875f5f g
 hi DiffChange ctermbg=235 ctermfg=65 cterm=reverse guibg=#262626 guifg=#5f875f gui=reverse
 hi DiffText ctermbg=235 ctermfg=65 cterm=reverse guibg=#262626 guifg=#5f875f gui=reverse
 
-
-"KEY MAPS
+"KEYMAPS
 "Set mapleader (overwrite default '\')
 let mapleader = ','
-"Panes switching
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
 "Toggle NERDTree and FZF
 noremap <leader>f :FZF<CR>
 noremap <leader>t :NERDTreeToggle<CR>
-"next/previous word
-noremap L w
-noremap H b
-"next/previous block
-noremap K {
-noremap J }
-"start/end of line
-noremap fh 0
-noremap fl $
-"next/previous cursor position
-nnoremap I <C-o>
-nnoremap U <C-i>
 "escape
 tnoremap nn <Esc>
 inoremap nn <Esc>
@@ -118,11 +100,6 @@ set expandtab
 set shiftwidth=4
 "Set timeout for double key
 set timeoutlen=200
-"Switch tabs easily
-nnoremap <C-t> :tabn<Enter>
-"Open current pane in new tab full screen
-nnoremap <C-T> :tabnew %<Enter>
-
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
@@ -158,3 +135,7 @@ map <F10> :echo "hi<" . snIDattr(synID(line("."),col("."),1),"name") . '> trans<
 "Cut/Copy/Paste shared between vim instances and computer
 set clipboard=unnamedplus
 
+"bepo keyboard
+source ~/.config/nvim/vimrc.bepo
+"azerty keyboard
+"source ~/.config/nvim/vimrc.azerty

@@ -1,0 +1,36 @@
+" {W} -> [É]
+" ——————————
+" On remappe W sur É :
+noremap é w
+noremap É W
+" Corollaire: on remplace les text objects aw, aW, iw et iW
+" pour effacer/remplacer un mot quand on n’est pas au début (daé / laé).
+onoremap aé aw
+onoremap aÉ aW
+onoremap ié iw
+onoremap iÉ iW
+" Pour faciliter les manipulations de fenêtres, on utilise {W} comme un Ctrl+W :
+noremap w <C-w>
+noremap W <C-w><C-w>
+
+" [HJKL] -> {TSRN}
+" ————————————————
+" {tn} = « gauche / droite »
+noremap t h
+noremap n l
+" {sr} = « haut / bas »
+noremap s j
+noremap r k
+" {TN} = « haut / bas de l'écran »
+noremap T H
+noremap N L
+
+" <> en direct
+" ————————————
+noremap « <
+noremap » >
+
+" Remaper la gestion des fenêtres
+" ———————————————————————————————
+noremap w<SPACE> :split<CR>
+noremap w<CR> :vsplit<CR>
