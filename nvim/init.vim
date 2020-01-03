@@ -45,6 +45,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_pylint_args = "--load-plugins pyling_django"
+let g:syntastic_mode_map = { 'passive_filetypes': ['html'] }
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 
