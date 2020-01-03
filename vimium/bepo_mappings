@@ -10,8 +10,9 @@ map n scrollRight
 map t scrollLeft
 map gg goToRoot
  
-# copy url
+# Url
 map yy copyCurrentUrl
+map u Vomnibar.activateEditUrl
  
 # modes switch
 map o Vomnibar.activate
