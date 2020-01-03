@@ -8,9 +8,10 @@ map r scrollUp
 map R scrollPageUp
 map n scrollRight
 map t scrollLeft
+map gg goToRoot
  
 # copy url
-map y copyCurrentUrl
+map yy copyCurrentUrl
  
 # modes switch
 map o Vomnibar.activate
@@ -19,8 +20,9 @@ map f LinkHints.activateMode
 map F LinkHints.activateModeToOpenInNewTab
 map / enterFindMode
 map n performFind
-map N performBackwardsFind
- 
+map v enterVisualMode
+map V enterVisualLineMode
+
 # tabs
 map T previousTab
 map N nextTab
@@ -28,4 +30,5 @@ map C goBack
 map M goForward
 map c createTab
 map d removeTab
-map u restoreTab
+map D restoreTab
+map dp duplicateTab
