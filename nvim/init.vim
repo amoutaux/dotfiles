@@ -30,6 +30,8 @@ let g:airline_section_z=''
 let g:airline_skip_empty_sections = 1
 "Start autocompletion from deoplete at startup
 let g:deoplete#enable_at_startup = 1
+"Close preview window after completion is done
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
 "Open Gdiff in vertical splits
 set diffopt+=vertical
 "More customization for python-mode plugin
