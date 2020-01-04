@@ -100,6 +100,8 @@ noremap <leader>t :NERDTreeToggle<CR>
 tnoremap nn <Esc>
 inoremap nn <Esc>
 vnoremap nn <Esc>
+"Jump next char in insert mode
+inoremap ee <Esc>la
 "tab indentation
 set expandtab
 set shiftwidth=4
