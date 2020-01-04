@@ -48,6 +48,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_pylint_args = "--load-plugins pyling_django"
 let g:syntastic_mode_map = { 'passive_filetypes': ['html'] }
+" Let NERDTree show hidden files by default
+let g:NERDTreeShowHidden=1
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 
