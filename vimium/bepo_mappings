@@ -20,7 +20,8 @@ map I enterInsertMode
 map f LinkHints.activateMode
 map F LinkHints.activateModeToOpenInNewTab
 map / enterFindMode
-map n performFind
+map l performFind
+map L performBackwardsfind
 map v enterVisualMode
 map V enterVisualLineMode
 
