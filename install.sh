@@ -118,6 +118,7 @@ install_packages() {
     local -a brew_cask=(
         'iterm2'
         'google-chrome'
+        'macdown'
     )
 
     local -a python_packages=(
