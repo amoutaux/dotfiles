@@ -43,7 +43,7 @@ alias tiga="tig --all"
 # Create function used in direnv .envrc to setup PROMPT
 show_virtual_env() {
     if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-        echo "($(basename $VIRTUAL_ENV))"
+        echo "(${$(basename $VIRTUAL_ENV)%-*})"
     fi
 }
 export PROMPT=%{%F{red}%}$(show_virtual_env)$PROMPT
