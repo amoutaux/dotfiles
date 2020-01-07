@@ -107,6 +107,11 @@ set expandtab
 set shiftwidth=4
 "Set timeout for double key
 set timeoutlen=200
+""Gitgutter
+noremap <Leader>gc :Gcommit -v<CR>
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gd :Gvdiff<CR>
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
