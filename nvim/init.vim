@@ -8,7 +8,7 @@ Plug 'pseewald/vim-anyfold'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'morhetz/gruvbox'  "colorscheme
 Plug 'tpope/vim-fugitive'
@@ -37,19 +37,14 @@ set diffopt+=vertical
 "More customization for python-mode plugin
 let g:pymode_lint_on_fly = 1
 let g:pymode_rope_completion = 1
-"More customization for syntastic plugin
-let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_pylint_args = "--load-plugins pyling_django"
-let g:syntastic_mode_map = { 'passive_filetypes': ['html'] }
-" Let NERDTree show hidden files by default
+"Let NERDTree show hidden files by default
 let g:NERDTreeShowHidden=1
+"Define linters used by ale
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = 'eslint'
+"More customization for statusline
+set statusline+=%#warningmsg#
+set statusline+=%*
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 
@@ -112,6 +107,9 @@ noremap <Leader>gc :Gcommit -v<CR>
 noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
+"Ale errors jump
+nmap ne <Plug>(ale_next_wrap)
+nmap pe <Plug>(ale_previous_wrap)
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
