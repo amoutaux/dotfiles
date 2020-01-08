@@ -105,6 +105,7 @@ install_packages() {
         'python3'
         'neovim'
         'direnv'
+        'xclip'
     )
 
     local -a linux_only=(
@@ -119,6 +120,7 @@ install_packages() {
         'iterm2'
         'google-chrome'
         'macdown'
+        'xquartz'
     )
 
     local -a python_packages=(
@@ -128,7 +130,7 @@ install_packages() {
         'tox'
         'pynvim'
     )
-
+    # WARNING: It is important for xclip that xquartz is installed first
     # Setup package managers and package list based on platform
     if [[ $platform == 'osx' ]]; then
         install_brew
