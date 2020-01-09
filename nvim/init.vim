@@ -109,8 +109,10 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 "Ale errors jump
-nmap ne <Plug>(ale_next_wrap)
-nmap pe <Plug>(ale_previous_wrap)
+nmap <Leader>ne <Plug>(ale_next_wrap)
+nmap <Leader>pe <Plug>(ale_previous_wrap)
+"Ale Fix
+nmap <Leader>af <Plug>(ale_fix)
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
