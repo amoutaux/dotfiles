@@ -108,6 +108,7 @@ noremap <Leader>gc :Gcommit -v<CR>
 noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>dg :diffget<CR>
 "Ale errors jump
 nmap <Leader>ne <Plug>(ale_next_wrap)
 nmap <Leader>pe <Plug>(ale_previous_wrap)
