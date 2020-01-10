@@ -47,6 +47,8 @@ let g:ale_fixers['javascript'] = 'eslint'
 "More customization for statusline
 set statusline+=%#warningmsg#
 set statusline+=%*
+"More customization for gutentags
+let g:gutentags_ctags_exclude = [ 'node_modules']
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 
