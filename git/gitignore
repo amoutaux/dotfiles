@@ -3,3 +3,6 @@
 
 # Tmux
 *.log
+
+# Ctags
+tags
