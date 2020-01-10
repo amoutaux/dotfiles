@@ -294,7 +294,9 @@ instructions() {
     if [[ ! $no_tmux ]]; then
         printf "%s\n" "TMUX: Don't forget to run 'Prefix + I' inside tmux to install tpm plugins" ""
     fi
-    printf "%s\n" "TERMINAL: Check the 'Applications in terminal may access clipboard' option in chosen terminal" ""
+    printf "%s\n"\
+        "TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard' option in chosen terminal"\
+        "TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+"
 }
 
 install_packages
