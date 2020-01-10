@@ -91,7 +91,7 @@ hi DiffText ctermbg=235 ctermfg=65 cterm=reverse guibg=#262626 guifg=#5f875f gui
 let mapleader = ','
 "Toggle NERDTree and FZF
 noremap <leader>f :FZF<CR>
-noremap <leader>t :NERDTreeToggle<CR>
+noremap <leader>n :NERDTreeToggle<CR>
 "escape
 tnoremap nn <Esc>
 inoremap nn <Esc>
@@ -114,6 +114,9 @@ nmap <Leader>ne <Plug>(ale_next_wrap)
 nmap <Leader>pe <Plug>(ale_previous_wrap)
 "Ale Fix
 nmap <Leader>af <Plug>(ale_fix)
+"Ctags
+nnoremap <Leader>t :BTags<CR>
+nnoremap <Leader>T :Tags<CR>
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
