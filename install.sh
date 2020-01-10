@@ -106,6 +106,7 @@ install_packages() {
         'neovim'
         'direnv'
         'xclip'
+        'ripgrep'
     )
 
     local -a linux_only=(
