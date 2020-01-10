@@ -103,7 +103,7 @@ set expandtab
 set shiftwidth=4
 "Set timeout for double key
 set timeoutlen=200
-""Gitgutter
+"Gitgutter
 noremap <Leader>gc :Gcommit -v<CR>
 noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
@@ -117,6 +117,9 @@ nmap <Leader>af <Plug>(ale_fix)
 "Ctags
 nnoremap <Leader>t :BTags<CR>
 nnoremap <Leader>T :Tags<CR>
+"Next/Previous changes jumps
+noremap <Leader>nc ]c
+noremap <Leader>pc [c
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
