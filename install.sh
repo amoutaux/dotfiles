@@ -111,9 +111,11 @@ install_packages() {
     local -a linux_only=(
         'python3-pip' # pip comes along with python3 on mac
         'terminator'
+        'exuberant-ctags'
     )
 
     local -a mac_only=(
+        'ctags'
     )
 
     local -a brew_cask=(
