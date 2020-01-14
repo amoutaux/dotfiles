@@ -76,8 +76,6 @@ endif
 "display trailing whitespaces
 set listchars=trail:~,tab:..
 set list
-"Set maximum line width
-set textwidth=80
 "Set lines numbers
 set number
 "Highligh search results
