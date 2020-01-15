@@ -40,10 +40,11 @@ set diffopt+=vertical
 let g:pymode_lint_on_fly = 1
 let g:pymode_rope_completion = 1
 "Let NERDTree show hidden files by default
-let g:NERDTreeShowHidden=1
+let g:NERDTreeShowHidden = 1
 "Define linters used by ale
+let g:ale_enabled = 1
 let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = 'eslint'
+let g:ale_fixers['javascript']  = ['prettier', 'eslint']
 "More customization for statusline
 set statusline+=%#warningmsg#
 set statusline+=%*
