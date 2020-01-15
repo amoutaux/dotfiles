@@ -122,6 +122,9 @@ nnoremap <Leader>T :Tags<CR>
 "Next/Previous changes jumps
 noremap <Leader>nc ]c
 noremap <Leader>pc [c
+"Goto/Goback
+noremap <Leader>nt <C-T>
+noremap <Leader>pt <C-]>
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
