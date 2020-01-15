@@ -39,10 +39,10 @@ done
 
 # Download the entire repository into $DOTFILES_DIR via tarball
 if [[ ! -d $DOTFILES_DIR ]]; then
-    curl -fsSLo ~/dotfiles.tar.gz $DOTFILES_TARBALL_URL
+    curl -fsSLo $HOME/dotfiles.tar.gz $DOTFILES_TARBALL_URL
     mkdir $DOTFILES_DIR
-    tar -zxf ~/dotfiles.tar.gz --strip-components 1 -C $DOTFILES_DIR
-    rm -rf ~/dotfiles.tar.gz
+    tar -zxf $HOME/dotfiles.tar.gz --strip-components 1 -C $DOTFILES_DIR
+    rm -rf $HOME/dotfiles.tar.gz
 fi
 
 # source utils since they are needed here
@@ -169,9 +169,9 @@ install_powerline_fonts() {
     fi
 
     e_header "Installing powerline fonts..."
-    git clone https://github.com/powerline/fonts ~/fonts
-    ~/fonts/install.sh
-    rm -rf ~/fonts
+    git clone https://github.com/powerline/fonts $HOME/fonts
+    $HOME/fonts/install.sh
+    rm -rf $HOME/fonts
 }
 
 init_git() {
@@ -206,7 +206,7 @@ setup_zsh() {
 
     # Install oh-my-zsh
     if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-        git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+        git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
     else
         e_warning "oh-my-zsh already installed."
     fi
@@ -215,13 +215,13 @@ setup_zsh() {
     e_bold "Installing zsh-syntax-highlighting plugin"
     if [[ ! -d "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" ]]; then
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-            ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+            $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting
     else
         e_warning "Zsh-syntax-highlighting already installed."
     fi
 
     # Source zshrc
-    zsh -c "source ~/.zshrc"
+    zsh -c "source $HOME/.zshrc"
 }
 
 setup_tmux_plugin_manager() {
@@ -232,7 +232,7 @@ setup_tmux_plugin_manager() {
 
     e_header "Setuping TPM..."
     if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+        git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
     else
         e_warning "Tmux plugin manager already installed."
     fi
@@ -247,7 +247,7 @@ install_nvim_plugins() {
     if type_exists 'nvim'; then
         e_header "Installing all neovim plugins..."
         nvim +UpdateRemotePlugins +PlugInstall +qall
-        nvim -c "source ~/.config/nvim/init.vim" +qall
+        nvim -c "source $HOME/.config/nvim/init.vim" +qall
     else
         e_error "Cannot install neovim plugins: neovim isn't installed."
     fi
@@ -257,7 +257,7 @@ setup_bepo() {
     if [[ $bepo ]]; then
         e_header "Installing bepo bundle..."
         sudo cp -R $DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle /Library/Keyboard\ Layouts
-        cp -R $DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle ~/Library/Keyboard\ Layouts
+        cp -R $DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle $HOME/Library/Keyboard\ Layouts
     fi
 }
 
@@ -271,17 +271,18 @@ create_symlinks() {
     mkdir -p $HOME/.config
     mkdir -p $HOME/.tmux/plugins
     # git
-    ln -nsf $DOTFILES_DIR/git/gitignore ~/.gitignore
-    ln -nsf $DOTFILES_DIR/git/gitconfig ~/.gitconfig
-    ln -nsf $DOTFILES_DIR/git/tigrc ~/.tigrc
+    ln -nsf $DOTFILES_DIR/git/gitignore $HOME/.gitignore
+    ln -nsf $DOTFILES_DIR/git/gitconfig $HOME/.gitconfig
+    ln -nsf $DOTFILES_DIR/git/tigrc $HOME/.tigrc
     # nvim
-    ln -nsf $DOTFILES_DIR/nvim ~/.config/nvim
+    ln -nsf $DOTFILES_DIR/nvim $HOME/.config/nvim
+    ln -nsf $DOTFILES_DIR/nvim/ctags $HOME/.ctags
     # shell
-    ln -nsf $DOTFILES_DIR/shell/utils.sh ~/.utils.sh
+    ln -nsf $DOTFILES_DIR/shell/utils.sh $HOME/.utils.sh
     #tmux
-    ln -nsf $DOTFILES_DIR/tmux/tmux.conf ~/.tmux.conf
+    ln -nsf $DOTFILES_DIR/tmux/tmux.conf $HOME/.tmux.conf
     # zsh
-    ln -nsf $DOTFILES_DIR/zsh/zshrc ~/.zshrc
+    ln -nsf $DOTFILES_DIR/zsh/zshrc $HOME/.zshrc
 }
 
 instructions() {
