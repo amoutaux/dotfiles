@@ -49,7 +49,9 @@ let g:ale_fixers['javascript']  = ['prettier', 'eslint']
 set statusline+=%#warningmsg#
 set statusline+=%*
 "More customization for gutentags
-let g:gutentags_ctags_exclude = [ 'node_modules']
+set statusline+=%{gutentags#statusline()}
+let g:gutentags_enabled = 1
+let g:gutentags_ctags_exclude = [ 'node_modules', '.meteor']
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 
@@ -111,6 +113,7 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>dg :diffget<CR>
+noremap <Leader>dp :diffput<CR>
 "Ale errors jump
 nmap <Leader>ne <Plug>(ale_next_wrap)
 nmap <Leader>pe <Plug>(ale_previous_wrap)
