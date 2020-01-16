@@ -8,6 +8,10 @@ set line-graphics = default
 bind main R !git rebase -i %(commit)^
 bind diff R !git rebase -i %(commit)^
 
+# Delete branch in refs view
+bind refs d !git branch --delete %(refname)
+bind refs D !git push --delete origin %(refname)
+
 # Custom colors (color {elem} {foreground} {background})
 color "---"			blue	default
 color "diff --"			yellow	default
