@@ -117,7 +117,6 @@ install_packages() {
     )
 
     local -a mac_only=(
-        'ctags'
         'node'
     )
 
@@ -145,6 +144,8 @@ install_packages() {
         for package in ${brew_cask[@]}; do
             brew cask install $package || e_warning "$package install failed."
         done
+        # there's a space in the 'package name' thus it can't be in the loop
+        brew install --HEAD universal-ctags/universal-ctags/universal-ctags
     elif [[ $platform == 'linux' ]]; then
         setup_apt_get
         cmd="sudo apt-get install -y"
