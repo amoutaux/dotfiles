@@ -56,8 +56,6 @@ set statusline+=%#warningmsg#
 set statusline+=%*
 "More customization for gutentags
 set statusline+=%{gutentags#statusline()}
-let g:gutentags_enabled = 1
-let g:gutentags_ctags_exclude = [ 'node_modules', '.meteor']
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 
@@ -134,6 +132,8 @@ noremap <Leader>pc [c
 "Goto/Goback
 noremap <Leader>nt <C-T>
 noremap <Leader>pt <C-]>
+"RipGrep (via fzf)
+noremap <Leader>rg :Rg<CR>
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
