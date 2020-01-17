@@ -281,6 +281,7 @@ create_symlinks() {
     # nvim
     ln -nsf $DOTFILES_DIR/nvim $HOME/.config/nvim
     ln -nsf $DOTFILES_DIR/nvim/ctags $HOME/.ctags.d/default.ctags
+    ln -nsf $DOTFILES_DIR/nvim/tern-config $HOME/.tern-config
     # shell
     ln -nsf $DOTFILES_DIR/shell/utils.sh $HOME/.utils.sh
     #tmux

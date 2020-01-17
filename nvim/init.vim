@@ -2,23 +2,29 @@
 
 call plug#begin()
 
+"Git
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+"Autocompletion/Linters
+Plug 'sheerun/vim-polyglot'
 Plug 'Raimondi/delimitMate'
 Plug 'pseewald/vim-anyfold'
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
-Plug 'scrooloose/nerdcommenter'
-Plug 'morhetz/gruvbox'  "colorscheme
-Plug 'tpope/vim-fugitive'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+Plug 'scrooloose/nerdcommenter'
+Plug 'ervandew/supertab'
+"Moves
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'ludovicchabant/vim-gutentags'
+"Misc
+Plug 'scrooloose/nerdtree'
+"Display
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ervandew/supertab'
-Plug 'sheerun/vim-polyglot'
-Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
