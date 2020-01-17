@@ -113,10 +113,12 @@ install_packages() {
         'python3-pip' # pip comes along with python3 on mac
         'terminator'
         'exuberant-ctags'
+        'nodejs'
     )
 
     local -a mac_only=(
         'ctags'
+        'node'
     )
 
     local -a brew_cask=(
