@@ -272,13 +272,14 @@ create_symlinks() {
     # Create necessary directories
     mkdir -p $HOME/.config
     mkdir -p $HOME/.tmux/plugins
+    mkdir -p $HOME/.ctags.d
     # git
     ln -nsf $DOTFILES_DIR/git/gitignore $HOME/.gitignore
     ln -nsf $DOTFILES_DIR/git/gitconfig $HOME/.gitconfig
     ln -nsf $DOTFILES_DIR/git/tigrc $HOME/.tigrc
     # nvim
     ln -nsf $DOTFILES_DIR/nvim $HOME/.config/nvim
-    ln -nsf $DOTFILES_DIR/nvim/ctags $HOME/.ctags
+    ln -nsf $DOTFILES_DIR/nvim/ctags $HOME/.ctags.d/default.ctags
     # shell
     ln -nsf $DOTFILES_DIR/shell/utils.sh $HOME/.utils.sh
     #tmux
@@ -299,7 +300,9 @@ instructions() {
     fi
     printf "%s\n"\
         "TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard' option in chosen terminal"\
-        "TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+"
+        "TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+"\
+        "CTAGS: Current default.ctags file is meant for universal-ctags /!\ On Linux, exuberant-ctags was installed."\
+        "\t --> ctags config file needs to be changed and save under \~\/.ctags"
 }
 
 install_packages
