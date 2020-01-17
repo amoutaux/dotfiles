@@ -266,10 +266,11 @@ setup_bepo() {
 
 create_symlinks() {
 
-    if $no_symlinks; then
+    if [[ $no_symlinks ]]; then
         return
     fi
 
+    e_header "Creating symlinks..."
     # Create necessary directories
     mkdir -p $HOME/.config
     mkdir -p $HOME/.tmux/plugins
