@@ -132,6 +132,8 @@ noremap <Leader>pc [c
 "Goto/Goback
 noremap <Leader>nt <C-T>
 noremap <Leader>pt <C-]>
+"Second chance using ternjs
+noremap <Leader>sc :TernDef<CR>
 "RipGrep (via fzf)
 noremap <Leader>rg :Rg<CR>
 
