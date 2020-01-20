@@ -6,3 +6,6 @@
 
 # Ctags
 tags
+
+# Tern
+.tern-project
