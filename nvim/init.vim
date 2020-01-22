@@ -136,6 +136,7 @@ noremap <Leader>pt <C-]>
 noremap <Leader>sc :TernDef<CR>
 "RipGrep (via fzf)
 noremap <Leader>rg :Rg<CR>
+noremap <Leader>RG :call fzf#vim#tags(expand('<cword>'))<CR>
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
