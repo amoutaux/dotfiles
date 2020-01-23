@@ -135,8 +135,7 @@ noremap <Leader>pt <C-]>
 "Second chance using ternjs
 noremap <Leader>sc :TernDef<CR>
 "RipGrep (via fzf)
-noremap <Leader>rg :Rg<CR>
-noremap <Leader>RG :call fzf#vim#tags(expand('<cword>'))<CR>
+noremap <Leader>rg :call SmartRg() <CR>
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
@@ -148,6 +147,15 @@ set title
 "Pressing <F10> will show color syntaxing applied to what is under the cursor
 map <F10> :echo "hi<" . snIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+
+" Use word under cursor for ripgrep if possible
+function! SmartRg()
+if matchstr(getline('.'), '\%'.col('.').'c.') =~# '\k'
+    call feedkeys(":Rg \<C-R>\<C-W>\<CR>")
+else
+    call feedkeys(":Rg\<CR>")
+endif
+endfunction
 
 "Allow scrolling faster. Enter with \i, leave with \k
 "let g:OnOff=1
