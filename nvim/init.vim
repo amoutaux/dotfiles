@@ -133,6 +133,9 @@ noremap <Leader>pc [c
 "Goto/Goback
 noremap <Leader>nt <C-T>
 noremap <Leader>pt <C-]>
+"With ALE
+noremap <Leader>ad :ALEGoToDefinition<CR>
+noremap <Leader>ar :ALEFindReferences<CR>
 "Second chance using ternjs
 noremap <Leader>sc :TernDef<CR>
 "RipGrep (via fzf)
