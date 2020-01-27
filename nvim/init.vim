@@ -50,7 +50,8 @@ let g:NERDTreeShowHidden = 1
 "Define linters used by ale
 let g:ale_enabled = 1
 let g:ale_fixers = {}
-let g:ale_fixers['javascript']  = ['prettier', 'eslint']
+let g:ale_fixers['javascript'] = ['prettier', 'eslint']
+let g:ale_fixers['swift'] = ['swiftformat']
 "More customization for statusline
 set statusline+=%#warningmsg#
 set statusline+=%*

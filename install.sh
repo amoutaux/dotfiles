@@ -118,6 +118,7 @@ install_packages() {
 
     local -a mac_only=(
         'node'
+        'swiftlint'
     )
 
     local -a brew_cask=(
@@ -305,7 +306,8 @@ instructions() {
         "TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard' option in chosen terminal"\
         "TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+"\
         "CTAGS: Current default.ctags file is meant for universal-ctags /!\ On Linux, exuberant-ctags was installed."\
-        "\t --> ctags config file needs to be changed and save under \~\/.ctags"
+        "\t --> ctags config file needs to be changed and save under \~\/.ctags"\
+        "SWIFT: Don't forget to install sourcekit-lsp for vim support"
 }
 
 install_packages
