@@ -276,6 +276,7 @@ create_symlinks() {
     mkdir -p $HOME/.config
     mkdir -p $HOME/.tmux/plugins
     mkdir -p $HOME/.ctags.d
+    mkdir -p $HOME/Library/Developer/Xcode/UserData
     # git
     ln -nsf $DOTFILES_DIR/git/gitignore $HOME/.gitignore
     ln -nsf $DOTFILES_DIR/git/gitconfig $HOME/.gitconfig
@@ -286,10 +287,14 @@ create_symlinks() {
     ln -nsf $DOTFILES_DIR/nvim/tern-config $HOME/.tern-config
     # shell
     ln -nsf $DOTFILES_DIR/shell/utils.sh $HOME/.utils.sh
-    #tmux
+    # tmux
     ln -nsf $DOTFILES_DIR/tmux/tmux.conf $HOME/.tmux.conf
     # zsh
     ln -nsf $DOTFILES_DIR/zsh/zshrc $HOME/.zshrc
+    # xcode
+    if [[ $platform == 'osx' ]]; then
+        ln -nsf $DOTFILES_DIR/xcode/fonts $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes
+    fi
 }
 
 instructions() {
@@ -306,7 +311,7 @@ instructions() {
         "TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard' option in chosen terminal"\
         "TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+"\
         "CTAGS: Current default.ctags file is meant for universal-ctags /!\ On Linux, exuberant-ctags was installed."\
-        "\t --> ctags config file needs to be changed and save under \~\/.ctags"\
+        "    --> ctags config file needs to be changed and save under ~/.ctags"\
         "SWIFT: Don't forget to install sourcekit-lsp for vim support"
 }
 
