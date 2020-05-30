@@ -9,3 +9,6 @@ tags
 
 # Tern
 .tern-project
+
+# Xcode
+xcode/fonts/*.xccolortheme
