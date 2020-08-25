@@ -1,9 +1,4 @@
 "KEY MAPS
-"Panes switching
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
 "next/previous word
 noremap L w
 noremap H b
@@ -13,6 +8,3 @@ noremap J }
 "start/end of line
 noremap fh 0
 noremap fl $
-"next/previous cursor position
-nnoremap I <C-o>
-nnoremap U <C-i>
