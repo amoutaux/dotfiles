@@ -4,6 +4,9 @@ set main-view = line-number:no id:yes date:relative-compact author:abbreviated c
 # Type of characters for line drawing
 set line-graphics = default
 
+# Checkout commit from main view
+bind main c !git checkout %(commit)
+
 # Interactive rebase from main and diff views
 bind main R !git rebase -i %(commit)^
 bind diff R !git rebase -i %(commit)^
