@@ -51,7 +51,11 @@ let g:NERDTreeShowHidden = 1
 let g:ale_enabled = 1
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier', 'eslint']
+let g:ale_fixers['typescript'] = ['prettier', 'eslint']
+let g:ale_fixers['typescriptreact'] = ['prettier', 'eslint']
 let g:ale_fixers['swift'] = ['swiftformat']
+let g:ale_fixers['python'] = ['reorder-python-imports']
+let g:ale_fixers['json'] = ['prettier']
 "More customization for statusline
 set statusline+=%#warningmsg#
 set statusline+=%*
@@ -100,7 +104,7 @@ hi DiffText ctermbg=235 ctermfg=65 cterm=reverse guibg=#262626 guifg=#5f875f gui
 let mapleader = ','
 "Toggle NERDTree and FZF
 noremap <leader>f :FZF<CR>
-noremap <leader>n :NERDTreeToggle<CR>
+noremap <leader>n :NERDTreeFind<CR>
 "escape
 tnoremap nn <Esc>
 inoremap nn <Esc>
@@ -136,10 +140,17 @@ noremap <Leader>pt <C-]>
 "With ALE
 noremap <Leader>ad :ALEGoToDefinition<CR>
 noremap <Leader>ar :ALEFindReferences<CR>
+noremap <Leader>ah :ALEDocumentation<CR>
 "Second chance using ternjs
 noremap <Leader>sc :TernDef<CR>
 "RipGrep (via fzf)
 noremap <Leader>rg :call SmartRg() <CR>
+"Close windows
+noremap <Leader>cp :pclose<CR>
+noremap <Leader>cq :cclose<CR>
+noremap <Leader>cl :lclose<CR>
+"Unhighlight
+noremap <Leader>h :noh<CR>
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
@@ -152,7 +163,8 @@ set title
 map <F10> :echo "hi<" . snIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 
-" Use word under cursor for ripgrep if possible
+"CUSTOM FUNCTIONS
+"Use word under cursor for ripgrep if possible
 function! SmartRg()
 if matchstr(getline('.'), '\%'.col('.').'c.') =~# '\k'
     call feedkeys(":Rg \<C-R>\<C-W>\<CR>")
@@ -160,6 +172,13 @@ else
     call feedkeys(":Rg\<CR>")
 endif
 endfunction
+
+"Filter quickfix list
+function! s:FilterQuickfixList(bang, pattern)
+  let cmp = a:bang ? '!~#' : '=~#'
+  call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . " a:pattern"))
+endfunction
+command! -bang -nargs=1 -complete=file QFilter call s:FilterQuickfixList(<bang>0, <q-args>)
 
 "Allow scrolling faster. Enter with \i, leave with \k
 "let g:OnOff=1
