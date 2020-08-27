@@ -6,6 +6,8 @@ set line-graphics = default
 
 # Checkout commit from main view
 bind main c !git checkout %(commit)
+# Checkout branch from refs view
+bind refs c !git checkout %(refname)
 
 # Interactive rebase from main and diff views
 bind main R !git rebase -i %(commit)^
