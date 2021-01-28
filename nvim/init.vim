@@ -199,6 +199,13 @@ command! -bang -nargs=1 -complete=file QFilter call s:FilterQuickfixList(<bang>0
 "endfunction
 "noremap <Tab> :call MultiScroll(OnOff)<RETURN>
 
+"Allow autocomplete on nvim scp://$host/$file
+function! Nvimscp()
+  readonly arg=${1:?"<Hostname>:<path> must be specified"}
+  address=${arg%:*}
+  file=${arg##*:}
+  nvim "scp://${address}/${file}"
+endfunction
 
 "Cut/Copy/Paste shared between vim instances and computer
 set clipboard=unnamedplus
