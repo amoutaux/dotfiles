@@ -25,6 +25,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+"Markdown preview (need nodejs & yarn installed)
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 call plug#end()
 
@@ -63,6 +65,8 @@ set statusline+=%*
 set statusline+=%{gutentags#statusline()}
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
+"Markdown preview open in new window
+let g:mkdp_browserfunc = 'g:Open_chrome'
 
 
 "Set swap files directory
@@ -179,6 +183,11 @@ function! s:FilterQuickfixList(bang, pattern)
   call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . " a:pattern"))
 endfunction
 command! -bang -nargs=1 -complete=file QFilter call s:FilterQuickfixList(<bang>0, <q-args>)
+
+"Open a new chrome window (useful for markdown-preview)
+function! g:Open_chrome(url)
+    silent exec '!open -na "Google chrome" --args --new-window ' . a:url
+endfunction
 
 "Allow scrolling faster. Enter with \i, leave with \k
 "let g:OnOff=1
