@@ -82,6 +82,7 @@ set colorcolumn=80 "show column number 80
 filetype plugin indent on
 autocmd Filetype * AnyFoldActivate "activate AnyFold plugin for all filetypes
 set foldlevel=0 "close all folds by default
+set foldopen-=block "don't unfold on block move commands
 "Colorscheme
 set termguicolors
 if finddir("~/.config/nvim/plugged/gruvbox") != ""
