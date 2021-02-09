@@ -90,8 +90,8 @@ if finddir("~/.config/nvim/plugged/gruvbox") != ""
     let g:gruvbox_contrast_dark = 'hard'
     colorscheme gruvbox
 endif
-"display trailing whitespaces
-set listchars=trail:~,tab:..
+"display whitespaces (trailing, tabs, non-breaking)
+set listchars=trail:~,tab:..,nbsp:&,
 set list
 "Set lines numbers
 set number
