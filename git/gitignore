@@ -6,9 +6,13 @@
 
 # Ctags
 tags
+tags.*
 
 # Tern
 .tern-project
 
 # Xcode
 xcode/fonts/*.xccolortheme
+
+# Nvim
+nvim/tmp/
