@@ -209,6 +209,7 @@ setup_zsh() {
     fi
 
     # Install oh-my-zsh
+    e_bold "Installing oh-my-zsh"
     if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
         git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
     else
@@ -222,6 +223,17 @@ setup_zsh() {
             $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting
     else
         e_warning "Zsh-syntax-highlighting already installed."
+    fi
+
+    # Patch vi-mode plugin
+    e_bold "Patching vi-mode plugin"
+    if [[ -d "$HOME/.oh-my-zsh/plugins/vi-mode" ]]; then
+        cd $HOME/.oh-my-zsh/plugins/vi-mode
+        git apply $DOTFILES_DIR/zsh/patches/vi-mode.patch ||
+            e_warning "Couldn't apply vi-mode patch. Probably already applied."
+        cd -
+    else
+        e_warning "vi-mode plugin not found. Not patched."
     fi
 
     # Source zshrc
