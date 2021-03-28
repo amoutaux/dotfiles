@@ -107,6 +107,8 @@ hi DiffText ctermbg=235 ctermfg=65 cterm=reverse guibg=#262626 guifg=#5f875f gui
 "KEYMAPS
 "Set mapleader (overwrite default '\')
 let mapleader = ','
+"Toggle off highlights
+noremap <leader>h :noh<CR>
 "Toggle NERDTree and FZF
 noremap <leader>f :FZF<CR>
 noremap <leader>n :NERDTreeFind<CR>
