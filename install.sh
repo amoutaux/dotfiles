@@ -31,8 +31,8 @@ for opt in $@; do
             printf "%s\n" "Available options:" "--no-fonts" "--no-apt-setup" \
                 "--no-nvim" "--no-packages" "--no-symlinks" "--no-zsh" \
                 "--no-tmux" "--bepo"
-            printf "%s" "WARNING: to avoid installing a package, just" \
-                "remove it from the list in the install_packages method."
+            printf "%s" "WARNING: to avoid installing a specific package, " \
+                "remove it from the install_packages method."
             exit 1;;
     esac
 done
@@ -71,22 +71,22 @@ install_brew() {
     fi
 }
 
-setup_apt_get() {
+setup_apt() {
 
     if [[ $no_apt_setup ]]; then
         return
     fi
 
-    e_header "Setuping apt-get..."
-    sudo apt-get update
-    sudo apt-get upgrade
+    e_header "apt update && apt upgrade..."
+    sudo apt update && sudo apt upgrade
 
+    e_bold "Installing build-essential & software-properties-common packages"
     local -a packages=(
         'build-essential'
         'software-properties-common'
         )
     # Install all packages
-    sudo apt-get install -y $( printf "%s " "${packages[@]}" )
+    sudo apt install -y $( printf "%s " "${packages[@]}" )
 }
 
 install_packages() {
@@ -148,8 +148,8 @@ install_packages() {
         # there's a space in the 'package name' thus it can't be in the loop
         brew install --HEAD universal-ctags/universal-ctags/universal-ctags
     elif [[ $platform == 'linux' ]]; then
-        setup_apt_get
-        cmd="sudo apt-get install -y"
+        setup_apt
+        cmd="sudo apt install -y -qq"
         packages=( "${generic[@]}" "${linux_only[@]}")
     fi
 
