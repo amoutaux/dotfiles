@@ -114,6 +114,12 @@ install_packages() {
         'terminator'
         'exuberant-ctags'
         'nodejs'
+        'gnome-tweaks'
+        'gnome-shell-extensions'
+        'gnome-shell-extension-caffeine'
+        'gnome-shell-extension-autohidetopbar'
+        'gnome-shell-extension-gsconnect'
+        'gnome-shell-extension-remove-dropdown-arrows'
     )
 
     local -a mac_only=(
