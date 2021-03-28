@@ -28,9 +28,10 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # vi-mode keytimeout setup (0.2sec, same as init.vim)
 export KEYTIMEOUT=20
 
-#Overwrite some git plugin aliases
+#Overwrite/add some git plugin aliases
 alias gcm="git commit -m"
 alias gcom="git checkout master"
+alias gai="git add -i"
 
 # You may need to manually set your language environment
 export LANG="en_US.UTF-8"
