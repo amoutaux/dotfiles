@@ -311,20 +311,31 @@ create_symlinks() {
 
 instructions() {
     e_header "Additional instructions..."
+
     if [[ $bepo ]]; then
-        printf "%s\n" "BEPO:"\
-        "-Settings > Keyboard > Input sources > Display input sources in menu bar"\
-        "-Select 'Dvorak français' input" ""
+        printf "%s\n" "BEPO: Settings > Keyboard > Input sources > Display input sources in menu bar"
     fi
     if [[ ! $no_tmux ]]; then
-        printf "%s\n" "TMUX: Don't forget to run 'Prefix + I' inside tmux to install tpm plugins" ""
+        printf "%s\n" "TMUX: Don't forget to run 'Prefix + I' inside tmux to install tpm plugins"
     fi
-    printf "%s\n"\
-        "TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard' option in chosen terminal"\
-        "TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+"\
-        "CTAGS: Current default.ctags file is meant for universal-ctags /!\ On Linux, exuberant-ctags was installed."\
-        "    --> ctags config file needs to be changed and save under ~/.ctags"\
-        "SWIFT: Don't forget to install sourcekit-lsp for vim support"
+
+    terminal_instructions="
+TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard' option in chosen terminal.
+TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+
+    "
+    printf "$terminal_instructions"
+
+    ctags_instructions="
+CTAGS: Current default.ctags file is meant for universal-ctags
+/!\ On Linux, exuberant-ctags was installed.
+    --> ctags config file needs to be changed and save under ~/.ctags
+    "
+    printf "$ctags_instructions"
+
+    swift_instructions="
+SWIFT: Don't forget to install sourcekit-lsp for vim support
+    "
+    print "$swift_instructions"
 }
 
 install_packages
