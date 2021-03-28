@@ -21,9 +21,12 @@ COMPLETION_WAITING_DOTS="true"
 
 # ZSH plugins to load
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
-plugins=( git fzf pyenv zsh-syntax-highlighting )
+plugins=( git fzf pyenv vi-mode zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# vi-mode keytimeout setup (0.2sec, same as init.vim)
+export KEYTIMEOUT=20
 
 #Overwrite some git plugin aliases
 alias gcm="git commit -m"
@@ -60,5 +63,20 @@ prompt_context() {
     prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
   fi
 }
+
+# bepo vi-mode bindings. See zshzle man page for bindkey insights
+# zle mole vim
+bindkey -v
+# Bepo mappings
+bindkey -a t vi-backward-char
+bindkey -a n vi-forward-char
+bindkey -a s vi-down-line-or-history
+bindkey -a r vi-up-line-or-history
+bindkey -a $ vi-end-of-line
+bindkey -a 0 vi-digit-or-beginning-of-line
+bindkey -a dd vi-change-whole-line
+bindkey -a é vi-forward-blank-word
+bindkey nn vi-cmd-mode
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
