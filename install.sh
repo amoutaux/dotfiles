@@ -337,6 +337,7 @@ TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+
 CTAGS: Current default.ctags file is meant for universal-ctags
 /!\ On Linux, exuberant-ctags was installed.
     --> ctags config file needs to be changed and save under ~/.ctags
+CTAGS: Uncomment the corresponding 'ctags' alias in ~/.zshrc
     "
     printf "$ctags_instructions"
 

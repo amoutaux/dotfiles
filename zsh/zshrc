@@ -45,7 +45,10 @@ alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
 alias letsgo="pipenv install neovim" # For virtual environments setup
 alias tiga="tig --all"
 alias dm="docker-machine"
-alias ctags="$(brew --prefix)/bin/ctags"
+
+# Uncomment for ctags to be found by vim-gutentags
+#alias ctags="$(brew --prefix)/bin/ctags"       # macos
+#alias ctags="/usr/bin/ctags"                   # linux
 
 # Create function used in direnv .envrc to setup PROMPT
 show_virtual_env() {
