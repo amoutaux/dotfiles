@@ -132,6 +132,7 @@ install_packages() {
         'google-chrome'
         'macdown'
         'xquartz'
+        'raycast'
     )
 
     local -a python_packages=(
@@ -196,6 +197,7 @@ init_git() {
         git clean -fd # Remove any untracked files
         git push -u origin master || e_error "Couldn't run 'git push -u origin master'"
     fi
+    cd -
 }
 
 setup_zsh() {
