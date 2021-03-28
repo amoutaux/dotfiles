@@ -105,12 +105,12 @@ install_packages() {
         'python3'
         'neovim'
         'direnv'
-        'xclip'
         'ripgrep'
     )
 
     local -a linux_only=(
         'python3-pip' # pip comes along with python3 on mac
+        'xclip'
         'terminator'
         'exuberant-ctags'
         'nodejs'
