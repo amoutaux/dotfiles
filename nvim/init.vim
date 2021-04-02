@@ -65,6 +65,13 @@ set statusline+=%*
 set statusline+=%{gutentags#statusline()}
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
+"Netrw
+set nocp
+let g:netrw_preview = 1
+let g:netrw_altv = 1
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 80
+
 "Markdown preview open in new window
 let g:mkdp_browserfunc = 'g:Open_chrome'
 
@@ -210,14 +217,6 @@ endfunction
 "endif
 "endfunction
 "noremap <Tab> :call MultiScroll(OnOff)<RETURN>
-
-"Allow autocomplete on nvim scp://$host/$file
-function! Nvimscp()
-  readonly arg=${1:?"<Hostname>:<path> must be specified"}
-  address=${arg%:*}
-  file=${arg##*:}
-  nvim "scp://${address}/${file}"
-endfunction
 
 "Cut/Copy/Paste shared between vim instances and computer
 set clipboard=unnamedplus
