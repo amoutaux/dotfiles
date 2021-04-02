@@ -125,6 +125,7 @@ install_packages() {
     local -a mac_only=(
         'node'
         'swiftlint'
+        'less' # native macos less doesn't ship with lesskey
     )
 
     local -a brew_cask=(
@@ -311,6 +312,8 @@ create_symlinks() {
     ln -nsf $DOTFILES_DIR/tmux/tmux.conf $HOME/.tmux.conf
     # zsh
     ln -nsf $DOTFILES_DIR/zsh/zshrc $HOME/.zshrc
+    # less
+    ln -nsf $DOTFILES_DIR/bepo/lesskey $HOME/.lesskey
     # xcode
     if [[ $platform == 'osx' ]]; then
         ln -nsf $DOTFILES_DIR/xcode/fonts $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes

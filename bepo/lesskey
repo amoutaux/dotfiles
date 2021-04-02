@@ -1,0 +1,7 @@
+#command
+#n       next-tag
+#N       prev-tag
+s       forw-line
+r       back-line
+S       forw-scroll
+R       back-scroll

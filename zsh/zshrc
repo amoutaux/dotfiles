@@ -21,7 +21,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # ZSH plugins to load
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
-plugins=( git fzf pyenv vi-mode zsh-syntax-highlighting )
+plugins=( git fzf pyenv vi-mode colored-man-pages zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -37,8 +37,8 @@ alias gai="git add -i"
 export LANG="en_US.UTF-8"
 # Set terminal to use 256 colors
 export TERM="screen-256color"
-# Custom pager for man pages
-export PAGER="most"
+# Custom pager
+#export PAGER="/usr/local/bin/less" # macos (native less missing lesskey)
 
 # Custom aliases that doesn't fit elsewhere
 alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
