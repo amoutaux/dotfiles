@@ -17,6 +17,12 @@ bind diff R !git rebase -i %(commit)^
 bind refs d !git branch --delete %(refname)
 bind refs D !git push --delete origin %(refname)
 
+# Bepo (switch j/k & s/r)
+bind generic s move-down
+bind generic j view-status
+bind generic r move-up
+bind generic k view-refs
+
 # Custom colors (color {elem} {foreground} {background})
 color "---"			blue	default
 color "diff --"			yellow	default
