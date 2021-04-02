@@ -57,6 +57,7 @@ let g:ale_fixers['typescript'] = ['prettier', 'eslint']
 let g:ale_fixers['typescriptreact'] = ['prettier', 'eslint']
 let g:ale_fixers['swift'] = ['swiftformat']
 let g:ale_fixers['python'] = ['reorder-python-imports']
+let g:ale_python_pylint_options = '--max-line-length=80'
 let g:ale_fixers['json'] = ['prettier']
 "More customization for statusline
 set statusline+=%#warningmsg#
