@@ -9,6 +9,7 @@ map R scrollPageUp
 map n scrollRight
 map t scrollLeft
 map gg goToRoot
+map G scrollToBottom
 
 # Url
 map yy copyCurrentUrl
