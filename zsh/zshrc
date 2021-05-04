@@ -50,16 +50,14 @@ alias dm="docker-machine"
 #alias ctags="$(brew --prefix)/bin/ctags"       # macos
 #alias ctags="/usr/bin/ctags"                   # linux
 
-# Create function used in direnv .envrc to setup PROMPT
-show_virtual_env() {
-    if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-        echo "(${$(basename $VIRTUAL_ENV)%-*})"
-    fi
-}
-export PROMPT=%{%F{red}%}$(show_virtual_env)$PROMPT
-
-# Hook direnv into shell
+# DIRENV
+alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
 eval "$(direnv hook zsh)"
+# Update PROMPT in case zshrc is sourced inside a virtualenv
+#  (without this the PROMPT updated by direnv would be reset)
+if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    export PROMPT=%{%F{red}%}(${$(basename $VIRTUAL_ENV)%-*})$PROMPT
+fi
 
 # Show only username in prompt
 prompt_context() {
