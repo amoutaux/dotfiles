@@ -1,38 +1,36 @@
-unmapAll
-# Chromium Vimium keyboard layout for bépo
-
-# scrolling
-map s scrollDown
-map S scrollPageDown
-map r scrollUp
-map R scrollPageUp
-map n scrollRight
-map t scrollLeft
-map gg goToRoot
-map G scrollToBottom
-
-# Url
-map yy copyCurrentUrl
-map u Vomnibar.activateEditUrl
-
-# modes switch
-map o Vomnibar.activate
-map O Vomnibar.activateInNewTab
-map I enterInsertMode
-map f LinkHints.activateMode
-map F LinkHints.activateModeToOpenInNewTab
-map / enterFindMode
-map l performFind
-map L performBackwardsfind
-map v enterVisualMode
-map V enterVisualLineMode
-
-# tabs
-map T previousTab
-map N nextTab
-map C goBack
-map M goForward
+# Custom mappings
+map J scrollPageDown
+map K scrollPageUp
+map H previousTab
+map L nextTab
 map c createTab
+unmap d
 map d removeTab
-map D restoreTab
-map dp duplicateTab
+unmap u
+map u Vomnibar.activateEditUrl
+map M goForward # Rq: can't map G to goBack as it's already in use
+
+# BEPO
+mapkey é w
+map C goBack
+
+## [HJKL] -> [TSRN]
+mapkey t h
+mapkey s j
+mapkey r k
+mapkey n l
+mapkey T H
+mapkey S J
+mapkey R K
+mapkey N L
+
+## [TSRN] -> [HJKL]
+mapkey h t
+mapkey j s
+mapkey k r
+mapkey l n
+mapkey H T
+mapkey J S
+mapkey K R
+mapkey L N
+
