@@ -74,6 +74,8 @@ bindkey -v
 # Bepo mappings
 bindkey -a t vi-backward-char
 bindkey -a n vi-forward-char
+bindkey -a l vi-repeat-search
+bindkey -a L vi-rev-repeat-search
 bindkey -a s vi-down-line-or-history
 bindkey -a r vi-up-line-or-history
 bindkey -a $ vi-end-of-line
