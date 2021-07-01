@@ -56,7 +56,7 @@ let g:ale_fixers['javascript'] = ['prettier', 'eslint']
 let g:ale_fixers['typescript'] = ['prettier', 'eslint']
 let g:ale_fixers['typescriptreact'] = ['prettier', 'eslint']
 let g:ale_fixers['swift'] = ['swiftformat']
-let g:ale_fixers['python'] = ['reorder-python-imports']
+let g:ale_fixers['python'] = ['autopep8', 'reorder-python-imports']
 let g:ale_python_pylint_options = '--max-line-length=80'
 let g:ale_fixers['json'] = ['prettier']
 "More customization for statusline
@@ -72,6 +72,9 @@ let g:netrw_preview = 1
 let g:netrw_altv = 1
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 80
+"Fzf (junegunn)
+let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.8 }}
+let g:fzf_preview_window = ['down:50%', 'ctrl-/']
 
 "Markdown preview open in new window
 let g:mkdp_browserfunc = 'g:Open_chrome'
