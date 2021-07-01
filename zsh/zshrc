@@ -21,7 +21,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # ZSH plugins to load
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
-plugins=( git fzf pyenv vi-mode colored-man-pages zsh-syntax-highlighting )
+plugins=( git fzf pyenv docker docker-compose vi-mode colored-man-pages zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -35,16 +35,27 @@ alias gai="git add -i"
 
 # You may need to manually set your language environment
 export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 # Set terminal to use 256 colors
 export TERM="screen-256color"
 # Custom pager
 #export PAGER="/usr/local/bin/less" # macos (native less missing lesskey)
+
+# VBoxManage aliases
+alias vms="VBoxManage list vms"
+alias rvms="VBoxManage list runningvms"
+alias vmstart='f() { VBoxManage startvm "$1" --type headless };f'
+alias vmstop='f() { VBoxManage controlvm "$1" poweroff };f'
+alias vmip='f(){ VBoxManage guestproperty get "$1" /VirtualBox/GuestInfo/Net/0/V4/IP };f'
 
 # Custom aliases that doesn't fit elsewhere
 alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
 alias letsgo="pipenv install neovim" # For virtual environments setup
 alias tiga="tig --all"
 alias dm="docker-machine"
+alias sshhosts="cat ~/.ssh/config | grep \"^Host\""
+alias lst="ls -lhFt"
+alias dkrma="docker container rm $(docker container ls -a -q)"
 
 # Uncomment for ctags to be found by vim-gutentags
 #alias ctags="$(brew --prefix)/bin/ctags"       # macos
@@ -56,13 +67,16 @@ eval "$(direnv hook zsh)"
 # Update PROMPT in case zshrc is sourced inside a virtualenv
 #  (without this the PROMPT updated by direnv would be reset)
 if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    export PROMPT=%{%F{red}%}(${$(basename $VIRTUAL_ENV)%-*})$PROMPT
+    PROMPT=%{%F{red}%}(${$(basename $VIRTUAL_ENV)%-*})$PROMPT
 fi
+# If PROMPT is not exported, $PROMPT is null for direnv
+export PROMPT
 
 # Show only username in prompt
+export DEFAULT_USER=moutauxaurelien
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+    prompt_segment black default $USER
   fi
 }
 
