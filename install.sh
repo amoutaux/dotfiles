@@ -15,8 +15,6 @@ for opt in "$@"; do
             bepo=true;;
         '--no-fonts')
             no_fonts=true;;
-        '--no-apt-setup')
-            no_apt_setup=true;;
         '--no-nvim')
             no_nvim=true;;
         '--no-packages')
@@ -30,7 +28,7 @@ for opt in "$@"; do
         '--init-git')
             init_git=true;;
         *)
-            printf "%s\n" "Available options:" "--no-fonts" "--no-apt-setup" \
+            printf "%s\n" "Available options:" "--no-fonts" \
                 "--no-nvim" "--no-packages" "--no-symlinks" "--no-zsh" \
                 "--no-tmux" "--bepo"
             printf "%s" "WARNING: to avoid installing a specific package, " \
@@ -73,24 +71,6 @@ install_brew() {
     fi
 }
 
-setup_apt() {
-
-    if [[ $no_apt_setup ]]; then
-        return
-    fi
-
-    e_header "apt update && apt upgrade..."
-    sudo apt update && sudo apt upgrade
-
-    e_bold "Installing build-essential & software-properties-common packages"
-    local -a packages=(
-        'build-essential'
-        'software-properties-common'
-        )
-    # Install all packages
-    sudo apt install -y "$( printf "%s " "${packages[@]}" )"
-}
-
 install_packages() {
 
     if [[ $no_packages ]]; then
@@ -103,12 +83,15 @@ install_packages() {
         'git'
         'htop'
         'jq'
+        'less' # native macos less doesn't ship with lesskey
         'most'
         'neovim'
+        'node'
         'python3'
         'ripgrep'
         'shellcheck'
         'shfmt'
+        'swiftlint'
         'task'
         'tig'
         'timewarrior'
@@ -116,26 +99,6 @@ install_packages() {
         'tmux'
         'tree'
         'zsh'
-    )
-
-    local -a linux_only=(
-        'exuberant-ctags'
-        'gnome-shell-extension-autohidetopbar'
-        'gnome-shell-extension-caffeine'
-        'gnome-shell-extension-gsconnect'
-        'gnome-shell-extension-remove-dropdown-arrows'
-        'gnome-shell-extensions'
-        'gnome-tweaks'
-        'nodejs'
-        'python3-pip' # pip comes along with python3 on mac
-        'terminator'
-        'xclip'
-    )
-
-    local -a mac_only=(
-        'less' # native macos less doesn't ship with lesskey
-        'node'
-        'swiftlint'
     )
 
     local -a brew_cask=(
@@ -146,26 +109,18 @@ install_packages() {
         'xquartz'
     )
 
-    # WARNING: It is important for xclip that xquartz is installed first
     # Setup package managers and package list based on platform
-    if [[ $platform == 'osx' ]]; then
-        install_brew
-        cmd="brew install"
-        packages=( "${generic[@]}" "${mac_only[@]}")
-        e_header "Installing brew cask packages..."
-        for package in "${brew_cask[@]}"; do
-            brew cask install "$package" || e_warning "$package install failed."
-        done
-        # there's a space in the 'package name' thus it can't be in the loop
-        brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-    elif [[ $platform == 'linux' ]]; then
-        setup_apt
-        cmd="sudo apt install -y -qq"
-        packages=( "${generic[@]}" "${linux_only[@]}")
-    fi
+    install_brew
+    cmd="brew install"
+    e_header "Installing brew cask packages..."
+    for package in "${brew_cask[@]}"; do
+        brew cask install "$package" || e_warning "$package install failed."
+    done
+    # there's a space in the 'package name' thus it can't be in the loop
+    brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
     e_header "Installing generic packages..."
-    for package in "${packages[@]}"; do
+    for package in "${generic[@]}"; do
         # Brew will throw an error if a package is already installed
         $cmd $package || e_warning "$package installation failed"
     done
@@ -323,9 +278,6 @@ TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+
     printf '%s' "$terminal_instructions"
 
     ctags_instructions="
-CTAGS: Current default.ctags file is meant for universal-ctags
-/!\ On Linux, exuberant-ctags was installed.
-    --> ctags config file needs to be changed and save under ~/.ctags
 CTAGS: Uncomment the corresponding 'ctags' alias in ~/.zshrc
     "
     printf '%s' "$ctags_instructions"
@@ -344,4 +296,3 @@ setup_tmux_plugin_manager
 init_git
 setup_zsh
 instructions
-
