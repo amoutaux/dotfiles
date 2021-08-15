@@ -59,27 +59,55 @@ fi
 # source utils since they are needed here
 source "$DOTFILES_DIR/shell/utils.sh"
 
+e_header "Dotfiles installation"
+
+setup_apt() {
+
+    e_header "apt update && apt upgrade..."
+    sudo apt update && sudo apt upgrade
+
+    e_bold "Installing build-essential & software-properties-common packages"
+    local -a packages=(
+        'build-essential'
+        'software-properties-common'
+    )
+    # Install all packages
+    sudo apt install -y "$(printf "%s " "${packages[@]}")"
+}
+
 install_packages() {
 
     if [[ ! ($packages || $all) ]]; then
         return
     fi
 
+    setup_apt
+
     local -a packages=(
         'bat'
         'git'
+        'gnome-shell-extension-autohidetopbar'
+        'gnome-shell-extension-caffeine'
+        'gnome-shell-extension-gsconnect'
+        'gnome-shell-extension-remove-dropdown-arrows'
+        'gnome-shell-extensions'
+        'gnome-tweaks'
         'htop'
         'jq'
         'most'
         'neovim'
+        'nodejs'
         'python3'
+        'python3-pip' # pip comes along with python3 on mac
         'ripgrep'
         'task'
+        'terminator'
         'tig'
         'timewarrior'
         'tldr'
         'tmux'
         'tree'
+        'xclip'
         'zsh'
     )
 
@@ -87,8 +115,11 @@ install_packages() {
         'virtualenvwrapper'
     )
 
+    # WARNING: It is important for xclip that xquartz is installed first
+    setup_apt
+    cmd="sudo apt install -y -qq"
+
     e_header "Installing packages..."
-    read -r -p "Package installation command (ex: 'apt install'): " cmd
     for package in "${packages[@]}"; do
         $cmd "$package" || e_warning "$package installation failed"
     done
