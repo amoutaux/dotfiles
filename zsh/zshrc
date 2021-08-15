@@ -19,6 +19,9 @@ ENABLE_CORRECTION="true"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
+# https://stackoverflow.com/questions/30940299/zsh-repeats-command-in-output
+DISABLE_AUTO_TITLE="true"
+
 # ZSH plugins to load
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
 plugins=( git fzf pyenv docker docker-compose vi-mode colored-man-pages zsh-syntax-highlighting )
