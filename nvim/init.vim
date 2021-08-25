@@ -110,10 +110,12 @@ set number
 set hlsearch
 set incsearch
 "Custom colors for diffs
-hi DiffAdd ctermbg=235 ctermfg=95 cterm=reverse guibg=#262626 guifg=#5f875f gui=reverse
-hi DiffDelete ctermbg=235 ctermfg=95 cterm=reverse guibg=#262626 guifg=#875f5f gui=reverse
-hi DiffChange ctermbg=235 ctermfg=65 cterm=reverse guibg=#262626 guifg=#5f875f gui=reverse
-hi DiffText ctermbg=235 ctermfg=65 cterm=reverse guibg=#262626 guifg=#5f875f gui=reverse
+"NB: gui=reverse is a hack for increasing priority
+"Available colors: https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
+hi DiffAdd ctermbg=235 ctermfg=64 cterm=reverse guibg=#262626 guifg=#5f8700 gui=reverse
+hi DiffDelete ctermbg=235 ctermfg=88 cterm=reverse guibg=#262626 guifg=#870000 gui=reverse
+hi DiffText ctermbg=235 ctermfg=172 cterm=reverse guibg=#262626 guifg=#d78700 gui=reverse
+hi clear DiffChange
 
 "KEYMAPS
 "Set mapleader (overwrite default '\')
@@ -167,8 +169,6 @@ noremap <Leader>rg :call SmartRg() <CR>
 noremap <Leader>cp :pclose<CR>
 noremap <Leader>cq :cclose<CR>
 noremap <Leader>cl :lclose<CR>
-"Unhighlight
-noremap <Leader>h :noh<CR>
 
 "MISCELLANEOUS
 "Reload file if it has been changed outside of nvim
