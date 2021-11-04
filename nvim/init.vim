@@ -42,8 +42,6 @@ let g:airline_skip_empty_sections = 1
 let g:deoplete#enable_at_startup = 1
 "Close preview window after completion is done
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
-"Open Gdiff in vertical splits
-set diffopt+=vertical
 "More customization for python-mode plugin
 let g:pymode_lint_on_fly = 1
 let g:pymode_rope_completion = 1
@@ -57,7 +55,7 @@ let g:ale_fixers['typescript'] = ['prettier', 'eslint']
 let g:ale_fixers['typescriptreact'] = ['prettier', 'eslint']
 let g:ale_fixers['swift'] = ['swiftformat']
 let g:ale_fixers['python'] = ['autopep8', 'reorder-python-imports']
-let g:ale_python_pylint_options = '--max-line-length=80'
+let g:ale_python_pylint_options = '--max-line-length=120'
 let g:ale_fixers['json'] = ['prettier']
 "More customization for statusline
 set statusline+=%#warningmsg#
@@ -140,7 +138,7 @@ set timeoutlen=200
 noremap <Leader>gc :Gcommit -v<CR>
 noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>gd :Gvdiff!<CR>
 noremap <Leader>dg :diffget<CR>
 noremap <Leader>dp :diffput<CR>
 "Ale errors jump
