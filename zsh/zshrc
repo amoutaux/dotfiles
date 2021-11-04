@@ -24,7 +24,8 @@ DISABLE_AUTO_TITLE="true"
 
 # ZSH plugins to load
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
-plugins=( git fzf pyenv docker docker-compose vi-mode colored-man-pages zsh-syntax-highlighting )
+PATH="$(pyenv root)/shims:$PATH"
+plugins=( git fzf pyenv vi-mode colored-man-pages zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -52,6 +53,7 @@ alias vmstop='f() { VBoxManage controlvm "$1" poweroff };f'
 alias vmip='f(){ VBoxManage guestproperty get "$1" /VirtualBox/GuestInfo/Net/0/V4/IP };f'
 
 # Custom aliases that doesn't fit elsewhere
+alias rm="rm -i"
 alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
 alias letsgo="pipenv install neovim" # For virtual environments setup
 alias tiga="tig --all"
@@ -59,10 +61,6 @@ alias dm="docker-machine"
 alias sshhosts="cat ~/.ssh/config | grep \"^Host\""
 alias lst="ls -lhFt"
 alias dkrma="docker container rm $(docker container ls -a -q)"
-
-# Uncomment for ctags to be found by vim-gutentags
-#alias ctags="$(brew --prefix)/bin/ctags"       # macos
-#alias ctags="/usr/bin/ctags"                   # linux
 
 # DIRENV
 alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
