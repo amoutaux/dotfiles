@@ -140,9 +140,9 @@ set shiftwidth=4
 "Set timeout for double key
 set timeoutlen=200
 "Gitgutter
-noremap <Leader>gc :Gcommit -v<CR>
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gc :Git commit -v<CR>
+noremap <Leader>gs :Git status<CR>
+noremap <Leader>gb :Git blame<CR>
 noremap <Leader>gd :Gvdiff!<CR>
 noremap <Leader>dg :diffget<CR>
 noremap <Leader>dp :diffput<CR>
