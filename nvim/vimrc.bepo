@@ -37,12 +37,19 @@ noremap « <
 noremap » >
 
 " netrw set up mappings that are local to the buffer (using the <buffer> option)
-nnoremap <buffer> t h
-nnoremap <buffer> n l
-" {sr} = « haut / bas »
-nnoremap <buffer> s j
-nnoremap <buffer> r k
-nnoremap <buffer> h t
-nnoremap <buffer> j s
-nnoremap <buffer> k r
-nnoremap <buffer> l n
+augroup netrw_mapping
+    autocmd!
+    autocmd filetype netrw call NetrwMapping()
+augroup END
+
+function! NetrwMapping()
+    noremap <buffer> t h
+    noremap <buffer> n l
+    " {sr} = « haut / bas »
+    noremap <buffer> s j
+    noremap <buffer> r k
+    noremap <buffer> h t
+    noremap <buffer> j s
+    noremap <buffer> k r
+    noremap <buffer> l n
+endfunction
