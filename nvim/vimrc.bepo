@@ -36,3 +36,13 @@ noremap L N
 noremap « <
 noremap » >
 
+" netrw set up mappings that are local to the buffer (using the <buffer> option)
+nnoremap <buffer> t h
+nnoremap <buffer> n l
+" {sr} = « haut / bas »
+nnoremap <buffer> s j
+nnoremap <buffer> r k
+nnoremap <buffer> h t
+nnoremap <buffer> j s
+nnoremap <buffer> k r
+nnoremap <buffer> l n

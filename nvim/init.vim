@@ -65,11 +65,14 @@ set statusline+=%{gutentags#statusline()}
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 "Netrw
-set nocp
-let g:netrw_preview = 1
+let g:netrw_preview = 1 "preview window shown in a horizontal split"
+let g:netrw_banner = 0 "hide netrw comment banner"
 let g:netrw_altv = 1
 let g:netrw_liststyle = 3
-let g:netrw_winsize = 80
+let g:netrw_winsize = 25
+let g:netrw_browse_split = 0 "open file in current window"
+"  To avoid having to close the netrw window after selecting a file, I
+"  open netrw in the current window with :Explore then open files
 "Fzf (junegunn)
 let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.8 }}
 let g:fzf_preview_window = ['down:50%', 'ctrl-/']
@@ -123,6 +126,8 @@ noremap <leader>h :noh<CR>
 "Toggle NERDTree and FZF
 noremap <leader>f :FZF<CR>
 noremap <leader>n :NERDTreeFind<CR>
+" Toggle netrw
+nnoremap <silent> ,e :Explore<CR>
 "escape
 tnoremap nn <Esc>
 inoremap nn <Esc>
