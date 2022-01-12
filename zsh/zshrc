@@ -25,7 +25,7 @@ DISABLE_AUTO_TITLE="true"
 # ZSH plugins to load
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
 PATH="$(pyenv root)/shims:$PATH"
-plugins=( git fzf pyenv vi-mode colored-man-pages zsh-syntax-highlighting )
+plugins=( git fzf kubectl pyenv vi-mode colored-man-pages zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
