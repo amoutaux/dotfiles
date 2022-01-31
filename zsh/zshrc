@@ -25,12 +25,10 @@ DISABLE_AUTO_TITLE="true"
 # ZSH plugins to load
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
 PATH="$(pyenv root)/shims:$PATH"
-plugins=( git fzf kubectl pyenv vi-mode colored-man-pages zsh-syntax-highlighting )
+plugins=( git fzf kubectl pyenv colored-man-pages zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# vi-mode keytimeout setup (0.2sec, same as init.vim)
-export KEYTIMEOUT=20
 
 #Overwrite/add some git plugin aliases
 alias gcm="git commit -m"
@@ -81,7 +79,18 @@ prompt_context() {
   fi
 }
 
-# bepo vi-mode bindings. See zshzle man page for bindkey insights
+# Right prompt show vi-mode + set cursor style accordingly (echo ...)
+function zle-line-init zle-keymap-select {
+    case $KEYMAP in
+        vicmd) RPS1="%F{blue}--NORMAL--"; echo -e -n "\x1b[\x30 q";;
+        viins|main) RPS1="%F{yellow}--INSERT--"; echo -e -n "\x1b[\x35 q";;
+    esac
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# bepo bindings. See zshzle man page for bindkey insights
 # zle mole vim
 bindkey -v
 # Bepo mappings
