@@ -129,9 +129,10 @@ noremap <leader>n :NERDTreeFind<CR>
 " Toggle netrw
 nnoremap <silent> ,e :Explore<CR>
 "escape
-tnoremap nn <Esc>
-inoremap nn <Esc>
-vnoremap nn <Esc>
+tnoremap dv <Esc>
+inoremap dv <Esc>
+vnoremap dv <Esc>
+nnoremap dv <Esc>
 "Jump next char in insert mode
 inoremap ee <Esc>la
 "tab indentation
