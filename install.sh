@@ -168,6 +168,8 @@ install_packages() {
     done
 
     e_header "Installing Python packages..."
+    # pyenv is cloned manually
+    git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
     for package in ${python_packages[@]}; do
         python3 -m pip install --user $package
     done
