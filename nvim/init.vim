@@ -207,25 +207,6 @@ function! g:Open_chrome(url)
     silent exec '!open -na "Google chrome" --args --new-window ' . a:url
 endfunction
 
-"Allow scrolling faster. Enter with \i, leave with \k
-"let g:OnOff=1
-"function! MultiScroll(OnOff)
-"if a:OnOff == 1
-"  noremap k 10<Up>
-"  noremap j 10<Down>
-"  noremap h 10<Left>
-"  noremap l 10<Right>
-" let g:OnOff = 0
-"else
-"  let g:OnOff = 1
-"  noremap k <Up>
-"  noremap j <Down>
-"  noremap h <Left>
-"  noremap l <Right>
-"endif
-"endfunction
-"noremap <Tab> :call MultiScroll(OnOff)<RETURN>
-
 "Cut/Copy/Paste shared between vim instances and computer
 set clipboard=unnamedplus
 
