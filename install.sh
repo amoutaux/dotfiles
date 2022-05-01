@@ -236,17 +236,6 @@ setup_zsh() {
         e_warning "Zsh-syntax-highlighting already installed."
     fi
 
-    # Patch vi-mode plugin
-    e_bold "Patching vi-mode plugin"
-    if [[ -d "$HOME/.oh-my-zsh/plugins/vi-mode" ]]; then
-        cd $HOME/.oh-my-zsh/plugins/vi-mode
-        git apply $DOTFILES_DIR/zsh/patches/vi-mode.patch ||
-            e_warning "Couldn't apply vi-mode patch. Probably already applied."
-        cd -
-    else
-        e_warning "vi-mode plugin not found. Not patched."
-    fi
-
     # Source zshrc
     zsh -c "source $HOME/.zshrc"
 }
