@@ -180,7 +180,9 @@ install_packages() {
 
     e_header "Installing Python packages..."
     # pyenv is cloned manually
-    git clone https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
+    if [[ ! -d "$HOME/.pyenv" ]]; then
+        git clone -q https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
+    fi
     for package in "${python_packages[@]}"; do
         python3 -m pip install --user "$package"
     done
@@ -316,6 +318,7 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
     ln -nsf "$DOTFILES_DIR/zsh/zshenv" "$HOME/.zshenv"
     ln -nsf "$DOTFILES_DIR/zsh/aliases" "$HOME/.aliases"
+    ln -nsf "$DOTFILES_DIR/zsh/zprofile" "$HOME/.zprofile"
     # less
     ln -nsf "$DOTFILES_DIR/bepo/lesskey" "$HOME/.lesskey"
     # xcode
