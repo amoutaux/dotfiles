@@ -106,7 +106,9 @@ install_packages() {
     local -a brew_cask=(
         'google-chrome'
         'iterm2'
-        'macdown'
+        'brave-browser'
+        'fork'
+        'obsidian'
         'raycast'
         'xquartz'
     )
@@ -118,7 +120,7 @@ install_packages() {
 
     e_header "Installing brew cask packages..."
     for package in "${brew_cask[@]}"; do
-        brew cask install "$package" || e_warning "$package install failed."
+        brew install --cask "$package" || e_warning "$package install failed."
     done
 
     e_header "Installing Pyenv..."
