@@ -48,7 +48,6 @@ alias tiga="tig --all"
 alias dm="docker-machine"
 alias sshhosts="cat ~/.ssh/config | grep \"^Host\""
 alias lst="ls -lhFt"
-alias dkrma="docker container rm $(docker container ls -a -q)"
 
 # DIRENV
 alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
