@@ -1,0 +1,3 @@
+layout pipenv # direnv method to start a pipenv environment. It notably exports VIRTUAL_ENV.
+ENV_NAME="$(basename $(dirname $VIRTUAL_ENV))"
+export PROMPT=%{%F{red}%}"($ENV_NAME)"$PROMPT
