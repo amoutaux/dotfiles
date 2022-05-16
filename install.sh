@@ -9,7 +9,7 @@ DOTFILES_GIT_REMOTE="git@github.com/amoutaux/dotfiles.git"
 
 
 # Options
-for opt in $@; do
+for opt in "$@"; do
     case $opt in
         '--bepo')
             bepo=true;;
@@ -39,14 +39,14 @@ done
 
 # Download the entire repository into $DOTFILES_DIR via tarball
 if [[ ! -d $DOTFILES_DIR ]]; then
-    curl -fsSLo $HOME/dotfiles.tar.gz $DOTFILES_TARBALL_URL
-    mkdir $DOTFILES_DIR
-    tar -zxf $HOME/dotfiles.tar.gz --strip-components 1 -C $DOTFILES_DIR
-    rm -rf $HOME/dotfiles.tar.gz
+    curl -fsSLo "$HOME/dotfiles.tar.gz" "$DOTFILES_TARBALL_URL"
+    mkdir "$DOTFILES_DIR"
+    tar -zxf "$HOME/dotfiles.tar.gz" --strip-components 1 -C "$DOTFILES_DIR"
+    rm -rf "$HOME/dotfiles.tar.gz"
 fi
 
 # source utils since they are needed here
-source $DOTFILES_DIR/shell/utils.sh
+source "$DOTFILES_DIR/shell/utils.sh"
 
 e_header "Dotfiles installation"
 
@@ -86,7 +86,7 @@ setup_apt() {
         'software-properties-common'
         )
     # Install all packages
-    sudo apt install -y $( printf "%s " "${packages[@]}" )
+    sudo apt install -y "$( printf "%s " "${packages[@]}" )"
 }
 
 install_packages() {
@@ -150,8 +150,8 @@ install_packages() {
         cmd="brew install"
         packages=( "${generic[@]}" "${mac_only[@]}")
         e_header "Installing brew cask packages..."
-        for package in ${brew_cask[@]}; do
-            brew cask install $package || e_warning "$package install failed."
+        for package in "${brew_cask[@]}"; do
+            brew cask install "$package" || e_warning "$package install failed."
         done
         # there's a space in the 'package name' thus it can't be in the loop
         brew install --HEAD universal-ctags/universal-ctags/universal-ctags
@@ -162,16 +162,16 @@ install_packages() {
     fi
 
     e_header "Installing generic packages..."
-    for package in ${packages[@]}; do
+    for package in "${packages[@]}"; do
         # Brew will throw an error if a package is already installed
-        $cmd $package || e_warning "$package installation failed"
+        "$cmd $package" || e_warning "$package installation failed"
     done
 
     e_header "Installing Python packages..."
     # pyenv is cloned manually
-    git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
-    for package in ${python_packages[@]}; do
-        python3 -m pip install --user $package
+    git clone https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
+    for package in "${python_packages[@]}"; do
+        python3 -m pip install --user "$package"
     done
 
 }
@@ -183,14 +183,14 @@ install_powerline_fonts() {
     fi
 
     e_header "Installing powerline fonts..."
-    git clone https://github.com/powerline/fonts $HOME/fonts
-    $HOME/fonts/install.sh
-    rm -rf $HOME/fonts
+    git clone https://github.com/powerline/fonts "$HOME/fonts"
+    "$HOME/fonts/install.sh"
+    rm -rf "$HOME/fonts"
 }
 
 init_git() {
     # Link downloaded dotfiles directory to the git repository
-    cd $DOTFILES_DIR
+    cd "$DOTFILES_DIR"
     if ! is_git_repository; then
         e_header "Initializing git repository..."
         git init
@@ -216,13 +216,13 @@ setup_zsh() {
         if ! grep -Fxq "$(which zsh)" /etc/shells; then
             sudo sh -c 'echo "$(which zsh)" >> /etc/shells'
         fi
-        chsh -s $(which zsh) $(whoami) || e_error "Failed to setup default shell."
+        chsh -s "$(which zsh)" "$(whoami)" || e_error "Failed to setup default shell."
     fi
 
     # Install oh-my-zsh
     e_bold "Installing oh-my-zsh"
     if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-        git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
+        git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
     else
         e_warning "oh-my-zsh already installed."
     fi
@@ -231,7 +231,7 @@ setup_zsh() {
     e_bold "Installing zsh-syntax-highlighting plugin"
     if [[ ! -d "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" ]]; then
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-            $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting
+            "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting"
     else
         e_warning "Zsh-syntax-highlighting already installed."
     fi
@@ -248,7 +248,7 @@ setup_tmux_plugin_manager() {
 
     e_header "Setuping TPM..."
     if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
-        git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+        git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
     else
         e_warning "Tmux plugin manager already installed."
     fi
@@ -272,8 +272,8 @@ install_nvim_plugins() {
 setup_bepo() {
     if [[ $bepo ]]; then
         e_header "Installing bepo bundle..."
-        sudo cp -R $DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle /Library/Keyboard\ Layouts
-        cp -R $DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle $HOME/Library/Keyboard\ Layouts
+        sudo cp -R "$DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle /Library/Keyboard\ Layouts"
+        cp -R "$DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle" "$HOME/Library/Keyboard\ Layouts"
     fi
 }
 
@@ -285,29 +285,29 @@ create_symlinks() {
 
     e_header "Creating symlinks..."
     # Create necessary directories
-    mkdir -p $HOME/.config
-    mkdir -p $HOME/.tmux/plugins
-    mkdir -p $HOME/.ctags.d
-    mkdir -p $HOME/Library/Developer/Xcode/UserData
+    mkdir -p "$HOME/.config"
+    mkdir -p "$HOME/.tmux/plugins"
+    mkdir -p "$HOME/.ctags.d"
+    mkdir -p "$HOME/Library/Developer/Xcode/UserData"
     # git
-    ln -nsf $DOTFILES_DIR/git/gitignore $HOME/.gitignore
-    ln -nsf $DOTFILES_DIR/git/gitconfig $HOME/.gitconfig
-    ln -nsf $DOTFILES_DIR/git/tigrc $HOME/.tigrc
+    ln -nsf "$DOTFILES_DIR/git/gitignore" "$HOME/.gitignore"
+    ln -nsf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
+    ln -nsf "$DOTFILES_DIR/git/tigrc" "$HOME/.tigrc"
     # nvim
-    ln -nsf $DOTFILES_DIR/nvim $HOME/.config/nvim
-    ln -nsf $DOTFILES_DIR/nvim/ctags $HOME/.ctags.d/default.ctags
-    ln -nsf $DOTFILES_DIR/nvim/tern-config $HOME/.tern-config
+    ln -nsf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+    ln -nsf "$DOTFILES_DIR/nvim/ctags" "$HOME/.ctags.d/default.ctags"
+    ln -nsf "$DOTFILES_DIR/nvim/tern-config" "$HOME/.tern-config"
     # shell
-    ln -nsf $DOTFILES_DIR/shell/utils.sh $HOME/.utils.sh
+    ln -nsf "$DOTFILES_DIR/shell/utils.sh" "$HOME/.utils.sh"
     # tmux
-    ln -nsf $DOTFILES_DIR/tmux/tmux.conf $HOME/.tmux.conf
+    ln -nsf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
     # zsh
-    ln -nsf $DOTFILES_DIR/zsh/zshrc $HOME/.zshrc
+    ln -nsf "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
     # less
-    ln -nsf $DOTFILES_DIR/bepo/lesskey $HOME/.lesskey
+    ln -nsf "$DOTFILES_DIR/bepo/lesskey" "$HOME/.lesskey"
     # xcode
     if [[ $platform == 'osx' ]]; then
-        ln -nsf $DOTFILES_DIR/xcode/fonts $HOME/Library/Developer/Xcode/UserData/FontAndColorThemes
+        ln -nsf "$DOTFILES_DIR/xcode/fonts" "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
     fi
 }
 
@@ -325,7 +325,7 @@ instructions() {
 TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard' option in chosen terminal.
 TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+
     "
-    printf "$terminal_instructions"
+    printf '%s' "$terminal_instructions"
 
     ctags_instructions="
 CTAGS: Current default.ctags file is meant for universal-ctags
@@ -333,12 +333,12 @@ CTAGS: Current default.ctags file is meant for universal-ctags
     --> ctags config file needs to be changed and save under ~/.ctags
 CTAGS: Uncomment the corresponding 'ctags' alias in ~/.zshrc
     "
-    printf "$ctags_instructions"
+    printf '%s' "$ctags_instructions"
 
     swift_instructions="
 SWIFT: Don't forget to install sourcekit-lsp for vim support
     "
-    print "$swift_instructions"
+    printf '%s' "$swift_instructions"
 }
 
 install_packages
