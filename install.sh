@@ -113,6 +113,11 @@ install_packages() {
         'neovim'
         'direnv'
         'ripgrep'
+        'tldr'
+        'bat'
+        'shfmt'
+        'shellcheck'
+        'htop'
     )
 
     local -a linux_only=(
@@ -153,6 +158,8 @@ install_packages() {
         'flake8'
         'mypy'
         'black'
+        'autopep8'
+        'reorder-python-imports'
     )
     # WARNING: It is important for xclip that xquartz is installed first
     # Setup package managers and package list based on platform
