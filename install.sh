@@ -100,7 +100,6 @@ install_packages() {
         'python3'
         'python3-pip' # pip comes along with python3 on mac
         'ripgrep'
-        'task'
         'terminator'
         'tig'
         'timewarrior'
@@ -111,13 +110,28 @@ install_packages() {
         'zsh'
     )
 
+    local -a snap=(
+    )
+
+    local -a snap_classic=(
+        'task'
+    )
+
     # WARNING: It is important for xclip that xquartz is installed first
     setup_apt
-    cmd="sudo apt install -y -qq"
 
     e_header "Installing packages..."
     for package in "${packages[@]}"; do
-        $cmd "$package" || e_warning "$package installation failed"
+        sudo apt install -y -qq "$package" || e_warning "$package installation failed"
+    done
+
+    e_header "Installing snap packages..."
+    for package in "${snap[@]}"; do
+        sudo snap install "$package" || e_warning "$package installation failed"
+    done
+
+    for package in "${snap_classic[@]}"; do
+        sudo snap install --classic "$package" || e_warning "$package installation failed"
     done
 
     e_header "Installing Pyenv..."
