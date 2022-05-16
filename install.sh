@@ -100,7 +100,6 @@ install_packages() {
         'python3-pip' # pip comes along with python3 on mac
         'ripgrep'
         'shellcheck'
-        'shfmt'
         'task'
         'ripgrep'
         'shellcheck'
@@ -115,6 +114,10 @@ install_packages() {
         'universal-ctags'
         'xclip'
         'zsh'
+    )
+
+    local -a snap=(
+        'shfmt'
     )
 
     local -a python_packages=(
@@ -133,11 +136,17 @@ install_packages() {
     # WARNING: It is important for xclip that xquartz is installed first
     setup_apt
     cmd="sudo apt install -y -qq"
+    cmd2="sudo snap install"
 
     e_header "Installing generic packages..."
     for package in "${generic[@]}"; do
         # Brew will throw an error if a package is already installed
         $cmd $package || e_warning "$package installation failed"
+    done
+
+    e_header "Installing snap packages..."
+    for package in ${snap[@]}; do
+        $cmd2 $package || e_warning "$package installation failed"
     done
 
     e_header "Installing Python packages..."
