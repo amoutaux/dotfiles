@@ -50,17 +50,6 @@ source "$DOTFILES_DIR/shell/utils.sh"
 
 e_header "Dotfiles installation"
 
-# Platform identification
-case $(uname) in
-    'Linux')
-        platform='linux';;
-    'Darwin')
-        platform='osx';;
-    *)
-        echo "Unknown platform: only 'Linux' or 'Darwin' supported for \$uname.";
-        exit 1;;
-esac
-
 install_brew() {
     if ! type_exists 'brew'; then
         e_header "Installing Homebrew"
@@ -114,7 +103,6 @@ install_packages() {
         'xquartz'
     )
 
-    # Setup package managers and package list based on platform
     install_brew
     cmd="brew install"
     e_header "Installing brew cask packages..."
