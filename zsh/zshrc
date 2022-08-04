@@ -48,6 +48,9 @@ alias tiga="tig --all"
 alias dm="docker-machine"
 alias sshhosts="cat ~/.ssh/config | grep \"^Host\""
 alias lst="ls -lhFt"
+alias cat="bat"
+alias tf="terraform"
+alias ip="ifconfig | grep -A 5 'en0' | grep -oE -m 1 '(\d+\.\d+\.\d+\.\d+)' | head -1 | tee /dev/tty | pbcopy"
 
 # DIRENV
 alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
