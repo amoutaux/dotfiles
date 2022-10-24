@@ -19,6 +19,7 @@ Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'justinmk/vim-sneak'
 "Misc
 Plug 'scrooloose/nerdtree'
 "Display
@@ -77,6 +78,9 @@ let g:netrw_browse_split = 0 "open file in current window"
 "Fzf (junegunn)
 let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.8 }}
 let g:fzf_preview_window = ['down:50%', 'ctrl-/']
+"Vim-sneak
+map ff <Plug>Sneak_s
+map FF <Plug>Sneak_S
 
 "Markdown preview open in new window
 let g:mkdp_browserfunc = 'g:Open_chrome'
