@@ -20,8 +20,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'justinmk/vim-sneak'
-"Misc
-Plug 'scrooloose/nerdtree'
 "Display
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
@@ -46,8 +44,6 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
 "More customization for python-mode plugin
 let g:pymode_lint_on_fly = 1
 let g:pymode_rope_completion = 1
-"Let NERDTree show hidden files by default
-let g:NERDTreeShowHidden = 1
 "Define linters used by ale
 let g:ale_enabled = 1
 let g:ale_fixers = {}
@@ -72,9 +68,8 @@ let g:netrw_banner = 0 "hide netrw comment banner"
 let g:netrw_altv = 1
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
-let g:netrw_browse_split = 0 "open file in current window"
-"  To avoid having to close the netrw window after selecting a file, I
-"  open netrw in the current window with :Explore then open files
+let g:netrw_browse_split = 4 "open file in previous window (before opening netrw)
+autocmd FileType netrw setl bufhidden=wipe
 "Fzf (junegunn)
 let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.8 }}
 let g:fzf_preview_window = ['down:50%', 'ctrl-/']
@@ -128,11 +123,10 @@ hi clear DiffChange
 let mapleader = ','
 "Toggle off highlights
 noremap <leader>h :noh<CR>
-"Toggle NERDTree and FZF
+"Toggle FZF
 noremap <leader>f :FZF<CR>
-noremap <leader>n :NERDTreeFind<CR>
 " Toggle netrw
-nnoremap <silent> ,e :Explore<CR>
+nnoremap <silent> <leader>n :Lexplore<CR>
 "escape
 tnoremap dv <Esc>
 inoremap dv <Esc>
