@@ -63,12 +63,11 @@ set statusline+=%{gutentags#statusline()}
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 "Netrw
-let g:netrw_preview = 1 "preview window shown in a horizontal split"
+let g:netrw_preview = 1 "preview window shown in a vertical split"
 let g:netrw_banner = 0 "hide netrw comment banner"
-let g:netrw_altv = 1
 let g:netrw_liststyle = 3
-let g:netrw_winsize = 25
-let g:netrw_browse_split = 4 "open file in previous window (before opening netrw)
+let g:netrw_winsize = 15
+"let g:netrw_browse_split = 4 "open file in previous window (before opening netrw)
 autocmd FileType netrw setl bufhidden=wipe
 "Fzf (junegunn)
 let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.8 }}
@@ -126,7 +125,10 @@ noremap <leader>h :noh<CR>
 "Toggle FZF
 noremap <leader>f :FZF<CR>
 " Toggle netrw
-nnoremap <silent> <leader>n :Lexplore<CR>
+" Rq: Lexplore is the only command that closes netrw if it's already opened
+" Rq: %:p:h opens netrw in the current file directory (not the working directory)
+nnoremap <silent> <leader>n :Lexplore %:p:h<CR>
+nnoremap <leader>nq :Lexplore<CR>
 "escape
 tnoremap dv <Esc>
 inoremap dv <Esc>
