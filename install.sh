@@ -72,7 +72,20 @@ setup_apt() {
         'software-properties-common'
         )
     # Install all packages
-    sudo apt install -y "$( printf "%s " "${packages[@]}" )"
+    sudo apt install -y $( printf "%s " "${packages[@]}" )
+}
+
+install_gnome_extensions(){
+    e_header "Installing Gnome Extensions..."
+    curl -fsSLo gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
+    chmod +x ./gnome-shell-extension-installer
+
+    ./gnome-shell-extension-installer 4135 --yes  # Espresso
+    ./gnome-shell-extension-installer 545 --yes  # Hide Top Bar
+    ./gnome-shell-extension-installer 1319 --yes # GSconnect
+    ./gnome-shell-extension-installer 800 --yes # Remove Dropdown Arrows
+
+    rm -f ./gnome-shell-extension-installer
 }
 
 install_packages() {
@@ -85,10 +98,6 @@ install_packages() {
         'bat'
         'exuberant-ctags'
         'git'
-        'gnome-shell-extension-autohidetopbar'
-        'gnome-shell-extension-caffeine'
-        'gnome-shell-extension-gsconnect'
-        'gnome-shell-extension-remove-dropdown-arrows'
         'gnome-shell-extensions'
         'gnome-tweaks'
         'htop'
@@ -285,6 +294,7 @@ instructions() {
 }
 
 install_packages
+install_gnome_extensions
 install_powerline_fonts
 create_symlinks
 install_nvim_plugins
