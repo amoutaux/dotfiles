@@ -276,7 +276,7 @@ install_nvim_plugins() {
     fi
 
     if type_exists 'nvim'; then
-        e_header "Installing all neovim plugins..."
+        e_header "Installing neovim plugins..."
         nvim +UpdateRemotePlugins +PlugInstall +qall
         nvim -c "source $HOME/.config/nvim/init.vim" +qall
     else
@@ -333,10 +333,10 @@ instructions() {
     e_header "Additional instructions..."
 
     if [[ $bepo ]]; then
-        printf "%s\n" "BEPO: Settings > Keyboard > Input sources > Display input sources in menu bar"
+        e_note "BEPO: Settings > Keyboard > Input sources > Display input sources in menu bar"
     fi
     if [[ ! $no_tmux ]]; then
-        printf "%s\n" "TMUX: Don't forget to run 'Prefix + I' inside tmux to install tpm plugins"
+        e_note "TMUX: Don't forget to run 'Prefix + I' inside tmux to install tpm plugins"
     fi
 
     terminal_instructions="
