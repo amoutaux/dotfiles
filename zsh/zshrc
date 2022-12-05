@@ -98,3 +98,5 @@ bindkey -a é vi-forward-blank-word
 bindkey dv vi-cmd-mode
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Bepo mappings
+export FZF_DEFAULT_OPTS='--bind ctrl-r:up,ctrl-s:down'
