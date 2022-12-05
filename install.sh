@@ -16,6 +16,9 @@ for opt in "$@"; do
     '--init-git')
         init_git=true
         ;;
+    '--gnome-extensions')
+        gnome_extensions=true
+        ;;
     '--fonts')
         fonts=true
         ;;
@@ -34,6 +37,7 @@ for opt in "$@"; do
     *)
         printf "%s\n" "Available flags:" "" \
             "--all:          activate all flags below." \
+            "--gnome-extensions:        install gnome extensions (Espresso, Hide Top Bar, ...)." \
             "--init-git:     initialize git repository. Add origin. ⚠️ Will run \`git clean -fd\`." \
             "--fonts:        install powerline fonts." \
             "--packages:     install packages." \
@@ -72,7 +76,24 @@ setup_apt() {
         'software-properties-common'
     )
     # Install all packages
-    sudo apt install -y "$(printf "%s " "${packages[@]}")"
+    sudo apt install -y $(printf "%s " "${packages[@]}")
+}
+
+install_gnome_extensions() {
+    if [[ ! $gnome_extensions ]]; then
+        return
+    fi
+
+    e_header "Installing Gnome Extensions..."
+    curl -fsSLo gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
+    chmod +x ./gnome-shell-extension-installer
+
+    ./gnome-shell-extension-installer 4135 --yes # Espresso
+    ./gnome-shell-extension-installer 545 --yes  # Hide Top Bar
+    ./gnome-shell-extension-installer 1319 --yes # GSconnect
+    ./gnome-shell-extension-installer 800 --yes  # Remove Dropdown Arrows
+
+    rm -f ./gnome-shell-extension-installer
 }
 
 install_packages() {
@@ -86,10 +107,6 @@ install_packages() {
     local -a packages=(
         'bat'
         'git'
-        'gnome-shell-extension-autohidetopbar'
-        'gnome-shell-extension-caffeine'
-        'gnome-shell-extension-gsconnect'
-        'gnome-shell-extension-remove-dropdown-arrows'
         'gnome-shell-extensions'
         'gnome-tweaks'
         'htop'
@@ -281,6 +298,7 @@ instructions() {
 }
 
 install_packages
+install_gnome_extensions
 install_fonts
 create_symlinks
 setup_tmux_plugin_manager
