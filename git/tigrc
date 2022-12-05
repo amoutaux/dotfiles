@@ -2,7 +2,10 @@
 set main-view = line-number:no id:yes date:relative-compact author:abbreviated commit-title:yes,graph,refs,overflow=no
 
 # Type of characters for line drawing
-set line-graphics = default
+set line-graphics = utf-8
+
+# Larger split to view source code
+set split-view-height = 80%
 
 # Checkout commit from main view
 bind main c !git checkout %(commit)
