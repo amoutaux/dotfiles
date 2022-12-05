@@ -24,12 +24,20 @@ Plug 'justinmk/vim-sneak'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-context'
 "Markdown preview (need nodejs & yarn installed)
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 call plug#end()
 
 "Plugins customization
+"nvim-treesitter auto install of languages
+lua << EOF
+require'nvim-treesitter.configs'.setup{
+    auto_install = true
+}
+EOF
 "Set supertab autocompletion cycle from top to bottom
 let g:SuperTabDefaultCompletionType = "<c-n>"
 "Set airline theme
