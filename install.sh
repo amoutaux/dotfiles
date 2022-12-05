@@ -251,9 +251,6 @@ setup_zsh() {
     else
         e_warning "Zsh-syntax-highlighting already installed."
     fi
-
-    # Source zshrc
-    zsh -c "source $HOME/.zshrc"
 }
 
 setup_tmux_plugin_manager() {
