@@ -57,6 +57,7 @@ if [[ "$(uname)" != "Linux" ]]; then
     echo "This script is meant for 'Linux' and you are running it from $(uname)";
     exit 1
 fi
+
 setup_apt() {
 
     if [[ $no_apt_setup ]]; then
@@ -64,15 +65,7 @@ setup_apt() {
     fi
 
     e_header "apt update && apt upgrade..."
-    sudo apt update && sudo apt upgrade
-
-    e_bold "Installing build-essential & software-properties-common packages"
-    local -a packages=(
-        'build-essential'
-        'software-properties-common'
-        )
-    # Install all packages
-    sudo apt install -y $( printf "%s " "${packages[@]}" )
+    sudo apt update && sudo apt upgrade -y
 }
 
 install_gnome_extensions(){
@@ -95,6 +88,8 @@ install_packages() {
     fi
 
     local -a generic=(
+        'build-essential'
+        'software-properties-common'
         'bat'
         'exuberant-ctags'
         'git'
@@ -111,6 +106,7 @@ install_packages() {
         'python3-pip' # pip comes along with python3 on mac
         'ripgrep'
         'shellcheck'
+        'snapd'
         'task'
         'ripgrep'
         'shellcheck'
