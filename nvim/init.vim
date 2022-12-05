@@ -114,6 +114,7 @@ set listchars=trail:~,tab:..,nbsp:&,
 set list
 "Set lines numbers
 set number
+set relativenumber
 "Highligh search results
 set hlsearch
 set incsearch
