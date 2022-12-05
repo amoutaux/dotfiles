@@ -66,20 +66,6 @@ source "$DOTFILES_DIR/shell/utils.sh"
 
 e_header "Dotfiles installation"
 
-setup_apt() {
-
-    e_header "apt update && apt upgrade..."
-    sudo apt update && sudo apt upgrade
-
-    e_bold "Installing build-essential & software-properties-common packages"
-    local -a packages=(
-        'build-essential'
-        'software-properties-common'
-    )
-    # Install all packages
-    sudo apt install -y $(printf "%s " "${packages[@]}")
-}
-
 install_gnome_extensions() {
     if [[ ! $gnome_extensions ]]; then
         return
@@ -103,10 +89,13 @@ install_packages() {
         return
     fi
 
-    setup_apt
+    e_header "apt update && apt upgrade..."
+    sudo apt update && sudo apt upgrade -y
 
     local -a packages=(
         'bat'
+        'build-essential'
+        'software-properties-common'
         'git'
         'gnome-shell-extensions'
         'gnome-tweaks'
@@ -119,6 +108,7 @@ install_packages() {
         'python3'
         'python3-pip' # pip comes along with python3 on mac
         'ripgrep'
+        'snapd'
         'terminator'
         'tig'
         'timewarrior'
@@ -141,7 +131,6 @@ install_packages() {
     )
 
     # WARNING: It is important for xclip that xquartz is installed first
-    setup_apt
 
     e_header "Installing packages..."
     # deno is needed by some neovim plugins
