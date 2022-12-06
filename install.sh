@@ -132,6 +132,9 @@ install_packages() {
 
     # WARNING: It is important for xclip that xquartz is installed first
 
+    e_header "Adding required PPA repositories..."
+    sudo add-apt-repository ppa:neovim-ppa/stable
+
     e_header "Installing packages..."
     # deno is needed by some neovim plugins
     curl -fsSL https://deno.land/install.sh | sh
