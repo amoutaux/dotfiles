@@ -18,8 +18,8 @@ bind stage C !<git commit --verbose
 bind main ! !<git commit --verbose --fixup=%(commit)
 
 # Interactive rebase from main and diff views
-bind main R !git rebase -i %(commit)^
-bind diff R !git rebase -i %(commit)^
+bind main R !<git rebase -i %(commit)^
+bind diff R !<git rebase -i %(commit)^
 
 # Delete branch in refs view
 bind refs d !git branch --delete %(refname)
