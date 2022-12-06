@@ -8,9 +8,9 @@ set line-graphics = utf-8
 set split-view-height = 80%
 
 # Checkout commit from main view
-bind main c !git checkout %(commit)
+bind main c !<git checkout %(commit)
 # Checkout branch from refs view
-bind refs c !git checkout %(refname)
+bind refs c !<git checkout %(refname)
 
 # Interactive rebase from main and diff views
 bind main R !git rebase -i %(commit)^
