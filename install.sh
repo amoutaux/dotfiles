@@ -131,6 +131,9 @@ install_packages() {
 
     # WARNING: It is important for xclip that xquartz is installed first
 
+    e_header "Adding required PPA repositories..."
+    sudo add-apt-repository ppa:neovim-ppa/stable
+
     e_header "Installing packages..."
     for package in "${packages[@]}"; do
         sudo apt install -y -qq "$package" || e_warning "$package installation failed"
