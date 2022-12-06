@@ -143,6 +143,9 @@ install_packages() {
     cmd="sudo apt install -y -qq"
     cmd2="sudo snap install"
 
+    e_header "Adding required PPA repositories..."
+    sudo add-apt-repository ppa:neovim-ppa/stable
+
     e_header "Installing generic packages..."
     for package in "${generic[@]}"; do
         # Brew will throw an error if a package is already installed
