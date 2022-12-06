@@ -4,7 +4,7 @@
 set -e
 
 DOTFILES_DIR=$HOME/dotfiles
-DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/master"
+DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/linux"
 DOTFILES_GIT_REMOTE="git@github.com/amoutaux/dotfiles.git"
 
 # Options
