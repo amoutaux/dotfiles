@@ -120,7 +120,6 @@ install_packages() {
         'zsh'
     )
 
-
     local -a snap=(
     )
 
@@ -129,6 +128,9 @@ install_packages() {
     )
 
     # WARNING: It is important for xclip that xquartz is installed first
+
+    e_header "Adding required PPA repositories..."
+    sudo add-apt-repository ppa:neovim-ppa/stable
 
     e_header "Installing packages from script..."
     # deno is needed by some neovim plugins
