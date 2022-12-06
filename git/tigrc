@@ -11,6 +11,11 @@ set split-view-height = 80%
 bind main c !<git checkout %(commit)
 # Checkout branch from refs view
 bind refs c !<git checkout %(refname)
+# Verbose commit from status & stage views
+bind status C !<git commit --verbose
+bind stage C !<git commit --verbose
+# Fixup commit from main view
+bind main ! !<git commit --verbose --fixup=%(commit)
 
 # Interactive rebase from main and diff views
 bind main R !git rebase -i %(commit)^
