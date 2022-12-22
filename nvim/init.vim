@@ -54,7 +54,9 @@ let g:pymode_lint_on_fly = 1
 let g:pymode_rope_completion = 1
 "Define linters used by ale
 let g:ale_enabled = 1
+let g:ale_fix_on_save = 1
 let g:ale_fixers = {}
+let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers['sh'] = ['shfmt']
 let g:ale_fixers['javascript'] = ['prettier', 'eslint']
 let g:ale_fixers['typescript'] = ['prettier', 'eslint']
