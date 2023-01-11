@@ -126,7 +126,7 @@ install_packages() {
 
     e_header "Installing Pyenv..."
     # symlink python3 to python since there is no /usr/local/bin/python by default
-    ln -nsf /usr/local/bin/python3 /usr/local/bin/python
+    sudo ln -nsf /usr/local/bin/python3 /usr/local/bin/python
     # pyenv is cloned manually
     if [[ ! -d "$HOME/.pyenv" ]]; then
         git clone -q https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
