@@ -15,6 +15,7 @@ Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
+Plug 'tpope/vim-surround'
 "Moves
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -22,6 +23,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'justinmk/vim-sneak'
 "Display
 Plug 'morhetz/gruvbox'
+Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -79,6 +81,8 @@ let g:netrw_liststyle = 3
 let g:netrw_winsize = 15
 "let g:netrw_browse_split = 4 "open file in previous window (before opening netrw)
 autocmd FileType netrw setl bufhidden=wipe
+"NERDTree
+let g:NERDTreeWinSize = 25
 "Fzf (junegunn)
 let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.8 }}
 let g:fzf_preview_window = ['down:50%', 'ctrl-/']
