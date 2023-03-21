@@ -106,6 +106,7 @@ map FF <Plug>Sneak_S
 
 "Markdown preview open in new window
 let g:mkdp_browserfunc = 'g:Open_chrome'
+let g:mkdp_theme = 'light'
 
 
 "Set swap files directory
