@@ -33,6 +33,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 call plug#end()
 
+"Tell nvim to recognize Jenkinsfile as groovy
+au BufNewFile,BufRead Jenkinsfile setfiletype groovy
+
 "Plugins customization
 "nvim-treesitter auto install of languages
 lua << EOF
@@ -57,6 +60,14 @@ let g:pymode_rope_completion = 1
 "Define linters used by ale
 let g:ale_enabled = 1
 let g:ale_fix_on_save = 1
+let g:ale_linters = {}
+autocmd BufNewFile,BufRead */recipes/*.rb set ft=chef syntax=ruby
+autocmd BufNewFile,BufRead */providers/*.rb set ft=chef syntax=ruby
+autocmd BufNewFile,BufRead */resources/*.rb set ft=chef syntax=ruby
+autocmd BufNewFile,BufRead */attributes/*.rb set ft=chef syntax=ruby
+let g:ale_linters['chef'] = ['cookstyle']
+let g:ale_linters['ruby'] = ['rubocop', 'cookstyle']
+let g:ale_linters['jenkinsfile'] = ['npm-groovy-lint']
 let g:ale_fixers = {}
 let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers['sh'] = ['shfmt']
