@@ -93,8 +93,7 @@ set updatetime=1000
 let g:netrw_preview = 1 "preview window shown in a vertical split"
 let g:netrw_banner = 0 "hide netrw comment banner"
 let g:netrw_liststyle = 3
-let g:netrw_winsize = 15
-"let g:netrw_browse_split = 4 "open file in previous window (before opening netrw)
+let g:netrw_winsize = 25
 autocmd FileType netrw setl bufhidden=wipe
 "NERDTree
 let g:NERDTreeWinSize = 25
