@@ -66,8 +66,11 @@ autocmd BufNewFile,BufRead */providers/*.rb set ft=chef syntax=ruby
 autocmd BufNewFile,BufRead */resources/*.rb set ft=chef syntax=ruby
 autocmd BufNewFile,BufRead */attributes/*.rb set ft=chef syntax=ruby
 let g:ale_linters['chef'] = ['cookstyle']
+let g:ale_linters['yaml'] = ['yamllint']
 let g:ale_linters['ruby'] = ['rubocop', 'cookstyle']
 let g:ale_linters['jenkinsfile'] = ['npm-groovy-lint']
+let g:ale_yamllint_options = "--strict"
+let g:ale_linters['python'] = ['flake8']
 let g:ale_fixers = {}
 let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers['sh'] = ['shfmt']
@@ -75,9 +78,10 @@ let g:ale_fixers['javascript'] = ['prettier', 'eslint']
 let g:ale_fixers['typescript'] = ['prettier', 'eslint']
 let g:ale_fixers['typescriptreact'] = ['prettier', 'eslint']
 let g:ale_fixers['swift'] = ['swiftformat']
-let g:ale_fixers['python'] = ['autopep8', 'reorder-python-imports']
+let g:ale_fixers['python'] = ['black']
 let g:ale_python_pylint_options = '--max-line-length=120'
 let g:ale_fixers['json'] = ['prettier', 'fixjson']
+let g:ale_fixers['yaml'] = ['yamlfix']
 "More customization for statusline
 set statusline+=%#warningmsg#
 set statusline+=%*
