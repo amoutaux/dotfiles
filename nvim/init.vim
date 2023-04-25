@@ -155,6 +155,8 @@ hi clear DiffChange
 "KEYMAPS
 "Set mapleader (overwrite default '\')
 let mapleader = ','
+"Go to previous file
+noremap gpf :e#<CR>
 "Toggle off highlights
 noremap <leader>h :noh<CR>
 "Toggle FZF
@@ -191,7 +193,7 @@ nmap <Leader>pe <Plug>(ale_previous_wrap)
 "Ale Fix
 nmap <Leader>af <Plug>(ale_fix)
 "Ctags
-nnoremap <Leader>t :BTags<CR>
+nnoremap <Leader>B :BTags<CR>
 nnoremap <Leader>T :Tags<CR>
 "Next/Previous changes jumps
 noremap <Leader>nc ]c
