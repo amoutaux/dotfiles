@@ -208,7 +208,7 @@ noremap <Leader>ah :ALEDocumentation<CR>
 "Second chance using ternjs
 noremap <Leader>sc :TernDef<CR>
 "RipGrep (via fzf)
-noremap <Leader>rg :call SmartRg() <CR>
+noremap <Leader>rg :CustomRg<CR>
 "Close windows
 noremap <Leader>cp :pclose<CR>
 noremap <Leader>cq :cclose<CR>
@@ -227,14 +227,11 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 "CUSTOM FUNCTIONS
 "Use word under cursor for ripgrep if possible
-function! SmartRg()
-if matchstr(getline('.'), '\%'.col('.').'c.') =~# '\k'
-    call feedkeys(":Rg \<C-R>\<C-W>\<CR>")
-else
-    call feedkeys(":Rg\<CR>")
-endif
-endfunction
-
+"Custom rg (use ':command Rg' to see the original one): search in hidden files too
+command! -bang -nargs=* CustomRg
+      \ call fzf#vim#grep(
+      \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+      \   fzf#vim#with_preview(), <bang>0)
 "Filter quickfix list
 function! s:FilterQuickfixList(bang, pattern)
   let cmp = a:bang ? '!~#' : '=~#'
