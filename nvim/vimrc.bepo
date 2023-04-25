@@ -5,7 +5,7 @@ map é w
 map É W
 cmap é w
 
-" [HJKL] -> {TSRN}
+" {tsrn} pour se déplacer
 " ————————————————
 " {tn} = « gauche / droite »
 noremap t h
@@ -17,17 +17,16 @@ noremap r k
 noremap T H
 noremap N L
 
-" [HJKL] <- {TSRN}
+" on remap les commandes {tsrn} originelles sur <Leader>{tsrn}
 " ————————————————
-" {H} devient 'till'
-noremap h t
-noremap H T
-" {j} devient 'substitute' / {J} reste Join
-noremap j s
-" {K} devient 'replace'
-noremap k r
-noremap K R
-" {L} devient 'next'
+" till
+noremap <Leader>t t
+" substitute
+noremap <Leader>s s
+" replace
+noremap <Leader>r r
+noremap <Leader>R R
+" next est géré par 'l' et 'L' (n nous sert pour netrw)
 noremap l n
 noremap L N
 
