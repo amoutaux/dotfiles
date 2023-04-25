@@ -120,6 +120,9 @@ syntax enable
 "Max width of columns
 set textwidth=80
 set colorcolumn=80 "show column number 80
+"Scroll 10 lines
+noremap <C-d> 10jzz
+noremap <C-u> 10kzz
 "Folding
 filetype plugin indent on
 autocmd Filetype * AnyFoldActivate "activate AnyFold plugin for all filetypes
