@@ -57,20 +57,21 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
 "More customization for python-mode plugin
 let g:pymode_lint_on_fly = 1
 let g:pymode_rope_completion = 1
-"Define linters used by ale
+"Define linters & fixers used by ale
 let g:ale_enabled = 1
 let g:ale_fix_on_save = 1
 let g:ale_linters = {}
-autocmd BufNewFile,BufRead */recipes/*.rb set ft=chef syntax=ruby
-autocmd BufNewFile,BufRead */providers/*.rb set ft=chef syntax=ruby
-autocmd BufNewFile,BufRead */resources/*.rb set ft=chef syntax=ruby
-autocmd BufNewFile,BufRead */attributes/*.rb set ft=chef syntax=ruby
-let g:ale_linters['chef'] = ['cookstyle']
+autocmd BufNewFile,BufRead */recipes/*.rb set ft=ruby.chef syntax=ruby
+autocmd BufNewFile,BufRead */providers/*.rb set ft=ruby.chef syntax=ruby
+autocmd BufNewFile,BufRead */resources/*.rb set ft=ruby.chef syntax=ruby
+autocmd BufNewFile,BufRead */attributes/*.rb set ft=ruby.chef syntax=ruby
+let g:ale_linters['chef'] = ['cookstyle', 'rubocop']
 let g:ale_linters['yaml'] = ['yamllint']
+let g:ale_linters['markdown'] = ['markdownlint']
 let g:ale_linters['ruby'] = ['rubocop', 'cookstyle']
 let g:ale_linters['jenkinsfile'] = ['npm-groovy-lint']
 let g:ale_yamllint_options = "--strict"
-let g:ale_linters['python'] = ['flake8']
+let g:ale_linters['python'] = ['flake8', 'mypy']
 let g:ale_fixers = {}
 let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers['sh'] = ['shfmt']
@@ -87,6 +88,7 @@ set statusline+=%#warningmsg#
 set statusline+=%*
 "More customization for gutentags
 set statusline+=%{gutentags#statusline()}
+let g:gutentags_ctags_exclude = ['.mypy_cache']
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 "Netrw
