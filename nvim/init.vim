@@ -159,11 +159,13 @@ let mapleader = ','
 noremap <leader>h :noh<CR>
 "Toggle FZF
 noremap <leader>f :FZF<CR>
-" Toggle netrw
+"Toggle netrw
 " Rq: Lexplore is the only command that closes netrw if it's already opened
 " Rq: %:p:h opens netrw in the current file directory (not the working directory)
-nnoremap <silent> <leader>n :Lexplore %:p:h<CR>
-nnoremap <leader>nq :Lexplore<CR>
+nnoremap <silent> <leader>N :Lexplore %:p:h<CR>
+nnoremap <leader>NQ :Lexplore<CR>
+"Open NERDTree on current file
+nnoremap <leader>n :NERDTreeFind<CR>
 "escape
 tnoremap dv <Esc>
 inoremap dv <Esc>
