@@ -1,0 +1,57 @@
+#Overwrite/add some git plugin aliases
+alias gcm="git commit -m"
+alias gcom="git checkout \$(git_main_branch)"
+alias gai="git add -i"
+alias gap="git add -p"
+alias gdto="git difftool -y"
+
+# Show/hide hidden files in Finder
+alias show_hidden="defaults write com.apple.Finder AppleShowAllFiles YES && killall Finder"
+alias hide_hidden="defaults write com.apple.Finder AppleShowAllFiles NO && killall Finder"
+
+# VBoxManage aliases
+alias vms="VBoxManage list vms"
+alias rvms="VBoxManage list runningvms"
+alias vmstart='f() { VBoxManage startvm "$1" --type headless };f'
+alias vmstop='f() { VBoxManage controlvm "$1" poweroff };f'
+alias vmip='f(){ VBoxManage guestproperty get "$1" /VirtualBox/GuestInfo/Net/0/V4/IP };f'
+
+# Timewarrior
+alias tw="timew"
+alias twst="timew start"
+alias twDSU="timew start Meeting && timew annotate 'DSU'"
+alias twasak="timew start Meeting && timew annotate 'Asakai'"
+alias twsto="timew stop"
+alias twsu="timew summary :ids :an"
+alias twsuw="timew summary :ids :an :week"
+alias twsum="timew summary :ids :an :month"
+alias twsuy="timew summary :ids :an :year"
+alias twsuyes="timew summary :ids :an :yesterday"
+alias twday="timew day"
+alias twweek="timew week"
+alias twmonth="timew month"
+alias twa="timew annotate"
+alias twc="timew continue"
+alias twd="timew delete"
+alias twms="timew modify start"
+alias twme="timew modify end"
+alias twlen="timew lengthen"
+alias twsho="timew shorten"
+alias twt="timew tag"
+alias twut="timew untag"
+
+# Custom aliases that don't fit elsewhere
+alias python="python3"
+alias rm="rm -i"
+alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
+alias letsgo="pipenv install neovim" # For virtual environments setup
+alias tiga="tig --all"
+alias sshhosts="cat ~/.ssh/config | grep \"^Host\""
+alias lst="ls -lhFt"
+alias cat="bat"
+alias tf="terraform"
+alias ip="ifconfig | grep -A 5 'en0' | grep -oE -m 1 '(\d+\.\d+\.\d+\.\d+)' | head -1 | tee /dev/tty | pbcopy"
+alias path="echo $PATH | tr ':' '\n'"
+
+# For ctags to be found by vim-gutentags
+alias ctags="$(brew --prefix)/bin/ctags"       # macos
