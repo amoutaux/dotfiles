@@ -363,9 +363,9 @@ install_packages
 install_powerline_fonts
 create_symlinks
 install_nvim_plugins
-setup_zsh
 setup_tmux_plugin_manager
 init_git
+setup_zsh
 setup_bepo
 instructions
 
