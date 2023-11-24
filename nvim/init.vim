@@ -151,6 +151,12 @@ map FF <Plug>Sneak_S
 "Markdown preview open in new window
 let g:mkdp_browserfunc = 'g:Open_chrome'
 let g:mkdp_theme = 'light'
+"Vim-fugitive (uses its own mapping context)
+nnoremap git :tab Git<CR>
+autocmd FileType fugitive,fugitiveblame nnoremap <buffer> T h
+autocmd FileType fugitive,fugitiveblame nnoremap <buffer> S j
+autocmd FileType fugitive,fugitiveblame nnoremap <buffer> R k
+autocmd FileType fugitive,fugitiveblame nnoremap <buffer> N l
 
 
 """""""""
