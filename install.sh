@@ -101,6 +101,13 @@ install_packages() {
         'git'
         'zsh'
         'tig'
+        'tldr'
+        'bat'
+        'shfmt'
+        'shellcheck'
+        'htop'
+        'timewarrior'
+        'task'
         'tmux'
         'python3'
         'neovim'
@@ -142,6 +149,10 @@ install_packages() {
         'ipdb'
         'tox'
         'pynvim'
+        'pyright'
+        'flake8'
+        'mypy'
+        'black'
     )
     # WARNING: It is important for xclip that xquartz is installed first
     # Setup package managers and package list based on platform
