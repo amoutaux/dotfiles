@@ -45,6 +45,8 @@ set textwidth=80
 autocmd FileType groovy setlocal shiftwidth=4 textwidth=120 colorcolumn=120
 set autoread "reload file if it has been changed outside of nvim
 set undolevels=1000 "set number of changes that are stored so they can be undone
+"vertical help ('bo'=bottom and opens on the right in vertical context)
+cnoremap help vertical bo help
 let g:netrw_preview = 1 "preview window shown in a vertical split"
 let g:netrw_banner = 0 "hide netrw comment banner"
 let g:netrw_liststyle = 3
