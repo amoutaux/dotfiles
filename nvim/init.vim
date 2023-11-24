@@ -6,20 +6,16 @@ call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 "Autocompletion/Linters
-Plug 'sheerun/vim-polyglot'
 Plug 'Raimondi/delimitMate'
 Plug 'pseewald/vim-anyfold'
 Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 "Moves
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'justinmk/vim-sneak'
 "Display
 Plug 'morhetz/gruvbox'
@@ -86,9 +82,6 @@ let g:ale_fixers['yaml'] = ['yamlfix']
 "More customization for statusline
 set statusline+=%#warningmsg#
 set statusline+=%*
-"More customization for gutentags
-set statusline+=%{gutentags#statusline()}
-let g:gutentags_ctags_exclude = ['.mypy_cache']
 "Update synchrone plugins (ex: gitgutter) faster /!\ slow vim
 set updatetime=1000
 "Netrw
@@ -153,6 +146,7 @@ hi DiffText ctermbg=235 ctermfg=172 cterm=reverse guibg=#262626 guifg=#d78700 gu
 hi clear DiffChange
 
 "KEYMAPS
+
 "Set mapleader (overwrite default '\')
 let mapleader = ','
 "Go to previous file
