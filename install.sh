@@ -96,70 +96,65 @@ install_packages() {
     fi
 
     local -a generic=(
-        'tree'
-        'most'
-        'git'
-        'zsh'
-        'tig'
-        'tldr'
         'bat'
-        'shfmt'
-        'shellcheck'
-        'htop'
-        'timewarrior'
-        'task'
-        'tmux'
-        'python3'
-        'neovim'
         'direnv'
-        'ripgrep'
-        'tldr'
-        'bat'
-        'shfmt'
-        'shellcheck'
+        'git'
         'htop'
+        'most'
+        'neovim'
+        'python3'
+        'ripgrep'
+        'shellcheck'
+        'shfmt'
+        'task'
+        'tig'
+        'timewarrior'
+        'tldr'
+        'tmux'
+        'tree'
+        'zsh'
     )
 
     local -a linux_only=(
-        'python3-pip' # pip comes along with python3 on mac
-        'xclip'
-        'terminator'
         'exuberant-ctags'
-        'nodejs'
-        'gnome-tweaks'
-        'gnome-shell-extensions'
-        'gnome-shell-extension-caffeine'
         'gnome-shell-extension-autohidetopbar'
+        'gnome-shell-extension-caffeine'
         'gnome-shell-extension-gsconnect'
         'gnome-shell-extension-remove-dropdown-arrows'
+        'gnome-shell-extensions'
+        'gnome-tweaks'
+        'nodejs'
+        'python3-pip' # pip comes along with python3 on mac
+        'terminator'
+        'xclip'
     )
 
     local -a mac_only=(
+        'less' # native macos less doesn't ship with lesskey
         'node'
         'swiftlint'
-        'less' # native macos less doesn't ship with lesskey
     )
 
     local -a brew_cask=(
-        'iterm2'
         'google-chrome'
+        'iterm2'
         'macdown'
-        'xquartz'
         'raycast'
+        'xquartz'
     )
 
     local -a python_packages=(
-        'pipenv'
+        'autopep8'
+        'black'
+        'flake8'
         'ipython'
         'ipdb'
-        'tox'
+        'mypy'
+        'pipenv'
         'pynvim'
         'pyright'
-        'flake8'
-        'mypy'
-        'black'
-        'autopep8'
         'reorder-python-imports'
+        'tox'
     )
     # WARNING: It is important for xclip that xquartz is installed first
     # Setup package managers and package list based on platform
