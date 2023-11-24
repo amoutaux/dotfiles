@@ -205,20 +205,15 @@ noremap <Leader>gb :Git blame<CR>
 noremap <Leader>gd :Gvdiff!<CR>
 noremap <Leader>dg :diffget<CR>
 noremap <Leader>dp :diffput<CR>
-"Ale errors jump
-nmap <Leader>ne <Plug>(ale_next_wrap)
-nmap <Leader>pe <Plug>(ale_previous_wrap)
-"Ale Fix
-nmap <Leader>af <Plug>(ale_fix)
-"Ctags
-nnoremap <Leader>B :BTags<CR>
-nnoremap <Leader>T :Tags<CR>
-"With ALE
-noremap <Leader>ad :ALEGoToDefinition<CR>
-noremap <Leader>ar :ALEFindReferences<CR>
-noremap <Leader>ah :ALEDocumentation<CR>
-"Second chance using ternjs
-noremap <Leader>sc :TernDef<CR>
+"ALE
+noremap <Leader>ne <Plug>(ale_next_wrap)
+noremap <Leader>pe <Plug>(ale_previous_wrap)
+noremap <Leader>af <Plug>(ale_fix)
+noremap <Leader>ah <Plug>(ale_hover)
+noremap <Leader>ad <Plug>(ale_go_to_definition)
+noremap <Leader>atd <Plug>(ale_go_to_type_definition)
+noremap <Leader>ar <Plug>(ale_find_references)
+noremap <Leader>ado <Plug>(ale_documentation)
 "RipGrep (via fzf)
 noremap <Leader>rg :CustomRg<CR>
 
