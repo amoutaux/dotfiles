@@ -100,6 +100,7 @@ install_packages() {
         'direnv'
         'git'
         'htop'
+        'jq'
         'most'
         'neovim'
         'python3'
