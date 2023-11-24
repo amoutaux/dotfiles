@@ -1,99 +1,52 @@
-# Environment variables
-export EDITOR="nvim"
-export PATH="/usr/local/bin:$PATH"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden' # Set fzf to use ripgrep
-export PIPENV_VENV_IN_PROJECT=1
-
-# ZSH custom
-export ZSH="$HOME/.oh-my-zsh"
+#################
+# ZSH customize #
+#################
 ZSH_THEME="agnoster"
 CASE_SENSITIVE="true"
 ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_AUTO_TITLE="true"
 
-# ZSH plugins to load
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
-plugins=( git fzf docker kitchen colored-man-pages zsh-syntax-highlighting )
+plugins=( git docker kubectl kitchen colored-man-pages fzf zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-#Overwrite/add some git plugin aliases
-alias gcm="git commit -m"
-alias gcom="git checkout \$(git_main_branch)"
-alias gai="git add -i"
-alias gap="git add -p"
+#################
+# Load binaries #
+#################
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # NVM
+eval "$(pyenv init -)" # Pyenv
+pyenv virtualenvwrapper # Virtualenv Wrapper
+source "/opt/homebrew/bin/virtualenvwrapper.sh" # if virtualenv installed with /opt/homebrew/bin/python3
 
-# You may need to manually set your language environment
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-# Set terminal to use 256 colors
-export TERM="screen-256color"
-# Custom pager
-#export PAGER="/usr/local/bin/less" # macos (native less missing lesskey)
 
-# VBoxManage aliases
-alias vms="VBoxManage list vms"
-alias rvms="VBoxManage list runningvms"
-alias vmstart='f() { VBoxManage startvm "$1" --type headless };f'
-alias vmstop='f() { VBoxManage controlvm "$1" poweroff };f'
-alias vmip='f(){ VBoxManage guestproperty get "$1" /VirtualBox/GuestInfo/Net/0/V4/IP };f'
+##################
+# Autocompletion #
+##################
+# In install.sh: mkdir ~/.oh-my-zsh/completions -> to store completion scripts
+eval "$(chef shell-init zsh)" # Chef
+source "$HOME/src/google-cloud-sdk/completion.bash.inc"
 
-# Custom aliases that doesn't fit elsewhere
-alias rm="rm -i"
-alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
-alias letsgo="pipenv install neovim" # For virtual environments setup
-alias tiga="tig --all"
-alias sshhosts="cat ~/.ssh/config | grep \"^Host\""
-alias lst="ls -lhFt"
-alias cat="bat"
-alias tf="terraform"
-alias ip="ifconfig | grep -A 5 'en0' | grep -oE -m 1 '(\d+\.\d+\.\d+\.\d+)' | head -1 | tee /dev/tty | pbcopy"
-alias path="echo $PATH | tr ':' '\n'"
-alias tw="timew"
-alias twst="timew start"
-alias twsto="timew stop"
-alias twsu="timew summary :ids :an"
-alias twsuw="timew summary :ids :an :week"
-alias twsum="timew summary :ids :an :month"
-alias twsuy="timew summary :ids :an :year"
-alias twsuyes="timew summary :ids :an :yesterday"
-alias twday="timew day"
-alias twweek="timew week"
-alias twmonth="timew month"
-alias twa="timew annotate"
-alias twc="timew continue"
-alias twd="timew delete"
-alias twms="timew modify start"
-alias twme="timew modify end"
-alias twlen="timew lengthen"
-alias twsho="timew shorten"
-alias twt="timew tag"
-alias twut="timew untag"
 
-# DIRENV
-alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
-eval "$(direnv hook zsh)"
-# Update PROMPT in case zshrc is sourced inside a virtualenv
-#  (without this the PROMPT updated by direnv would be reset)
-if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    PROMPT=%{%F{red}%}(${$(basename $VIRTUAL_ENV)%-*})$PROMPT
+##########
+# Prompt #
+##########
+# Update PS1 in case zshrc is sourced inside a virtualenv
+#  (without this the PS1 updated by virtualenvwrapper would be reset)
+if [[ -n "$VIRTUAL_ENV" ]]; then
+    PS1="%F{red}VENV ($(basename $VIRTUAL_ENV))%F{reset} $_OLD_VIRTUAL_PS1"
 fi
-# If PROMPT is not exported, $PROMPT is null for direnv
-export PROMPT
+export PS1
 
-# Show only username in prompt
-export DEFAULT_USER=moutauxaurelien
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default $USER
-  fi
-}
+# Do not show prompt context (username@host)
+prompt_context() { }
 
-# Right prompt show vi-mode + set cursor style accordingly (echo ...)
+
+###########
+# Vi-mode #
+###########
 function zle-line-init zle-keymap-select {
     case $KEYMAP in
         vicmd) RPS1="%F{blue}--NORMAL--"; echo -e -n "\x1b[\x30 q";;
@@ -104,7 +57,11 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-# bepo bindings. See zshzle man page for bindkey insights
+
+########
+# BEPO #
+########
+# See zshzle man page for bindkey insights
 # zle mole vim
 bindkey -v
 # Bepo mappings
@@ -119,7 +76,41 @@ bindkey -a 0 vi-digit-or-beginning-of-line
 bindkey -a dd vi-change-whole-line
 bindkey -a é vi-forward-blank-word
 bindkey dv vi-cmd-mode
+bindkey -M menuselect t vi-backward-char
+bindkey -M menuselect s vi-down-line-or-history
+bindkey -M menuselect r vi-up-line-or-history
+bindkey -M menuselect n vi-forward-char
+
+
+
+###############################
+# Virtualenv Wrapper Autoload #
+###############################
+# Load virtual envs created with virtualenvwrapper upon entering specific directories
+# ONLY WORKS IF DIRECTORY AND VENV SHARE THE SAME NAME
+cd() {
+    builtin cd "$@"
+
+    current_dir=$(basename $(pwd))
+    # If I am leaving a venv
+    if [[ -n "$VIRTUAL_ENV" ]] && ! [[ "$(pwd)" =~ "$(basename $VIRTUAL_ENV)"/* ]]; then
+      deactivate
+    fi
+    # If no venv is activated
+    if [[ -z "$VIRTUAL_ENV" ]]; then
+      # Enable venv if the current directory is in the 'lsvirtualenv' list
+      for dir in $(lsvirtualenv -b); do
+        if [[ "${dir}" == "${current_dir}" ]]; then
+            workon .
+        fi
+      done
+    fi
+}
+
+
+###########
+# Aliases #
+###########
+source ~/.aliases
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# Bepo mappings
-export FZF_DEFAULT_OPTS='--bind ctrl-r:up,ctrl-s:down'
