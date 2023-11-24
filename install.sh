@@ -138,7 +138,7 @@ install_packages() {
         git clone -q https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
     fi
     for package in "${python_packages[@]}"; do
-        python3 -m pip install --user "$package"
+        /opt/homebrew/bin/python3 -m pip install --user "$package"
     done
 
 }
