@@ -5,27 +5,29 @@ call plug#begin()
 "Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-"Autocompletion/Linters
-Plug 'Raimondi/delimitMate'
-Plug 'pseewald/vim-anyfold'
-Plug 'dense-analysis/ale'
+"Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
+"Linters/Fixers
+Plug 'hashivim/vim-terraform'
+Plug 'Raimondi/delimitMate'
+Plug 'dense-analysis/ale' "linting, fixing, jumping
+Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 "Moves
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'justinmk/vim-sneak'
+Plug 'justinmk/vim-sneak' "move to next/previous pair of chars
 "Display
 Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'pseewald/vim-anyfold'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
 "Markdown preview (need nodejs & yarn installed)
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 call plug#end()
 
