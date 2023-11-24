@@ -314,6 +314,8 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
     # zsh
     ln -nsf "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
+    ln -nsf "$DOTFILES_DIR/zsh/zshenv" "$HOME/.zshenv"
+    ln -nsf "$DOTFILES_DIR/zsh/aliases" "$HOME/.aliases"
     # less
     ln -nsf "$DOTFILES_DIR/bepo/lesskey" "$HOME/.lesskey"
     # xcode
