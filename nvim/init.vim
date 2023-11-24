@@ -105,15 +105,27 @@ let g:airline_section_z=''
 let g:airline_skip_empty_sections = 1
 "Define linters, fixers & lsp servers used by ale
 let g:ale_enabled = 1
-let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 0 "We use deoplete
+let g:ale_floating_preview = 1
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
+let g:ale_cursor_detail = 1
+let g:ale_virtualtext_cursor = 0 "disable inline errors
+let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {}
 let g:ale_linters['yaml'] = ['yamllint']
 let g:ale_linters['markdown'] = ['markdownlint']
-let g:ale_linters['ruby'] = ['rubocop', 'cookstyle']
+let g:ale_linters['ruby'] = ['rubocop']
 let g:ale_linters['chef'] = ['cookstyle', 'rubocop']
-let g:ale_linters['jenkinsfile'] = ['npm-groovy-lint']
+let g:ale_linters['groovy'] = ['npm-groovy-lint']
+let g:ale_linters['python'] = ['flake8', 'mypy', 'pyright']
 let g:ale_yamllint_options = "--strict"
-let g:ale_linters['python'] = ['flake8', 'mypy']
+let g:ale_python_pylint_options = '--max-line-length=120'
+"Let mypy handle type checking
+let g:ale_python_pyright_config = {
+\  'pyright': {
+\    'typeCheckingMode': "off",
+\  },
+\}
 let g:ale_fixers = {}
 let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers['sh'] = ['shfmt']
@@ -121,11 +133,10 @@ let g:ale_fixers['javascript'] = ['prettier', 'eslint']
 let g:ale_fixers['typescript'] = ['prettier', 'eslint']
 let g:ale_fixers['typescriptreact'] = ['prettier', 'eslint']
 let g:ale_fixers['swift'] = ['swiftformat']
-let g:ale_fixers['python'] = ['black']
-let g:ale_python_pylint_options = '--max-line-length=120'
+let g:ale_fixers['python'] = ['black', 'autoflake']
 let g:ale_fixers['json'] = ['prettier', 'fixjson']
 let g:ale_fixers['yaml'] = ['yamlfix']
-"More customization for statusline
+let g:ale_fixers['terraform'] = ['terraform']
 "More customization for statusline (in addition to vim-airline)
 set statusline+=%#warningmsg#
 set statusline+=%*
