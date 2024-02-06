@@ -19,7 +19,6 @@ alias vmip='f(){ VBoxManage guestproperty get "$1" /VirtualBox/GuestInfo/Net/0/V
 # Timewarrior
 alias tw="timew"
 alias twst="timew start"
-alias twDSU="timew start Meeting && timew annotate 'DSU'"
 alias twasak="timew start Meeting && timew annotate 'Asakai'"
 alias twsto="timew stop"
 alias twsu="timew summary :ids :an"
@@ -39,19 +38,18 @@ alias twlen="timew lengthen"
 alias twsho="timew shorten"
 alias twt="timew tag"
 alias twut="timew untag"
+alias twpr="timew start 'PR review'"
 
 # Custom aliases that don't fit elsewhere
+alias mid="echo -ne '\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A'"
 alias python="python3"
 alias rm="rm -i"
 alias tmux="direnv exec / tmux" # Make sure direnv is unloaded before exec tmux
-alias letsgo="pipenv install neovim" # For virtual environments setup
+alias letsgo="pip install neovim flake8 flake518 pyright black mypy" # For virtual environments setup
 alias tiga="tig --all"
 alias sshhosts="cat ~/.ssh/config | grep \"^Host\""
 alias lst="ls -lhFt"
 alias cat="bat"
 alias tf="terraform"
 alias ip="ifconfig | grep -A 5 'en0' | grep -oE -m 1 '(\d+\.\d+\.\d+\.\d+)' | head -1 | tee /dev/tty | pbcopy"
-alias path="echo $PATH | tr ':' '\n'"
-
-# For ctags to be found by vim-gutentags
-alias ctags="$(brew --prefix)/bin/ctags"       # macos
+alias path="echo \$PATH | tr ':' '\n'"
