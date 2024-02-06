@@ -25,6 +25,10 @@ source "/opt/homebrew/bin/virtualenvwrapper.sh" # if virtualenv installed with /
 ##################
 # Autocompletion #
 ##################
+# Enable bash completion
+# Load bash completion functions
+autoload -Uz +X compinit && compinit
+autoload -Uz +X bashcompinit && bashcompinit
 # In install.sh: mkdir ~/.oh-my-zsh/completions -> to store completion scripts
 eval "$(chef shell-init zsh)" # Chef
 source "$HOME/src/google-cloud-sdk/completion.bash.inc"
