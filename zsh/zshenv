@@ -12,8 +12,9 @@ export PIPENV_VENV_IN_PROJECT=1
 # pip user-installed binaries
 export PATH="$(python3 -m site --user-base)/bin:${PATH}"
 # Virtualenv Wrapper
+export VIRTUALENVWRAPPER_PYTHON="/opt/homebrew/bin/python3"
 export WORKON_HOME="$HOME/.virtualenvs"
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true" # use pyenv instead of virtualenv
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true" # use pyvenv instead of virtualenv
 
 # LANGUAGE
 export LANG="en_US.UTF-8"
