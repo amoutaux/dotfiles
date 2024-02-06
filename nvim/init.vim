@@ -35,6 +35,7 @@ call plug#end()
 """"""
 "CORE"
 """"""
+"let g:python3_host_prog = '/opt/homebrew/bin/python3' "avoid having to install neovim packages in venvs
 set clipboard=unnamedplus "cut/copy/paste shared between vim instances and computer
 set directory=~/.config/nvim/tmp "swap files directory
 set updatetime=1000 "time for synchrone actions (ex: gitgutter) faster /!\ slow vim
