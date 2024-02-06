@@ -120,7 +120,7 @@ let g:ale_linters['markdown'] = ['markdownlint']
 let g:ale_linters['ruby'] = ['rubocop']
 let g:ale_linters['chef'] = ['cookstyle']
 let g:ale_linters['groovy'] = ['npm-groovy-lint']
-let g:ale_linters['python'] = ['flake8', 'mypy', 'pyright']
+let g:ale_linters['python'] = ['flake8', 'pylint', 'mypy', 'pyright']
 let g:ale_yamllint_options = "--strict"
 let g:ale_python_pylint_options = '--max-line-length=120'
 "Let mypy handle type checking
