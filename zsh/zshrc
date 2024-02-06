@@ -37,16 +37,14 @@ source "$HOME/src/google-cloud-sdk/completion.bash.inc"
 ##########
 # Prompt #
 ##########
-# Update PS1 in case zshrc is sourced inside a virtualenv
-#  (without this the PS1 updated by virtualenvwrapper would be reset)
-if [[ -n "$VIRTUAL_ENV" ]]; then
-    PS1="%F{red}VENV ($(basename $VIRTUAL_ENV))%F{reset} $_OLD_VIRTUAL_PS1"
-fi
-export PS1
-
 # Do not show prompt context (username@host)
 prompt_context() { }
-
+# virtualenvwrapper hook to update prompt upon activation
+cat > $VIRTUALENVWRAPPER_HOOK_DIR/postactivate << EOF
+#!/bin/zsh
+# This hook is sourced after every virtualenv is activated.
+PS1="%{\$fg[red]%}(VENV \`basename \"\$VIRTUAL_ENV\"\`) \$_OLD_VIRTUAL_PS1"
+EOF
 
 ###########
 # Vi-mode #
