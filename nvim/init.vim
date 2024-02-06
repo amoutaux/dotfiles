@@ -58,7 +58,7 @@ autocmd FileType netrw setl bufhidden=wipe
 "recognize Jenkinsfiles as groovy
 autocmd BufNewFile,BufRead *.jenkinsfile,*.Jenkinsfile,Jenkinsfile,jenkinsfile setfiletype groovy | set shiftwidth=2
 "Recognize ruby files in a 'chef folder' as chef files to activate proper linting
-autocmd BufNewFile,BufRead */recipes/*.rb,*/providers/*.rb,*/resources/*.rb,*/attributes/*.rb set ft=ruby.chef syntax=ruby
+autocmd BufNewFile,BufRead */recipes/*.rb,*/providers/*.rb,*/resources/*.rb,*/attributes/*.rb set ft=chef syntax=ruby
 
 
 """""""""
@@ -118,7 +118,7 @@ let g:ale_linters = {}
 let g:ale_linters['yaml'] = ['yamllint']
 let g:ale_linters['markdown'] = ['markdownlint']
 let g:ale_linters['ruby'] = ['rubocop']
-let g:ale_linters['chef'] = ['cookstyle', 'rubocop']
+let g:ale_linters['chef'] = ['cookstyle']
 let g:ale_linters['groovy'] = ['npm-groovy-lint']
 let g:ale_linters['python'] = ['flake8', 'mypy', 'pyright']
 let g:ale_yamllint_options = "--strict"
@@ -139,6 +139,8 @@ let g:ale_fixers['swift'] = ['swiftformat']
 let g:ale_fixers['python'] = ['black', 'autoflake']
 let g:ale_fixers['json'] = ['prettier', 'fixjson']
 let g:ale_fixers['yaml'] = ['yamlfix']
+let g:ale_fixers['ruby'] = ['rubocop']
+let g:ale_fixers['chef'] = ['cookstyle']
 let g:ale_fixers['terraform'] = ['terraform']
 "More customization for statusline (in addition to vim-airline)
 set statusline+=%#warningmsg#
