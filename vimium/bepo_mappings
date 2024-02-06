@@ -6,9 +6,15 @@ map L nextTab
 map c createTab
 unmap d
 map d removeTab
+map D restoreTab
 unmap u
 map u Vomnibar.activateEditUrl
 map M goForward # Rq: can't map G to goBack as it's already in use
+map $ lastTab
+map 0 firstTab
+map <c-o> visitPreviousTab
+map « moveTabLeft
+map » moveTabRight
 
 # BEPO
 mapkey é w
@@ -33,4 +39,3 @@ mapkey H T
 mapkey J S
 mapkey K R
 mapkey L N
-
