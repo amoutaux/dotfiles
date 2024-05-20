@@ -297,7 +297,6 @@ create_symlinks() {
     mkdir -p "$HOME/.config"
     mkdir -p "$HOME/.tmux/plugins"
     mkdir -p "$HOME/.ctags.d"
-    mkdir -p "$HOME/Library/Developer/Xcode/UserData"
     # git
     ln -nsf "$DOTFILES_DIR/git/gitignore" "$HOME/.gitignore"
     ln -nsf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
@@ -317,10 +316,6 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/zsh/zprofile" "$HOME/.zprofile"
     # less
     ln -nsf "$DOTFILES_DIR/bepo/lesskey" "$HOME/.lesskey"
-    # xcode
-    if [[ $platform == 'osx' ]]; then
-        ln -nsf "$DOTFILES_DIR/xcode/fonts" "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
-    fi
 }
 
 instructions() {
