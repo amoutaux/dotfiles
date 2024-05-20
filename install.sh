@@ -263,6 +263,7 @@ create_symlinks() {
     mkdir -p "$HOME/.config/timewarrior"
     mkdir -p "$HOME/.local/share/timewarrior"
     mkdir -p "$HOME/.tmux/plugins"
+    mkdir -p "$HOME/Library/Developer/Xcode/UserData"
     # git
     ln -nsf "$DOTFILES_DIR/git/gitignore" "$HOME/.gitignore"
     ln -nsf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
@@ -296,6 +297,8 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/zsh/aliases" "$HOME/.aliases"
     ln -nsf "$DOTFILES_DIR/zsh/zprofile" "$HOME/.zprofile"
     ln -nsf "$DOTFILES_DIR/zsh/starship.toml" "$HOME/.config/starship.toml"
+    # xcode
+    ln -nsf "$DOTFILES_DIR/xcode/fonts" "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
 }
 
 instructions() {
