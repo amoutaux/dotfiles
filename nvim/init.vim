@@ -20,6 +20,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak' "move to next/previous pair of chars
 "Display
 Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -72,10 +73,17 @@ set foldlevel=0 "close all folds by default
 set foldopen-=block "don't unfold on block move commands
 "Colorscheme
 set termguicolors
-if finddir("~/.config/nvim/plugged/gruvbox") != ""
+if finddir("~/.config/nvim/plugged/papercolor-theme") != ""
+    set bg=light
+    colorscheme PaperColor
+    "Overwrite colorscheme background
+    hi Normal guibg=white
+    let g:airline_theme='tomorrow'
+elseif finddir("~/.config/nvim/plugged/gruvbox") != ""
     set bg=dark
     let g:gruvbox_contrast_dark = 'hard'
     colorscheme gruvbox
+    let g:airline_theme='luna'
 endif
 set list "show all whitespaces as characters
 set listchars=trail:~,tab:..,nbsp:&, "select specific whitespaces
@@ -102,7 +110,6 @@ call deoplete#custom#option('sources', {
 "Set supertab autocompletion cycle from top to bottom
 let g:SuperTabDefaultCompletionType = "<c-n>"
 "Set airline theme
-let g:airline_theme='luna'
 let g:airline_section_y=''
 let g:airline_section_z=''
 let g:airline_skip_empty_sections = 1
