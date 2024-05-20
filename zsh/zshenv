@@ -16,7 +16,6 @@ export PATH="$(python3 -m site --user-base)/bin:${PATH}"
 # Virtualenv Wrapper
 export VIRTUALENVWRAPPER_PYTHON="/opt/homebrew/bin/python3"
 export WORKON_HOME="$HOME/.virtualenvs"
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true" # use pyvenv instead of virtualenv
 
 # LANGUAGE
 export LANG="en_US.UTF-8"
