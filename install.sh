@@ -295,12 +295,17 @@ create_symlinks() {
     e_header "Creating symlinks..."
     # Create necessary directories
     mkdir -p "$HOME/.config"
+    mkdir -p "$HOME/.config/k9s"
     mkdir -p "$HOME/.tmux/plugins"
     mkdir -p "$HOME/.ctags.d"
     # git
     ln -nsf "$DOTFILES_DIR/git/gitignore" "$HOME/.gitignore"
     ln -nsf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
     ln -nsf "$DOTFILES_DIR/git/tigrc" "$HOME/.tigrc"
+    # k9s
+    ln -nsf "$DOTFILES_DIR/k9s" "$HOME/.config/k9s"
+    # less
+    ln -nsf "$DOTFILES_DIR/bepo/lesskey" "$HOME/.lesskey"
     # nvim
     ln -nsf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
     ln -nsf "$DOTFILES_DIR/nvim/ctags" "$HOME/.ctags.d/default.ctags"
@@ -314,8 +319,6 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/zsh/zshenv" "$HOME/.zshenv"
     ln -nsf "$DOTFILES_DIR/zsh/aliases" "$HOME/.aliases"
     ln -nsf "$DOTFILES_DIR/zsh/zprofile" "$HOME/.zprofile"
-    # less
-    ln -nsf "$DOTFILES_DIR/bepo/lesskey" "$HOME/.lesskey"
 }
 
 instructions() {
