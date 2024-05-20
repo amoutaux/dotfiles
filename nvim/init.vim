@@ -44,9 +44,11 @@ set smartcase "search is case-sensitive only if it contains an uppercase letter
 set updatetime=1000 "time for synchrone actions (ex: gitgutter) faster /!\ slow vim
 set timeoutlen=200 "time spent waiting for second key of a mapping
 set expandtab "insert spaces instead of tabs
+set splitbelow "open new windows at bottom
 set shiftwidth=2
-set textwidth=80
+set textwidth=80 colorcolumn=80
 autocmd FileType groovy setlocal shiftwidth=4 textwidth=120 colorcolumn=120
+autocmd FileType markdown setlocal shiftwidth=4 textwidth=120 colorcolumn=120
 set autoread "reload file if it has been changed outside of nvim
 set undolevels=1000 "set number of changes that are stored so they can be undone
 "vertical help ('bo'=bottom and opens on the right in vertical context)
@@ -66,7 +68,6 @@ autocmd BufNewFile,BufRead */recipes/*.rb,*/providers/*.rb,*/resources/*.rb,*/at
 "DISPLAY"
 """""""""
 syntax enable "enable syntax /!\ syntax on overwrite with default values
-set colorcolumn=80 "show column number 80
 filetype plugin indent on "activate folding
 autocmd Filetype * AnyFoldActivate "activate AnyFold plugin for all filetypes
 set foldlevel=0 "close all folds by default
@@ -116,8 +117,8 @@ let g:airline_skip_empty_sections = 1
 "Define linters, fixers & lsp servers used by ale
 let g:ale_enabled = 1
 let g:ale_completion_enabled = 0 "We use deoplete
-let g:ale_floating_preview = 1
-let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
+let g:ale_cursor_detail = 1 "Open preview if cursor focus line with issue
+let g:ale_close_preview_on_insert = 1
 let g:ale_cursor_detail = 1
 let g:ale_virtualtext_cursor = 0 "disable inline errors
 let g:airline#extensions#ale#enabled = 1
@@ -212,7 +213,7 @@ noremap <Leader>pc [c
 nnoremap <leader>n :NERDTreeFind<CR>
 "Vim Fugitive
 noremap <Leader>gc :Git commit -v<CR>
-noremap <Leader>gs :Git status<CR>
+noremap <Leader>gs :Git<CR>
 noremap <Leader>gb :Git blame<CR>
 noremap <Leader>gd :Gvdiff!<CR>
 noremap <Leader>dg :diffget<CR>
