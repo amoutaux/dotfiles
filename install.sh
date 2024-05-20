@@ -216,6 +216,13 @@ install_nvim_plugins() {
     fi
 }
 
+setup_bepo() {
+    if [[ $bepo ]]; then
+        e_header "Installing bepo bundle..."
+        sudo cp -R "$DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle" "/Library/Keyboard\ Layouts"
+    fi
+}
+
 create_symlinks() {
 
     if [[ $no_symlinks ]]; then
@@ -287,4 +294,5 @@ install_nvim_plugins
 setup_tmux_plugin_manager
 init_git
 setup_zsh
+setup_bepo
 instructions
