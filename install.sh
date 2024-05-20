@@ -235,6 +235,7 @@ create_symlinks() {
     mkdir -p "$HOME/.config/k9s"
     mkdir -p "$HOME/.tmux/plugins"
     mkdir -p "$HOME/.ctags.d"
+    mkdir -p "$HOME/Library/Developer/Xcode/UserData"
     # git
     ln -nsf "$DOTFILES_DIR/git/gitigno/re" "$HOME/.gitignore"
     ln -nsf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
@@ -258,6 +259,8 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/zsh/zshenv" "$HOME/.zshenv"
     ln -nsf "$DOTFILES_DIR/zsh/aliases" "$HOME/.aliases"
     ln -nsf "$DOTFILES_DIR/zsh/zprofile" "$HOME/.zprofile"
+    # xcode
+    ln -nsf "$DOTFILES_DIR/xcode/fonts" "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
 }
 
 instructions() {
