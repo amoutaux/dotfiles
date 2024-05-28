@@ -3,4 +3,3 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
-ssh-add --apple-use-keychain ~/.ssh/id_ecdsa_bitbucket
