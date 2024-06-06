@@ -295,6 +295,7 @@ create_symlinks() {
     e_header "Creating symlinks..."
     # Create necessary directories
     mkdir -p "$HOME/.config"
+    mkdir -p "$HOME/.config/timewarrior"
     mkdir -p "$HOME/.config/k9s"
     mkdir -p "$HOME/.tmux/plugins"
     mkdir -p "$HOME/.ctags.d"
@@ -312,6 +313,8 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/nvim/tern-config" "$HOME/.tern-config"
     # shell
     ln -nsf "$DOTFILES_DIR/shell/utils.sh" "$HOME/.utils.sh"
+    # timewarrior
+    ln -nsf "$DOTFILES_DIR/timewarrior/config/timewarrior.cfg" "$HOME/.config/timewarrior/timewarrior.cfg"
     # tmux
     ln -nsf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
     # zsh
