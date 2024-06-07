@@ -206,18 +206,21 @@ inoremap ee <Esc>la
 noremap <C-d> 10jzz
 noremap <C-u> 10kzz
 "Next/Previous changes jumps
-noremap <Leader>nc ]c
-noremap <Leader>pc [c
+noremap <Leader>nc :GitGutterNextHunk<CR>
+noremap <Leader>pc :GitGutterPrevHunk<CR>
 "PLUGINS
 "Open NERDTree on current file
 nnoremap <leader>n :NERDTreeFind<CR>
 "Vim Fugitive
 noremap <Leader>gc :Git commit -v<CR>
-noremap <Leader>gs :Git<CR>
 noremap <Leader>gb :Git blame<CR>
 noremap <Leader>gd :Gvdiff!<CR>
 noremap <Leader>dg :diffget<CR>
 noremap <Leader>dp :diffput<CR>
+"Vim GitGutter
+noremap <Leader>do :GitGutterDiffOrig<CR>
+noremap <Leader>sh :GitGutterStageHunk<CR>
+noremap <Leader>uh :GitGutterUndoHunk<CR>
 "ALE
 noremap <Leader>ne <Plug>(ale_next_wrap)
 noremap <Leader>pe <Plug>(ale_previous_wrap)
