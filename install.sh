@@ -300,7 +300,7 @@ create_symlinks() {
     mkdir -p "$HOME/.tmux/plugins"
     mkdir -p "$HOME/.ctags.d"
     # git
-    ln -nsf "$DOTFILES_DIR/git/gitignore" "$HOME/.gitignore"
+    ln -nsf "$DOTFILES_DIR/git/gitigno/re" "$HOME/.gitignore"
     ln -nsf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
     ln -nsf "$DOTFILES_DIR/git/tigrc" "$HOME/.tigrc"
     # k9s
@@ -314,7 +314,7 @@ create_symlinks() {
     # shell
     ln -nsf "$DOTFILES_DIR/shell/utils.sh" "$HOME/.utils.sh"
     # timewarrior
-    ln -nsf "$DOTFILES_DIR/timewarrior/config/timewarrior.cfg" "$HOME/.config/timewarrior/timewarrior.cfg"
+    ln -nsf "$DOTFILES_DIR/timewarrior/*" "$HOME/.config/timewarrior/"
     # tmux
     ln -nsf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
     # zsh
