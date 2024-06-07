@@ -212,7 +212,7 @@ noremap <Leader>pc :GitGutterPrevHunk<CR>
 "Open NERDTree on current file
 nnoremap <leader>n :NERDTreeFind<CR>
 "Vim Fugitive
-noremap <Leader>gc :Git commit -v<CR>
+noremap <Leader>gc :vertical Git commit -v<CR>
 noremap <Leader>gb :Git blame<CR>
 noremap <Leader>gd :Gvdiff!<CR>
 noremap <Leader>dg :diffget<CR>
