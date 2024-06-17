@@ -200,7 +200,7 @@ noremap <leader>f :FZF<CR>
 nnoremap <silent> <leader>N :Lexplore %:p:h<CR>
 nnoremap <leader>NQ :Lexplore<CR>
 "escape
-tnoremap dv <C-\><C-n>
+tnoremap dv <Esc>
 inoremap dv <Esc>
 vnoremap dv <Esc>
 nnoremap dv <Esc>
