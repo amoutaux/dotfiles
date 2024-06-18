@@ -182,6 +182,8 @@ autocmd FileType fugitive,fugitiveblame nnoremap <buffer> s j
 "CORE
 "Set mapleader (overwrite default '\')
 let mapleader = ','
+"Next window
+noremap <C-n> <C-w><C-w>
 "Close windows
 noremap <Leader>cp :pclose<CR>
 noremap <Leader>cq :cclose<CR>
