@@ -25,6 +25,16 @@ bind diff R !<git rebase -i %(commit)^
 bind refs d !git branch --delete %(refname)
 bind refs D !git push --delete origin %(refname)
 
+# rebind grep
+bind generic g none
+bind generic gr view-grep
+
+# Move
+bind generic gg move-first-line
+bind generic G move-last-line
+bind generic { move-half-page-up
+bind generic } move-half-page-down
+
 # Bepo (switch j/k & s/r)
 bind generic s move-down
 bind generic j view-status
