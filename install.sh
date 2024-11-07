@@ -101,6 +101,7 @@ install_packages() {
         'bat'
         'direnv'
         'git'
+        'hadolint'
         'htop'
         'jq'
         'most'
