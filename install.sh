@@ -146,19 +146,6 @@ install_packages() {
         'xquartz'
     )
 
-    local -a python_packages=(
-        'autopep8'
-        'black'
-        'flake8'
-        'ipython'
-        'ipdb'
-        'mypy'
-        'pipenv'
-        'pynvim'
-        'pyright'
-        'reorder-python-imports'
-        'tox'
-    )
     # WARNING: It is important for xclip that xquartz is installed first
     # Setup package managers and package list based on platform
     if [[ $platform == 'osx' ]]; then
@@ -183,15 +170,11 @@ install_packages() {
         $cmd $package || e_warning "$package installation failed"
     done
 
-    e_header "Installing Python packages..."
+    e_header "Installing Pyenv..."
     # pyenv is cloned manually
     if [[ ! -d "$HOME/.pyenv" ]]; then
         git clone -q https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
     fi
-    for package in "${python_packages[@]}"; do
-        python3 -m pip install --user "$package"
-    done
-
 }
 
 install_powerline_fonts() {
