@@ -109,6 +109,7 @@ install_packages() {
         'snapd'
         'task'
         'ripgrep'
+        'ruff'
         'shellcheck'
         'shfmt'
         'task'
