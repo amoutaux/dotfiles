@@ -167,13 +167,16 @@ let g:mkdp_theme = 'light'
 "Vim-fugitive (uses its own mapping context)
 " See https://github.com/tpope/vim-fugitive/issues/1080
 nnoremap git :tab Git<CR>
+nnoremap log :Git log --oneline --all --graph<CR>
 autocmd FileType fugitive,fugitiveblame set foldlevel=2
 autocmd FileType fugitive,fugitiveblame nnoremap <buffer> <Leader>nc <Plug>fugitive:)
 autocmd FileType fugitive,fugitiveblame nnoremap <buffer> <Leader>pc <Plug>fugitive:(
 autocmd FileType fugitive,fugitiveblame nnoremap <buffer> o <Plug>fugitive:>
 autocmd FileType fugitive,fugitiveblame nnoremap <buffer> c <Plug>fugitive:<
 autocmd FileType fugitive,fugitiveblame nnoremap <buffer> S <Plug>fugitive:s
+autocmd FileType fugitive,fugitiveblame vnoremap <buffer> S <Plug>fugitive:s
 autocmd FileType fugitive,fugitiveblame nnoremap <buffer> s j
+autocmd FileType fugitive,fugitiveblame vnoremap <buffer> s j
 
 
 """""""""
