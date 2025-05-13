@@ -289,7 +289,9 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
     ln -nsf "$DOTFILES_DIR/git/tigrc" "$HOME/.tigrc"
     # k9s
-    ln -nsf "$DOTFILES_DIR/k9s" "$HOME/.config/k9s"
+    ln -nsf "$DOTFILES_DIR/k9s/skins" "$HOME/.config/k9s/skins"
+    ln -nsf "$DOTFILES_DIR/k9s/config.yaml" "$HOME/.config/k9s/config.yaml"
+    ln -nsf "$DOTFILES_DIR/k9s/views.yaml" "$HOME/.config/k9s/views.yaml"
     # less
     ln -nsf "$DOTFILES_DIR/bepo/lesskey" "$HOME/.lesskey"
     # nvim
