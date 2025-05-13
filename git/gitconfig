@@ -39,3 +39,10 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[init]
+	templateDir = /Users/aurelien.moutaux/.git-template
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
