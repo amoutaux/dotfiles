@@ -137,6 +137,7 @@ let g:ale_python_pyright_config = {
 \    'typeCheckingMode': "off",
 \  },
 \}
+let g:ale_ruby_rubocop_executable = "/opt/homebrew/lib/ruby/gems/3.3.0/bin/rubocop"
 let g:ale_fixers = {}
 let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers['sh'] = ['shfmt']
