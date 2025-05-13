@@ -1,3 +1,4 @@
+export CDPATH="$HOME/src"
 # PATH
 # generic
 export PATH="/usr/local/bin:$PATH"
