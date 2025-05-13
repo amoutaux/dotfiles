@@ -1,6 +1,7 @@
 [user]
     name = Aurélien Moutaux
     email = aurelien.moutaux@gadz.org
+    signingkey = 6F34F60502F48FCE
 
 [alias]
     graph = log --graph \
