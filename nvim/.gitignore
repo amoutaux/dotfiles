@@ -1,7 +1,0 @@
-# Ignore installed plugins
-plugged/**
-# Ignore .netrwhist
-.netrwhist
-# Ignore swap files
-*.swp
-*.swo
