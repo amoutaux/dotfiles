@@ -31,7 +31,6 @@ export TERM="screen-256color"
 
 # Custom pager & editor
 export BAT_THEME="Monokai Extended Light"
-export PAGER="/opt/homebrew/bin/less" # macos (native less missing lesskey)
 export EDITOR="nvim"
 
 # NVM
