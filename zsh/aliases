@@ -5,10 +5,6 @@ alias gai="git add -i"
 alias gap="git add -p"
 alias gdto="git difftool -y"
 
-# Show/hide hidden files in Finder
-alias show_hidden="defaults write com.apple.Finder AppleShowAllFiles YES && killall Finder"
-alias hide_hidden="defaults write com.apple.Finder AppleShowAllFiles NO && killall Finder"
-
 # VBoxManage aliases
 alias vms="VBoxManage list vms"
 alias rvms="VBoxManage list runningvms"
