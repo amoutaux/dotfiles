@@ -15,10 +15,12 @@ export PIPENV_VENV_IN_PROJECT=1
 # pip user-installed binaries
 export PATH="$(python3 -m site --user-base)/bin:${PATH}"
 # Virtualenv Wrapper
-export VIRTUALENVWRAPPER_PYTHON="/opt/homebrew/bin/python3"
+export VIRTUALENVWRAPPER_PYTHON="/opt/homebrew/bin/python3.13"
 export WORKON_HOME="$HOME/.virtualenvs"
 # k9s
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
+# breakpoint in python
+export PYTHONBREAKPOINT="ipdb.set_trace"
 
 # LANGUAGE
 export LANG="en_US.UTF-8"
