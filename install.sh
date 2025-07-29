@@ -287,7 +287,7 @@ create_symlinks() {
     mkdir -p "$HOME/.local/share/timewarrior"
     mkdir -p "$HOME/.tmux/plugins"
     # git
-    ln -nsf "$DOTFILES_DIR/git/gitigno/re" "$HOME/.gitignore"
+    ln -nsf "$DOTFILES_DIR/git/gitignore" "$HOME/.gitignore"
     ln -nsf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
     ln -nsf "$DOTFILES_DIR/git/tigrc" "$HOME/.tigrc"
     # k9s
