@@ -18,7 +18,6 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #################
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # NVM
 eval "$(pyenv init -)" # Pyenv
-pyenv virtualenvwrapper # Virtualenv Wrapper
 source "/opt/homebrew/bin/virtualenvwrapper.sh" # if virtualenv installed with /opt/homebrew/bin/python3
 
 
@@ -30,9 +29,6 @@ source "/opt/homebrew/bin/virtualenvwrapper.sh" # if virtualenv installed with /
 autoload -Uz +X compinit && compinit
 autoload -Uz +X bashcompinit && bashcompinit
 # In install.sh: mkdir ~/.oh-my-zsh/completions -> to store completion scripts
-eval "$(chef shell-init zsh)" # Chef
-source "$HOME/src/google-cloud-sdk/completion.bash.inc"
-
 
 ##########
 # Prompt #
@@ -109,6 +105,10 @@ cd() {
     fi
 }
 
+# Load virtualenv if starting in such folder
+if [[ -f "$HOME/.virtualenvs/$(basename $(pwd))/bin/activate" ]] ; then
+    workon .
+fi
 
 ###########
 # Aliases #
