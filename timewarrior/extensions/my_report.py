@@ -11,6 +11,7 @@ import numpy as np
 
 
 TOP_LEVEL_TAGS = {
+    "Deployment",
     "Fix",
     "HR",
     "Learning",
@@ -87,8 +88,6 @@ def parse_records(records):
             spent = (end - start).total_seconds()
             if not set(record["tags"]) & TOP_LEVEL_TAGS:
                 print(f'WARNING: @{record["id"]} is missing a top level tag')
-            if len(set(record["tags"]) & TOP_LEVEL_TAGS) > 1:
-                print(f'WARNING: @{record["id"]} has several top level tags')
             for tag in record["tags"]:
                 time_spent[tag] += spent
                 if "annotation" in record and not annotations[tag]:
@@ -117,39 +116,45 @@ def main():
     annotate_pie(wedges, ax1, list(top_tags_time_spent.keys()))
 
     # figure 2
-    fig2, (ax1, ax2) = plt.subplots(1, 2)
-
-    tasks_tags_time_spent = {
+    rpgteam_tags_time_spent = {
         k: v for k, v in tags_time_spent.items() if k.startswith('RPGTEAM')
     }
+    if len(rpgteam_tags_time_spent) == 0:
+        plt.tight_layout()
+        plt.show()
+        return
+
+    fig2, (ax1, ax2) = plt.subplots(1, 2)
+
     colors = [
         (random.uniform(0, 1), random.uniform(0, 1), random.uniform(0, 1))
-        for i in range(len(tasks_tags_time_spent))
+        for i in range(len(rpgteam_tags_time_spent))
     ]
 
     wedges, texts, autotexts = ax1.pie(
-        tasks_tags_time_spent.values(),
-        labels=tasks_tags_time_spent.keys(),
+        rpgteam_tags_time_spent.values(),
+        labels=rpgteam_tags_time_spent.keys(),
         colors=colors,
         autopct="%1i%%",
         textprops=dict(color="w")
     )
 
     tasks_annotations = {
-
         k: v for k, v in tags_annotations.items() if k.startswith('RPGTEAM')
     }
-    cells = list(tasks_annotations.items())
-    cellColours = [(color, "w") for color in colors]
-    table = ax2.table(
-        cellText=cells, cellColours=cellColours, loc="center"
-    )
-    table.auto_set_font_size(True)
-    table.auto_set_column_width(col=range(len(tags_annotations)))
-    ax2.axis("off")
+    if len(tasks_annotations):
+        cells = list(tasks_annotations.items())
+        cellColours = [(color, "w") for color in colors]
+        table = ax2.table(
+            cellText=cells, cellColours=cellColours, loc="center"
+        )
+        table.auto_set_font_size(True)
+        table.auto_set_column_width(col=range(len(tags_annotations)))
+        ax2.axis("off")
 
     plt.tight_layout()
     plt.show()
+
 
 
 if __name__ == "__main__":
