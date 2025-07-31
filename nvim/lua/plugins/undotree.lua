@@ -1,6 +1,6 @@
 return {
-    "mbbill/undotree", branch = "master",
+    'mbbill/undotree', branch = 'master',
     keys = {
-        {"<leader>u", "<cmd>UndotreeToggle<cr>"}
+        {'<leader>u', '<cmd>UndotreeToggle<cr>'}
     }
 }
