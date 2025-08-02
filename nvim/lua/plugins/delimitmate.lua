@@ -1,3 +1,4 @@
 return {
-    'Raimondi/delimitMate', branch = 'master',
+  "Raimondi/delimitMate",
+  branch = "master",
 }

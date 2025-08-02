@@ -1,23 +1,17 @@
 -- Packages are installed in Neovim's data directory by default
 return {
-    'mason-org/mason.nvim',
-    lazy = false,
-    config = function()
-        require('mason').setup({})
-        local registry = require('mason-registry')
-        local package_list = {
-            --WARN: do not install linters/fixers meant to live in a virtual environment
-            --LSP
-            'pyright',
-            'lua-language-server',
-            'hoho',
-            --Formatters
-            'stylua',
-        }
-        for _, package in ipairs(package_list) do
-            if registry.is_installed(package) == false then
-                vim.notify('⚠️ ' .. package .. ' is NOT installed!')
-            end
-        end
-    end,
+  "mason-org/mason.nvim",
+  dependencies = { "mason-org/mason-lspconfig.nvim" },
+  lazy = false,
+  config = function()
+    require("mason").setup({})
+    -- Automatic install of LSPs
+    require("mason-lspconfig").setup({
+      automatic_enable = true,
+      ensure_installed = {
+        "lua_ls",
+        "pyright",
+      },
+    })
+  end,
 }

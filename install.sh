@@ -99,7 +99,6 @@ install_packages() {
 
     local -a generic=(
         'bat'
-        'direnv'
         'git'
         'hadolint'
         'htop'
@@ -109,7 +108,6 @@ install_packages() {
         'neovim'
         'python3'
         'ripgrep'
-        'ruff'
         'shellcheck'
         'shfmt'
         'task'

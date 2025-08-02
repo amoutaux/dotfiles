@@ -1,4 +1,4 @@
 return {
-    'preservim/nerdcommenter',
-    lazy = false,
+  "preservim/nerdcommenter",
+  lazy = false,
 }

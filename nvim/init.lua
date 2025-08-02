@@ -1,6 +1,6 @@
-require('config.options')
-require('config.lazy')
-require('config.lsp')
+require("config.options")
+require("config.lazy")
+require("config.lsp")
 
-require('mappings.bepo')
-require('mappings.standard')
+require("mappings.bepo")
+require("mappings.standard")
