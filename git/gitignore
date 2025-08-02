@@ -16,3 +16,6 @@ xcode/fonts/*.xccolortheme
 
 # Nvim
 nvim/tmp/
+
+# Python
+pyrightconfig.json

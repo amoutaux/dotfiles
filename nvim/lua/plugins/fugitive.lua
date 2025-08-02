@@ -9,5 +9,10 @@ return {
         {'c', '<Plug>fugitive:<', ft = { 'fugitive', 'fugitiveblame' }},
         {'<leader>nc', '<Plug>fugitive:)', ft = { 'fugitive', 'fugitiveblame' }},
         {'<leader>pc', '<Plug>fugitive:(', ft = { 'fugitive', 'fugitiveblame' }},
+        {'<leader>gb', '<cmd>Git blame<cr>'},
+        {'<leader>gc', '<cmd>vertical Git commit -v<cr>'},
+        {'<leader>gd', '<cmd>Gvdiff!<cr>'},
+        {'<leader>dg', '<cmd>diffget<cr>'},
+        {'<leader>dp', '<cmd>diffput<cr>'},
     }
 }

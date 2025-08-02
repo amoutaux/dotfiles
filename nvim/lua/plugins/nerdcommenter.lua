@@ -1,4 +1,4 @@
 return {
-    'preservim/nerdcommenter', branch = 'master',
+    'preservim/nerdcommenter',
     lazy = false,
 }

@@ -1,3 +1,4 @@
 return {
-    'tpope/vim-surround', branch = 'master',
+    'tpope/vim-surround',
+    lazy = false,
 }
