@@ -17,3 +17,6 @@ xcode/fonts/*.xccolortheme
 # Nvim
 nvim/tmp/
 nvim/lazy-lock.json
+
+# Python
+pyrightconfig.json
