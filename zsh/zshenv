@@ -41,5 +41,5 @@ export NVM_DIR="$HOME/.nvm"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden' # Set fzf to use ripgrep
 export FZF_DEFAULT_OPTS='--bind ctrl-r:up,ctrl-s:down' # BEPO mappings
 
-# Java
-export JAVA_HOME="/opt/homebrew/Cellar/openjdk@11/11.0.21/libexec/openjdk.jdk/Contents/Home"
+# GPG
+export GPG_TTY=$(tty)
