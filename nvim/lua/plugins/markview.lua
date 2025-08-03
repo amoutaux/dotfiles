@@ -3,5 +3,5 @@ return {
   lazy = false,
 
   -- For `nvim-treesitter` users.
-  priority = 49,
+  priority = 49, -- default lazy value is 50
 }

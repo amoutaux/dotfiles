@@ -4,6 +4,7 @@ return {
   lazy = true,
   keys = {
     { "git", "<cmd>Git<cr>" },
+    { "log", "<cmd>Git log --oneline --all --graph<cr>" },
     { "S", "<Plug>fugitive:s", mode = { "n", "v" }, ft = { "fugitive", "fugitiveblame" } },
     { "s", "j", mode = { "n", "v" }, ft = { "fugitive", "fugitiveblame" } },
     { "o", "<Plug>fugitive:>", ft = { "fugitive", "fugitiveblame" } },

@@ -12,16 +12,13 @@ return {
     vim.g.NERDTreeMapRefreshRoot = "L"
   end,
   config = function()
-    -- Open Folders with NERDTree (instead of netrw)
+    -- Open NERDTree when neovim is called without arguments
+    local group = vim.api.nvim_create_augroup("CustomNERDTree", { clear = true })
     vim.api.nvim_create_autocmd("VimEnter", {
+      group = group,
       callback = function()
-        if vim.fn.argc() == 0 or (vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1) then
-          -- Check if NERDTree is loaded and not already active in the current window
-          -- This check prevents opening NERDTree if you're already in a NERDTree buffer or if it's not installed.
-          if vim.fn.exists(":NERDTreeToggle") == 2 and vim.fn.bufname("%"):match("NERD_tree") == nil then
-            vim.cmd("NERDTree")
-            vim.cmd("wincmd w")
-          end
+        if vim.fn.argc() == 0 then
+          vim.cmd("NERDTreeExplore")
         end
       end,
     })
