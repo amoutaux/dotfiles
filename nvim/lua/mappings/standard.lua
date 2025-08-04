@@ -22,5 +22,5 @@ vim.keymap.set("", "<leader>cp", "<cmd>cprev<cr>")
 -- Netrw
 -- Rq: Lexplore is the only command that closes netrw if it's already opened
 -- Rq: %:p:h opens netrw in the current file directory (not the working directory)
-vim.keymap.set("n", "<leader>n", "<cmd>Lexplore %p:h<cr>", { silent = true })
+vim.keymap.set("n", "<leader>N", "<cmd>Lexplore %p:h<cr>", { silent = true })
 vim.keymap.set("n", "<leader>NQ", "<cmd>Lexplore<cr>")
