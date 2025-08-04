@@ -1,19 +1,13 @@
-local function is_in(tab, val)
-  for _, v in pairs(tab) do
-    if v == val then
-      return true
-    end
-  end
-  return false
-end
-
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
   lazy = false,
-  config = function(_, opts)
+  config = function()
     local mygroup = vim.api.nvim_create_augroup("MyCustomLint", { clear = true })
     local lint = require("lint")
+    local parser = require("lint.parser")
+
+    -- Linters by filetype
     lint.linters_by_ft = {
       chef = { "cookstyle", "rubocop" },
       groovy = { "npm-groovy-lint" },
@@ -22,7 +16,16 @@ return {
       ruby = { "rubocop" },
       yaml = { "yamllint" },
     }
-    -- Lint upon
+
+    -- Configuration
+    lint.linters.cookstyle = {
+      -- Cookstyle is not built-in so we have to tell nvim-lint how to use it
+      cmd = "cookstyle",
+      args = { "--format", "json" },
+      parser = parser.for_sarif(),
+    }
+
+    -- Automatic linting
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = mygroup,
       callback = function()

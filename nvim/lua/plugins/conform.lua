@@ -67,6 +67,16 @@ return {
       end,
     })
 
+    vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+      group = mygroup,
+      pattern = "COMMIT_EDITMSG",
+      callback = function()
+        vim.opt.shiftwidth = 2
+        vim.opt.textwidth = 80
+        vim.opt.colorcolumn = "80"
+      end,
+    })
+
     -- Set shiftwidth and colorcolumn per filetype
     vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
       group = mygroup,
@@ -74,7 +84,7 @@ return {
       callback = function()
         vim.opt.shiftwidth = 2
         --vim.opt.textwidth = 80
-        --vim.opt.colorcolumn = 80
+        --vim.opt.colorcolumn = "80"
       end,
     })
 
@@ -84,17 +94,17 @@ return {
       callback = function()
         vim.opt.shiftwidth = 4
         vim.opt.textwidth = 120
-        vim.opt.colorcolumn = 120
+        vim.opt.colorcolumn = "120"
       end,
     })
 
     vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
       group = mygroup,
-      pattern = "markdown",
+      pattern = "*.md",
       callback = function()
         vim.opt.shiftwidth = 4
         vim.opt.textwidth = 120
-        vim.opt.colorcolumn = 120
+        vim.opt.colorcolumn = "120"
       end,
     })
 

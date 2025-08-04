@@ -1,6 +1,7 @@
 return {
   "airblade/vim-gitgutter",
   branch = "main",
+  lazy = false,
   keys = {
     { "<leader>nc", "<cmd>GitGutterNextHunk<cr>" },
     { "<leader>pc", "<cmd>GitGutterPrevHunk<cr>" },
