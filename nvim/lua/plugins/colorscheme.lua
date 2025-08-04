@@ -19,10 +19,7 @@ return {
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "white" })
     -- Overwrite default diff colors
     vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#d5f5dc" })
-    vim.api.nvim_set_hl(0, "DiffDelete", {
-      bg = "#ffe4e1", -- muted red background
-      fg = "#ffe4e1", -- hide filling chars
-    })
+    vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#ffe4e1" })
     vim.api.nvim_set_hl(0, "DiffChange", { bg = "#ffefd5" })
   end,
 }
