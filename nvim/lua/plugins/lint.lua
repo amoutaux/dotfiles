@@ -3,8 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   lazy = false,
   config = function()
-    local mygroup =
-      vim.api.nvim_create_augroup("MyCustomLint", { clear = true })
+    local mygroup = vim.api.nvim_create_augroup("MyCustomLint", { clear = true })
     local lint = require("lint")
     local parser = require("lint.parser")
 
@@ -16,6 +15,7 @@ return {
       python = { "mypy", "pylint" },
       ruby = { "rubocop" },
       yaml = { "yamllint" },
+      sh = { "shellcheck" },
     }
 
     -- Configuration
@@ -31,6 +31,8 @@ return {
       "/Users/aurelien.moutaux/.markdownlint.json",
       "--",
     }
+
+    table.insert(lint.linters.shellcheck.args, 1, "-x")
 
     -- Automatic linting
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
