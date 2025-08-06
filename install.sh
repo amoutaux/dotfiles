@@ -35,9 +35,9 @@ for opt in "$@"; do
         init_git=true
         ;;
     *)
-        printf "%s\n" "Available options:" "--no-fonts" "--no-apt-setup" \
+        printf "%s\n" "Available options:" "--bepo" "--init-git" "--no-fonts" \
             "--no-nvim" "--no-packages" "--no-symlinks" "--no-zsh" \
-            "--no-tmux" "--bepo"
+            "--no-tmux"
         printf "%s" "WARNING: to avoid installing a specific package, " \
             "remove it from the install_packages method."
         exit 1
@@ -64,7 +64,7 @@ install_packages() {
         return
     fi
 
-    local -a generic=(
+    local -a packages=(
         'bat'
         'git'
         'hadolint'
@@ -87,7 +87,7 @@ install_packages() {
     )
 
     e_header "Installing packages..."
-    read -p "Package installation command (ex: 'apt install'): " cmd
+    read -r -p "Package installation command (ex: 'apt install'): " cmd
     for package in "${packages[@]}"; do
         # Brew will throw an error if a package is already installed
         $cmd $package || e_warning "$package installation failed"
@@ -100,7 +100,7 @@ install_packages() {
     fi
 }
 
-install_powerline_fonts() {
+install_fonts() {
 
     if [[ $no_fonts ]]; then
         return
@@ -115,15 +115,17 @@ install_powerline_fonts() {
 init_git() {
     # Link downloaded dotfiles directory to the git repository
     if [[ $init_git ]]; then
+        e_header "Initializing git repository..."
         cd "$DOTFILES_DIR"
         if ! is_git_repository; then
-            e_header "Initializing git repository..."
             git init
             git remote add origin $DOTFILES_GIT_REMOTE
             git fetch origin master
             git reset --hard FETCH_HEAD
             git clean -fd # Remove any untracked files
             git push -u origin master || e_error "Couldn't run 'git push -u origin master'"
+        else
+            e_warning "Already a git repository!"
         fi
         cd -
     fi
@@ -227,7 +229,7 @@ instructions() {
 }
 
 install_packages
-install_powerline_fonts
+install_fonts
 create_symlinks
 setup_tmux_plugin_manager
 init_git
