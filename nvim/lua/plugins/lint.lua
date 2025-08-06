@@ -26,11 +26,8 @@ return {
       parser = parser.for_sarif(),
     }
 
-    lint.linters.markdownlint.args = {
-      "--config",
-      "/Users/aurelien.moutaux/.markdownlint.json",
-      "--",
-    }
+    table.insert(lint.linters.markdownlint.args, 1, "--config")
+    table.insert(lint.linters.markdownlint.args, 2, vim.fn.expand("~/.markdownlint.yaml"))
 
     table.insert(lint.linters.shellcheck.args, 1, "-x")
 

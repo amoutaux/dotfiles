@@ -201,6 +201,8 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/k9s/views.yaml" "$HOME/.config/k9s/views.yaml"
     # less
     ln -nsf "$DOTFILES_DIR/bepo/lesskey" "$HOME/.lesskey"
+    # markdownlint
+    ln -nsf "$DOTFILES_DIR/nvim/markdownlint.yaml" "$HOME/.markdownlint.yaml"
     # nvim
     ln -nsf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
     ln -nsf "$DOTFILES_DIR/nvim/tern-config" "$HOME/.tern-config"
