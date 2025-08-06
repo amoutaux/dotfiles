@@ -7,35 +7,41 @@ DOTFILES_DIR=$HOME/dotfiles
 DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/master"
 DOTFILES_GIT_REMOTE="git@github.com/amoutaux/dotfiles.git"
 
-
 # Options
 for opt in "$@"; do
     case $opt in
-        '--bepo')
-            bepo=true;;
-        '--no-fonts')
-            no_fonts=true;;
-        '--no-apt-setup')
-            no_apt_setup=true;;
-        '--no-nvim')
-            no_nvim=true;;
-        '--no-packages')
-            no_packages=true;;
-        '--no-symlinks')
-            no_symlinks=true;;
-        '--no-zsh')
-            no_zsh=true;;
-        '--no-tmux')
-            no_tmux=true;;
-        '--init-git')
-            init_git=true;;
-        *)
-            printf "%s\n" "Available options:" "--no-fonts" "--no-apt-setup" \
-                "--no-nvim" "--no-packages" "--no-symlinks" "--no-zsh" \
-                "--no-tmux" "--bepo"
-            printf "%s" "WARNING: to avoid installing a specific package, " \
-                "remove it from the install_packages method."
-            exit 1;;
+    '--bepo')
+        bepo=true
+        ;;
+    '--no-fonts')
+        no_fonts=true
+        ;;
+    '--no-nvim')
+        no_nvim=true
+        ;;
+    '--no-packages')
+        no_packages=true
+        ;;
+    '--no-symlinks')
+        no_symlinks=true
+        ;;
+    '--no-zsh')
+        no_zsh=true
+        ;;
+    '--no-tmux')
+        no_tmux=true
+        ;;
+    '--init-git')
+        init_git=true
+        ;;
+    *)
+        printf "%s\n" "Available options:" "--no-fonts" "--no-apt-setup" \
+            "--no-nvim" "--no-packages" "--no-symlinks" "--no-zsh" \
+            "--no-tmux" "--bepo"
+        printf "%s" "WARNING: to avoid installing a specific package, " \
+            "remove it from the install_packages method."
+        exit 1
+        ;;
     esac
 done
 
@@ -54,13 +60,16 @@ e_header "Dotfiles installation"
 
 # Platform identification
 case $(uname) in
-    'Linux')
-        platform='linux';;
-    'Darwin')
-        platform='osx';;
-    *)
-        echo "Unknown platform: only 'Linux' or 'Darwin' supported for \$uname.";
-        exit 1;;
+'Linux')
+    platform='linux'
+    ;;
+'Darwin')
+    platform='osx'
+    ;;
+*)
+    echo "Unknown platform: only 'Linux' or 'Darwin' supported for \$uname."
+    exit 1
+    ;;
 esac
 
 install_brew() {
@@ -86,9 +95,9 @@ setup_apt() {
     local -a packages=(
         'build-essential'
         'software-properties-common'
-        )
+    )
     # Install all packages
-    sudo apt install -y "$( printf "%s " "${packages[@]}" )"
+    sudo apt install -y "$(printf "%s " "${packages[@]}")"
 }
 
 install_packages() {
@@ -152,7 +161,7 @@ install_packages() {
     if [[ $platform == 'osx' ]]; then
         install_brew
         cmd="brew install"
-        packages=( "${generic[@]}" "${mac_only[@]}")
+        packages=("${generic[@]}" "${mac_only[@]}")
         e_header "Installing brew cask packages..."
         for package in "${brew_cask[@]}"; do
             brew cask install "$package" || e_warning "$package install failed."
@@ -162,7 +171,7 @@ install_packages() {
     elif [[ $platform == 'linux' ]]; then
         setup_apt
         cmd="sudo apt install -y -qq"
-        packages=( "${generic[@]}" "${linux_only[@]}")
+        packages=("${generic[@]}" "${linux_only[@]}")
     fi
 
     e_header "Installing generic packages..."
@@ -351,4 +360,3 @@ setup_tmux_plugin_manager
 init_git
 setup_zsh
 instructions
-
