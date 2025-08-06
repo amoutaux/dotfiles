@@ -177,21 +177,6 @@ setup_tmux_plugin_manager() {
     fi
 }
 
-install_nvim_plugins() {
-
-    if [[ $no_nvim ]]; then
-        return
-    fi
-
-    if type_exists 'nvim'; then
-        e_header "Installing neovim plugins..."
-        nvim +UpdateRemotePlugins +PlugInstall +qall
-        nvim -c "source $HOME/.config/nvim/init.vim" +qall
-    else
-        e_error "Cannot install neovim plugins: neovim isn't installed."
-    fi
-}
-
 create_symlinks() {
 
     if [[ $no_symlinks ]]; then
@@ -246,7 +231,6 @@ instructions() {
 install_packages
 install_powerline_fonts
 create_symlinks
-install_nvim_plugins
 setup_tmux_plugin_manager
 init_git
 setup_zsh
