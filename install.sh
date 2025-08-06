@@ -188,7 +188,6 @@ create_symlinks() {
     mkdir -p "$HOME/.config"
     mkdir -p "$HOME/.config/k9s"
     mkdir -p "$HOME/.config/timewarrior"
-    mkdir -p "$HOME/.ctags.d"
     mkdir -p "$HOME/.local/share/timewarrior"
     mkdir -p "$HOME/.tmux/plugins"
     # git
@@ -203,7 +202,6 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/bepo/lesskey" "$HOME/.lesskey"
     # nvim
     ln -nsf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
-    ln -nsf "$DOTFILES_DIR/nvim/ctags" "$HOME/.ctags.d/default.ctags"
     ln -nsf "$DOTFILES_DIR/nvim/tern-config" "$HOME/.tern-config"
     # shell
     ln -nsf "$DOTFILES_DIR/shell/utils.sh" "$HOME/.utils.sh"
