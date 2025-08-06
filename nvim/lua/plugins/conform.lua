@@ -47,7 +47,7 @@ return {
           "--indent-width",
           "2",
           "--column-width",
-          "80",
+          "120",
         },
       },
       shfmt = {
@@ -94,8 +94,8 @@ return {
       pattern = "*.lua",
       callback = function()
         vim.opt.shiftwidth = 2
-        vim.opt.textwidth = 80
-        vim.opt.colorcolumn = "80"
+        vim.opt.textwidth = 120
+        vim.opt.colorcolumn = "120"
       end,
     })
 
