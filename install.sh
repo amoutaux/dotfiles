@@ -10,14 +10,11 @@ DOTFILES_GIT_REMOTE="git@github.com/amoutaux/dotfiles.git"
 # Options
 for opt in "$@"; do
     case $opt in
-    '--bepo')
-        bepo=true
+    '--init-git')
+        init_git=true
         ;;
     '--no-fonts')
         no_fonts=true
-        ;;
-    '--no-nvim')
-        no_nvim=true
         ;;
     '--no-packages')
         no_packages=true
@@ -31,13 +28,15 @@ for opt in "$@"; do
     '--no-tmux')
         no_tmux=true
         ;;
-    '--init-git')
-        init_git=true
-        ;;
     *)
-        printf "%s\n" "Available options:" "--bepo" "--init-git" "--no-fonts" \
-            "--no-nvim" "--no-packages" "--no-symlinks" "--no-zsh" \
-            "--no-tmux"
+        printf "%s\n" "Available flags:" "" \
+            "--init-git:     initialize git repository. Add origin. ⚠️ Will run \`git clean -fd\`." \
+            "--fonts:        install powerline fonts." \
+            "--packages:     install packages." \
+            "--symlinks:     create symlinks." \
+            "--zsh:          setup ZSH." \
+            "--tmux:         setup Tmux." \
+            ""
         printf "%s" "WARNING: to avoid installing a specific package, " \
             "remove it from the install_packages method."
         exit 1
