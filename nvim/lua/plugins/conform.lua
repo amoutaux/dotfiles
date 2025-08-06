@@ -16,9 +16,9 @@ return {
   opts = {
     -- Define your formatters
     formatters_by_ft = {
-      chef = { "cookstyle" },
+      chef = { "rubocop" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
-      json = { "prettier", "fixjson" },
+      json = { "fixjson" },
       lua = { "stylua" },
       markdown = { "mdformat" },
       python = { "black", "isort", "autopep8" },
@@ -41,7 +41,14 @@ return {
     -- Customize formatters
     formatters = {
       stylua = {
-        prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
+        prepend_args = {
+          "--indent-type",
+          "Spaces",
+          "--indent-width",
+          "2",
+          "--column-width",
+          "80",
+        },
       },
       shfmt = {
         prepend_args = { "-i", "2" },
@@ -53,7 +60,8 @@ return {
     conform.setup(opts)
 
     -- Notify if a configured formatter is not available
-    local mygroup = vim.api.nvim_create_augroup("MyCustomConform", { clear = true })
+    local mygroup =
+      vim.api.nvim_create_augroup("MyCustomConform", { clear = true })
     vim.api.nvim_create_autocmd("BufRead", {
       group = mygroup,
       callback = function(args)
@@ -61,7 +69,10 @@ return {
         for _, ef in pairs(expected_formatters or {}) do
           local f = conform.get_formatter_info(ef, args.buf)
           if f.available == false then
-            vim.notify("⚠️ " .. f.name .. " is not available", vim.log.levels.WARN)
+            vim.notify(
+              "⚠️ " .. f.name .. " is not available",
+              vim.log.levels.WARN
+            )
           end
         end
       end,
@@ -83,8 +94,8 @@ return {
       pattern = "*.lua",
       callback = function()
         vim.opt.shiftwidth = 2
-        --vim.opt.textwidth = 80
-        --vim.opt.colorcolumn = "80"
+        vim.opt.textwidth = 80
+        vim.opt.colorcolumn = "80"
       end,
     })
 
@@ -111,16 +122,28 @@ return {
     -- Recognize Jenkinsfiles as groovy
     vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
       group = mygroup,
-      pattern = { "*.jenkinsfile", "*.Jenkinsfile", "Jenkinsfile", "jenkinsfile" },
+      pattern = {
+        "*.jenkinsfile",
+        "*.Jenkinsfile",
+        "Jenkinsfile",
+        "jenkinsfile",
+      },
       callback = function()
-        vim.cmd("set filetype groovy; set shiftwidth=2;")
+        vim.bo.filetype = "groovy"
+        vim.opt.shiftwidth = 2
+        vim.colorcolumn = 120
       end,
     })
 
     --Recognize ruby files in a 'chef folder' as chef files
     vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
       group = mygroup,
-      pattern = { "*/recipes/*.rb", "*/providers/*.rb", "*/resources/*.rb", "*/attributes/*.rb" },
+      pattern = {
+        "*/recipes/*.rb",
+        "*/providers/*.rb",
+        "*/resources/*.rb",
+        "*/attributes/*.rb",
+      },
       callback = function()
         vim.cmd("set ft=chef syntax=ruby")
       end,

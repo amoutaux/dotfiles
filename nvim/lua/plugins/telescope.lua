@@ -25,11 +25,14 @@ return {
   },
   config = function(_, opts)
     require("telescope").setup(opts)
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "TelescopeResults",
+      command = "setlocal nofoldenable",
+    })
   end,
   keys = {
     { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Telescope search files" },
-    { "<leader>ls", "<cmd>Telescope live_grep<cr>", desc = "Telescope live search" },
-    { "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Telescope search buffers" },
+    { "ls", "<cmd>Telescope live_grep<cr>", desc = "Telescope live search" },
     { "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Telescope search buffers" },
   },
 }

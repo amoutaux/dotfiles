@@ -16,8 +16,8 @@ vim.keymap.set({ "n" }, "<C-u>", "10kzz")
 vim.keymap.set({ "n" }, "<C-d>", "10jzz")
 
 -- Quickfix list
-vim.keymap.set("", "<leader>cn", "<cmd>cnext<cr>")
-vim.keymap.set("", "<leader>cp", "<cmd>cprev<cr>")
+vim.keymap.set("", "cn", "<cmd>cnext<cr>")
+vim.keymap.set("", "cp", "<cmd>cprev<cr>")
 
 -- Netrw
 -- Rq: Lexplore is the only command that closes netrw if it's already opened

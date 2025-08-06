@@ -3,7 +3,8 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   lazy = false,
   config = function()
-    local mygroup = vim.api.nvim_create_augroup("MyCustomLint", { clear = true })
+    local mygroup =
+      vim.api.nvim_create_augroup("MyCustomLint", { clear = true })
     local lint = require("lint")
     local parser = require("lint.parser")
 
@@ -23,6 +24,12 @@ return {
       cmd = "cookstyle",
       args = { "--format", "json" },
       parser = parser.for_sarif(),
+    }
+
+    lint.linters.markdownlint.args = {
+      "--config",
+      "/Users/aurelien.moutaux/.markdownlint.json",
+      "--",
     }
 
     -- Automatic linting

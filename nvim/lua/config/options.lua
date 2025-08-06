@@ -26,7 +26,7 @@ vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 25
 
 -- Python
-vim.g.python3_host_prog = "$VIRTUAL_ENV/bin/python"
+vim.g.python3_host_prog = "$VIRTUAL_ENV/bin/python3"
 
 -- WARN: clipboard must be set AFTER clipboard providers have been loaded (which
 -- may happen after init.lua is run -> use vim.schedule

@@ -10,6 +10,9 @@ return {
     vim.g.NERDTreeMapOpenVSplit = "k"
     vim.g.NERDTreeMapRefresh = "l"
     vim.g.NERDTreeMapRefreshRoot = "L"
+    vim.g.NERDTreeMinimalUI = 1
+    vim.g.NERDTreeWinSize = 50
+    vim.g.NERDTreeShowLineNumbers = true
   end,
   config = function()
     -- Open NERDTree when neovim is called without arguments
