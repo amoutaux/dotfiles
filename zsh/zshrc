@@ -63,35 +63,34 @@ bindkey -M menuselect r vi-up-line-or-history
 bindkey -M menuselect n vi-forward-char
 
 
+##########################
+# Virtualenv autotrigger #
+##########################
 
-###############################
-# Virtualenv Wrapper Autoload #
-###############################
-# Load virtual envs created with virtualenvwrapper upon entering specific directories
-# ONLY WORKS IF DIRECTORY AND VENV SHARE THE SAME NAME
-cd() {
-    builtin cd "$@"
+_manage_venv_on_cd() {
+    local current_dir=$(basename $(pwd))
 
-    current_dir=$(basename $(pwd))
-    # If I am leaving a venv
-    if [[ -n "$VIRTUAL_ENV" ]] && ! [[ "$(pwd)" =~ "$(basename $VIRTUAL_ENV)"/* ]]; then
+    # Deactivate if leaving a venv
+    # Check if VIRTUAL_ENV is set AND the current directory is NOT within the venv's path
+    if [[ -n "$VIRTUAL_ENV" ]] && ! [[ "$(pwd)" =~ "${VIRTUAL_ENV}"/* ]]; then
+      echo "Deactivating virtual environment: $(basename $VIRTUAL_ENV)..." # Optional: add a message
       deactivate
     fi
-    # If no venv is activated
+
+    # Activate if entering a venv (only if no venv is currently active)
     if [[ -z "$VIRTUAL_ENV" ]]; then
-      # Enable venv if the current directory is in the 'lsvirtualenv' list
-      for dir in $(lsvirtualenv -b); do
-        if [[ "${dir}" == "${current_dir}" ]]; then
-            workon .
+      # Check if the current directory name matches a virtualenv name
+      for dir_name in $(lsvirtualenv -b); do
+        if [[ "${dir_name}" == "${current_dir}" ]]; then
+            echo "Activating virtual environment: ${current_dir}..." # Optional: add a message
+            workon "${dir_name}" # `workon` activates the venv and sets VIRTUAL_ENV
+            break # Found and activated, no need to check others
         fi
       done
     fi
 }
+chpwd_functions+=( _manage_venv_on_cd )
 
-# Load virtualenv if starting in such folder
-if [[ -f "$HOME/.virtualenvs/$(basename $(pwd))/bin/activate" ]] ; then
-    workon .
-fi
 
 ###########
 # Aliases #
