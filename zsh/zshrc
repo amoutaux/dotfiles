@@ -102,7 +102,5 @@ fi
 ###########
 source ~/.aliases
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # Keep Starship at the end
 eval "$(starship init zsh)"
