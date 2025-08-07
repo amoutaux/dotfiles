@@ -162,6 +162,14 @@ setup_zsh() {
     else
         e_warning "Zsh-syntax-highlighting already installed."
     fi
+
+    # Install starship
+    e_bold "Installing Starship"
+    if [[ ! -f /usr/local/bin/starship ]]; then
+        curl -sS https://starship.rs/install.sh | sh
+    else
+        e_warning "Starship already installed."
+    fi
 }
 
 setup_tmux_plugin_manager() {
@@ -219,6 +227,7 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/zsh/zshenv" "$HOME/.zshenv"
     ln -nsf "$DOTFILES_DIR/zsh/aliases" "$HOME/.aliases"
     ln -nsf "$DOTFILES_DIR/zsh/zprofile" "$HOME/.zprofile"
+    ln -nsf "$DOTFILES_DIR/zsh/starship.toml" "$HOME/.config/starship.toml"
 }
 
 instructions() {

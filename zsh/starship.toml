@@ -1,0 +1,32 @@
+format = '([\($env_var\)](red bold)) $directory$git_branch$git_commit$git_status($gcloud)'
+
+[directory]
+    truncate_to_repo = false
+
+[git_branch]
+    format = '[$symbol$branch(:$remote_branch)]($style) '
+
+[env_var.VIRTUAL_ENV_PROMPT]
+    format = '[$env_value](bold red)'
+
+[gcloud]
+    format = '[($symbol$account)(@$domain)(\($region\))]($style) '
+    symbol = '☁️ '
+
+[git_status]
+    format = '([\[$all_status$ahead_behind\]]($style) )'
+    conflicted = '='
+    ahead = ''
+    behind = ''
+    diverged = ''
+    up_to_date = ''
+    untracked = '?'
+    stashed = ''
+    modified = '~'
+    staged = '+'
+    renamed = '»'
+    deleted = '✘'
+    typechanged = ""
+    style = 'bold yellow'
+    ignore_submodules = false
+    disabled = false

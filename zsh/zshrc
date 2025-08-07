@@ -1,7 +1,6 @@
 #################
 # ZSH customize #
 #################
-ZSH_THEME="agnoster"
 CASE_SENSITIVE="true"
 ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"
@@ -30,27 +29,15 @@ autoload -Uz +X compinit && compinit
 autoload -Uz +X bashcompinit && bashcompinit
 # In install.sh: mkdir ~/.oh-my-zsh/completions -> to store completion scripts
 
-##########
-# Prompt #
-##########
-# Do not show prompt context (username@host)
-prompt_context() { }
-# virtualenvwrapper hook to update prompt upon activation
-cat > $VIRTUALENVWRAPPER_HOOK_DIR/postactivate << EOF
-#!/bin/zsh
-# This hook is sourced after every virtualenv is activated.
-PS1="%{\$fg[red]%}(VENV \`basename \"\$VIRTUAL_ENV\"\`) \$_OLD_VIRTUAL_PS1"
-EOF
 
 ###########
 # Vi-mode #
 ###########
 function zle-line-init zle-keymap-select {
     case $KEYMAP in
-        vicmd) RPS1="%F{blue}--NORMAL--"; echo -e -n "\x1b[\x30 q";;
-        viins|main) RPS1="%F{yellow}--INSERT--"; echo -e -n "\x1b[\x35 q";;
+        vicmd) RPROMPT="%F{blue}--NORMAL--"; echo -e -n "\x1b[\x30 q";;
+        viins|main) RPROMPT="%F{yellow}--INSERT--"; echo -e -n "\x1b[\x35 q";;
     esac
-    zle reset-prompt
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
@@ -116,3 +103,6 @@ fi
 source ~/.aliases
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Keep Starship at the end
+eval "$(starship init zsh)"
