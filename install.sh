@@ -13,20 +13,20 @@ for opt in "$@"; do
     '--init-git')
         init_git=true
         ;;
-    '--no-fonts')
-        no_fonts=true
+    '--fonts')
+        fonts=true
         ;;
-    '--no-packages')
-        no_packages=true
+    '--packages')
+        packages=true
         ;;
-    '--no-symlinks')
-        no_symlinks=true
+    '--symlinks')
+        symlinks=true
         ;;
-    '--no-zsh')
-        no_zsh=true
+    '--zsh')
+        zsh=true
         ;;
-    '--no-tmux')
-        no_tmux=true
+    '--tmux')
+        tmux=true
         ;;
     *)
         printf "%s\n" "Available flags:" "" \
@@ -55,11 +55,9 @@ fi
 # source utils since they are needed here
 source "$DOTFILES_DIR/shell/utils.sh"
 
-e_header "Dotfiles installation"
-
 install_packages() {
 
-    if [[ $no_packages ]]; then
+    if [[ ! $packages ]]; then
         return
     fi
 
@@ -97,7 +95,7 @@ install_packages() {
 
 install_fonts() {
 
-    if [[ $no_fonts ]]; then
+    if [[ ! $fonts ]]; then
         return
     fi
 
@@ -128,7 +126,7 @@ init_git() {
 
 setup_zsh() {
 
-    if [[ $no_zsh ]]; then
+    if [[ ! $zsh ]]; then
         return
     fi
     e_header "Setuping ZSH..."
@@ -170,7 +168,7 @@ setup_zsh() {
 
 setup_tmux_plugin_manager() {
 
-    if [[ $no_tmux ]]; then
+    if [[ ! $tmux ]]; then
         return
     fi
 
@@ -184,7 +182,7 @@ setup_tmux_plugin_manager() {
 
 create_symlinks() {
 
-    if [[ $no_symlinks ]]; then
+    if [[ ! $symlinks ]]; then
         return
     fi
 
@@ -229,7 +227,7 @@ create_symlinks() {
 instructions() {
     e_header "Additional instructions..."
 
-    if [[ ! $no_tmux ]]; then
+    if [[ ! $tmux ]]; then
         e_note "TMUX: Don't forget to run 'Prefix + I' inside tmux to install tpm plugins"
     fi
 }
