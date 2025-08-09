@@ -10,6 +10,9 @@ DOTFILES_GIT_REMOTE="git@github.com/amoutaux/dotfiles.git"
 # Options
 for opt in "$@"; do
     case $opt in
+    '--all')
+        all=true
+        ;;
     '--init-git')
         init_git=true
         ;;
@@ -30,6 +33,7 @@ for opt in "$@"; do
         ;;
     *)
         printf "%s\n" "Available flags:" "" \
+            "--all:          activate all flags below." \
             "--init-git:     initialize git repository. Add origin. ⚠️ Will run \`git clean -fd\`." \
             "--fonts:        install powerline fonts." \
             "--packages:     install packages." \
@@ -57,7 +61,7 @@ source "$DOTFILES_DIR/shell/utils.sh"
 
 install_packages() {
 
-    if [[ ! $packages ]]; then
+    if [[ ! ($packages || $all) ]]; then
         return
     fi
 
@@ -94,7 +98,7 @@ install_packages() {
 
 install_fonts() {
 
-    if [[ ! $fonts ]]; then
+    if [[ ! ($fonts || $all) ]]; then
         return
     fi
 
@@ -106,7 +110,7 @@ install_fonts() {
 
 init_git() {
     # Link downloaded dotfiles directory to the git repository
-    if [[ $init_git ]]; then
+    if [[ ($init_git || $all) ]]; then
         e_header "Initializing git repository..."
         cd "$DOTFILES_DIR"
         if ! is_git_repository; then
@@ -125,7 +129,7 @@ init_git() {
 
 setup_zsh() {
 
-    if [[ ! $zsh ]]; then
+    if [[ ! ($zsh || $all) ]]; then
         return
     fi
     e_header "Setuping ZSH..."
@@ -167,7 +171,7 @@ setup_zsh() {
 
 setup_tmux_plugin_manager() {
 
-    if [[ ! $tmux ]]; then
+    if [[ ! ($tmux || $all) ]]; then
         return
     fi
 
@@ -181,7 +185,7 @@ setup_tmux_plugin_manager() {
 
 create_symlinks() {
 
-    if [[ ! $symlinks ]]; then
+    if [[ ! ($symlinks || $all) ]]; then
         return
     fi
 
@@ -226,7 +230,7 @@ create_symlinks() {
 instructions() {
     e_header "Additional instructions..."
 
-    if [[ ! $tmux ]]; then
+    if [[ ($tmux || $all) ]]; then
         e_note "TMUX: Don't forget to run 'Prefix + I' inside tmux to install tpm plugins"
     fi
 }
