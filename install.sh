@@ -82,8 +82,7 @@ install_packages() {
     e_header "Installing packages..."
     read -r -p "Package installation command (ex: 'apt install'): " cmd
     for package in "${packages[@]}"; do
-        # Brew will throw an error if a package is already installed
-        $cmd $package || e_warning "$package installation failed"
+        $cmd "$package" || e_warning "$package installation failed"
     done
 
     e_header "Installing Pyenv..."
