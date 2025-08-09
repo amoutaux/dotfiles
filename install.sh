@@ -66,15 +66,23 @@ install_packages() {
         return
     fi
 
+    e_header "Installing Homebrew"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    e_bold "Updating Homebrew"
+    brew update
+    brew doctor
+
     local -a packages=(
         'bat'
         'eza'
         'git'
         'htop'
         'jq'
+        'less' # native macos less doesn't ship with lesskey
         'most'
         'neovim'
         'npm'
+        'node'
         'python3'
         'ripgrep'
         'task'
@@ -86,6 +94,14 @@ install_packages() {
         'zsh'
     )
 
+    local -a brew_cask=(
+        'google-chrome'
+        'iterm2'
+        'macdown'
+        'raycast'
+        'xquartz'
+    )
+
     e_header "Installing packages from script..."
     # deno is needed by some neovim plugins
     curl -LsSf https://astral.sh/uv/install.sh | bash
@@ -93,10 +109,14 @@ install_packages() {
     curl -fsSL https://direnv.net/install.sh | env bin_path="$HOME/.local/bin" bash
     curl -LsSf https://llama.app/install.sh | sh
 
-    e_header "Installing packages using package manager..."
-    read -r -p "Package installation command (ex: 'apt install'): " cmd
+    e_header "Installing packages with brew..."
     for package in "${packages[@]}"; do
-        $cmd "$package" || e_warning "$package installation failed"
+        brew install "$package" || e_warning "$package install failed."
+    done
+
+    e_header "Installing brew cask packages..."
+    for package in "${brew_cask[@]}"; do
+        brew cask install "$package" || e_warning "$package install failed."
     done
 }
 
@@ -249,6 +269,12 @@ instructions() {
     if [[ ($tmux || $all) ]]; then
         e_note "TMUX: Don't forget to run 'Prefix + I' inside tmux to install tpm plugins"
     fi
+
+    terminal_instructions="
+TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard' option in chosen terminal.
+TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+
+    "
+    printf '%s' "$terminal_instructions"
 }
 
 install_packages
