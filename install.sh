@@ -19,6 +19,9 @@ for opt in "$@"; do
     '--all')
         all=true
         ;;
+    '--bepo')
+        bepo=true
+        ;;
     '--init-git')
         init_git=true
         ;;
@@ -40,6 +43,7 @@ for opt in "$@"; do
     *)
         printf "%s\n" "Available flags:" "" \
             "--all:          activate all flags below." \
+            "--bepo:         add bepo keyboard layout." \
             "--init-git:     initialize git repository. Add origin. ⚠️ Will run \`git clean -fd\`." \
             "--fonts:        install powerline and nerd fonts." \
             "--packages:     install packages." \
@@ -239,6 +243,13 @@ setup_tmux_plugin_manager() {
     fi
 }
 
+setup_bepo() {
+    if [[ $bepo || $all ]]; then
+        e_header "Installing bepo bundle..."
+        sudo cp -R "$DOTFILES_DIR/bepo/fr-dvorak-bepo.bundle" "/Library/Keyboard\ Layouts"
+    fi
+}
+
 create_symlinks() {
 
     if [[ ! ($symlinks || $all) ]]; then
@@ -317,4 +328,5 @@ create_symlinks
 setup_tmux_plugin_manager
 init_git
 setup_zsh
+setup_bepo
 instructions
