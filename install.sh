@@ -7,6 +7,12 @@ DOTFILES_DIR=$HOME/dotfiles
 DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/linux"
 DOTFILES_GIT_REMOTE="git@github.com/amoutaux/dotfiles.git"
 
+# Platform identification
+if [[ "$(uname)" != "Linux" ]]; then
+    echo "This script is meant for 'Linux' and you are running it from $(uname)"
+    exit 1
+fi
+
 # Options
 for opt in "$@"; do
     case $opt in
