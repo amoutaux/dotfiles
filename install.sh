@@ -8,6 +8,11 @@ DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/macos"
 DOTFILES_GIT_REMOTE="git@github.com/amoutaux/dotfiles.git"
 CLOUD_DRIVE_DIR="/replace/me"
 
+if [[ $(uname) != 'Darwin' ]]; then
+    echo "Unknown platform: only 'Linux' or 'Darwin' supported for \$uname."
+    exit 1
+fi
+
 # Options
 for opt in "$@"; do
     case $opt in
@@ -66,14 +71,24 @@ install_packages() {
         return
     fi
 
+    if ! type_exists 'brew'; then
+        e_header "Installing Homebrew"
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        e_bold "Updating Homebrew"
+        brew update
+        brew doctor
+    fi
+
     local -a packages=(
         'bat'
         'git'
         'htop'
         'jq'
+        'less' # native macos less doesn't ship with lesskey
         'most'
         'neovim'
         'npm'
+        'node'
         'python3'
         'ripgrep'
         'task'
@@ -89,10 +104,22 @@ install_packages() {
         'virtualenvwrapper'
     )
 
-    e_header "Installing packages..."
-    read -r -p "Package installation command (ex: 'apt install'): " cmd
+    local -a brew_cask=(
+        'google-chrome'
+        'iterm2'
+        'macdown'
+        'raycast'
+        'xquartz'
+    )
+
+    e_header "Installing packages with brew..."
     for package in "${packages[@]}"; do
-        $cmd "$package" || e_warning "$package installation failed"
+        brew install "$package" || e_warning "$package install failed."
+    done
+
+    e_header "Installing brew cask packages..."
+    for package in "${brew_cask[@]}"; do
+        brew cask install "$package" || e_warning "$package install failed."
     done
 
     e_header "Installing Pyenv..."
@@ -272,6 +299,12 @@ instructions() {
     if [[ ($tmux || $all) ]]; then
         e_note "TMUX: Don't forget to run 'Prefix + I' inside tmux to install tpm plugins"
     fi
+
+    terminal_instructions="
+TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard' option in chosen terminal.
+TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+
+    "
+    printf '%s' "$terminal_instructions"
 }
 
 install_packages
