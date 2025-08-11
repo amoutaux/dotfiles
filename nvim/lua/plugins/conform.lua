@@ -1,3 +1,40 @@
+local indents_by_ft = {
+  git = {
+    indent = 2,
+    textwidth = 72,
+    pattern = "COMMIT_EDITMSG",
+  },
+  groovy = {
+    indent = 4,
+    textwidth = 120,
+    pattern = "*.groovy",
+  },
+  lua = {
+    indent = 2,
+    textwidth = 100,
+    pattern = "*.lua",
+  },
+  markdown = {
+    indent = 4,
+    textwidth = 120,
+    pattern = "*.md",
+  },
+  python = {
+    indent = 4,
+    textwidth = 88,
+    pattern = "*.py",
+  },
+  ruby = {
+    indent = 2,
+    textwidth = 100,
+    pattern = "*.rb",
+  },
+  sh = {
+    indent = 4,
+    pattern = { "*.bash", "*.sh" },
+  },
+}
+
 return {
   "stevearc/conform.nvim",
   lazy = false,
@@ -38,30 +75,40 @@ return {
     -- Auto format on save
     format_on_save = {},
 
-    -- Customize formatters
     formatters = {
       stylua = {
         prepend_args = {
           "--indent-type",
           "Spaces",
           "--indent-width",
-          "2",
+          indents_by_ft.lua.indent,
           "--column-width",
-          "120",
+          indents_by_ft.lua.textwidth,
         },
       },
-      shfmt = {
-        prepend_args = { "-i", "2" },
-      },
+      shfmt = { prepend_args = { "--indent", indents_by_ft.sh.indent } },
     },
   },
   config = function(_, opts)
     local conform = require("conform")
+    local mygroup = vim.api.nvim_create_augroup("MyCustomConform", { clear = true })
+
+    -- Indentation management
+    for _, options in pairs(indents_by_ft) do
+      vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+        group = mygroup,
+        pattern = options.pattern,
+        callback = function()
+          vim.opt.shiftwidth = options.indent
+          vim.opt.textwidth = options.textwidth
+          vim.opt.colorcolumn = tostring(options.textwidth)
+        end,
+      })
+    end
+
     conform.setup(opts)
 
     -- Notify if a configured formatter is not available
-    local mygroup =
-      vim.api.nvim_create_augroup("MyCustomConform", { clear = true })
     vim.api.nvim_create_autocmd("BufRead", {
       group = mygroup,
       callback = function(args)
@@ -69,57 +116,13 @@ return {
         for _, ef in pairs(expected_formatters or {}) do
           local f = conform.get_formatter_info(ef, args.buf)
           if f.available == false then
-            vim.notify(
-              "⚠️ " .. f.name .. " is not available",
-              vim.log.levels.WARN
-            )
+            vim.notify("⚠️ " .. f.name .. " is not available", vim.log.levels.WARN)
           end
         end
       end,
     })
 
-    vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-      group = mygroup,
-      pattern = "COMMIT_EDITMSG",
-      callback = function()
-        vim.opt.shiftwidth = 2
-        vim.opt.textwidth = 80
-        vim.opt.colorcolumn = "80"
-      end,
-    })
-
-    -- Set shiftwidth and colorcolumn per filetype
-    vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-      group = mygroup,
-      pattern = "*.lua",
-      callback = function()
-        vim.opt.shiftwidth = 2
-        vim.opt.textwidth = 120
-        vim.opt.colorcolumn = "120"
-      end,
-    })
-
-    vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-      group = mygroup,
-      pattern = "*.groovy",
-      callback = function()
-        vim.opt.shiftwidth = 4
-        vim.opt.textwidth = 120
-        vim.opt.colorcolumn = "120"
-      end,
-    })
-
-    vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-      group = mygroup,
-      pattern = "*.md",
-      callback = function()
-        vim.opt.shiftwidth = 4
-        vim.opt.textwidth = 120
-        vim.opt.colorcolumn = "120"
-      end,
-    })
-
-    -- Recognize Jenkinsfiles as groovy
+    -- Recognize Jenkinsfiles as groovy + custom shiftwidth
     vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
       group = mygroup,
       pattern = {

@@ -1,7 +1,6 @@
 -- Global options
 vim.opt.autoread = true -- reload file if it has been changed outside of nvim
 vim.opt.clipboard = "unnamedplus" -- cut/copy/paste shared between vim instances and computer
-vim.opt.colorcolumn = "120"
 vim.opt.directory = vim.fn.expand("~/.config/nvim/tmp") -- swap files
 vim.opt.expandtab = true -- insert spaces instead of tabs
 vim.opt.foldmethod = "indent"
@@ -10,7 +9,6 @@ vim.opt.list = true
 vim.opt.listchars = "trail:~,tab:..,nbsp:&," --select specific whitespaces
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.shiftwidth = 4
 vim.opt.smartcase = true -- search is case-sensitive only if it contains an uppercase letter
 vim.opt.splitbelow = true -- open new windows at bottom
 vim.opt.textwidth = 80
