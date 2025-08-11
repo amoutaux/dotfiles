@@ -111,6 +111,7 @@ install_packages() {
         'neovim'
         'npm'
         'nodejs'
+        'pinentry-gtk2'
         'python3'
         'python3-pip' # pip comes along with python3 on mac
         'ripgrep'
@@ -310,6 +311,8 @@ create_symlinks() {
     # nvim
     ln -nsf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
     ln -nsf "$DOTFILES_DIR/nvim/tern-config" "$HOME/.tern-config"
+    # pinentry
+    sudo ln -nsf "/usr/bin/pinentry-gtk-2" "/usr/bin/pinentry"
     # shell
     ln -nsf "$DOTFILES_DIR/shell/utils.sh" "$HOME/.utils.sh"
     # taskwarrior
