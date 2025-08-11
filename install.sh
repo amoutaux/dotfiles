@@ -91,6 +91,7 @@ install_packages() {
         'most'
         'neovim'
         'node'
+        'pinentry-mac'
         'python3'
         'ripgrep'
         'task'
@@ -277,6 +278,8 @@ create_symlinks() {
     # nvim
     ln -nsf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
     ln -nsf "$DOTFILES_DIR/nvim/tern-config" "$HOME/.tern-config"
+    # pinentry
+    ln -nsf "$(brew prefix)/bin/pinentry-mac" "$(brew prefix)/bin/pinentry"
     # shell
     ln -nsf "$DOTFILES_DIR/shell/utils.sh" "$HOME/.utils.sh"
     # timewarrior
