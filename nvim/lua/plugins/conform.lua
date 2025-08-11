@@ -1,4 +1,9 @@
 local indents_by_ft = {
+  c = {
+    indent = 4,
+    textwidth = 80,
+    pattern = { "*.c", "*.cpp" },
+  },
   git = {
     indent = 2,
     textwidth = 72,
