@@ -17,7 +17,7 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #################
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # NVM
 eval "$(pyenv init -)" # Pyenv
-#source "<path>/<to>/virtualenvwrapper.sh"
+source "$(python3 -m site --user-base)/bin/virtualenvwrapper.sh"
 
 
 ##################
