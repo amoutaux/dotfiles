@@ -1,6 +1,6 @@
 local indents_by_ft = {
   c = {
-    indent = 4,
+    indent = 2,
     textwidth = 80,
     pattern = { "*.c", "*.cpp" },
   },
@@ -58,6 +58,7 @@ return {
   opts = {
     -- Define your formatters
     formatters_by_ft = {
+      c = { "clang-format" },
       chef = { "rubocop" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
       json = { "fixjson" },
