@@ -83,6 +83,10 @@ install_packages() {
         'zsh'
     )
 
+    local -a python_packages=(
+        'virtualenvwrapper'
+    )
+
     e_header "Installing packages..."
     read -r -p "Package installation command (ex: 'apt install'): " cmd
     for package in "${packages[@]}"; do
@@ -93,6 +97,25 @@ install_packages() {
     # pyenv is cloned manually
     if [[ ! -d "$HOME/.pyenv" ]]; then
         git clone -q https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
+    fi
+
+    if [[ ! -z "$VIRTUAL_ENV" ]]; then
+        seek_confirmation "Virtual environment ($VIRTUAL_ENV) detected. Install python packages ?"
+        if is_confirmed; then
+            e_header "Installing python packages..."
+            for package in "${python_packages[@]}"; do
+                pip install "$package" || e_warning "$package installation failed"
+            done
+        fi
+    else
+        seek_confirmation "Not running in a virtual environment. Install python packages on system ?"
+        if is_confirmed; then
+            e_header "Installing python packages..."
+            for package in "${python_packages[@]}"; do
+                pip install --break-system-packages "$package" || e_warning "$package installation failed"
+            done
+
+        fi
     fi
 }
 
@@ -219,6 +242,8 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/timewarrior/data" "$HOME/.local/share/timewarrior/data"
     # tmux
     ln -nsf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
+    # virtualenvwrapper
+    ln -nsf "$DOTFILES_DIR/virtualenvwrapper/postmkvirtualenv" "$WORKON_HOME/postmkvirtualenv"
     # zsh
     ln -nsf "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
     ln -nsf "$DOTFILES_DIR/zsh/zshenv" "$HOME/.zshenv"
