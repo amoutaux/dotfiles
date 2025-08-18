@@ -72,8 +72,8 @@ _manage_venv_on_cd() {
 
     # Deactivate if leaving a venv
     # Check if VIRTUAL_ENV is set AND the current directory is NOT within the venv's path
-    if [[ -n "$VIRTUAL_ENV" ]] && ! [[ "$(pwd)" =~ "${VIRTUAL_ENV}"/* ]]; then
-      echo "Deactivating virtual environment: $(basename $VIRTUAL_ENV)..." # Optional: add a message
+    if [[ -n "$VIRTUAL_ENV" ]] && ! [[ "$(pwd)" =~ "$(basename $VIRTUAL_ENV)"/* ]]; then
+      echo "Deactivating virtual environment: $(basename $VIRTUAL_ENV)"
       deactivate
     fi
 
@@ -82,7 +82,7 @@ _manage_venv_on_cd() {
       # Check if the current directory name matches a virtualenv name
       for dir_name in $(lsvirtualenv -b); do
         if [[ "${dir_name}" == "${current_dir}" ]]; then
-            echo "Activating virtual environment: ${current_dir}..." # Optional: add a message
+            echo "Activating virtual environment...: ${dir_name}"
             workon "${dir_name}" # `workon` activates the venv and sets VIRTUAL_ENV
             break # Found and activated, no need to check others
         fi
