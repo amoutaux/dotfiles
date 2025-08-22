@@ -36,6 +36,7 @@ local indents_by_ft = {
   },
   sh = {
     indent = 4,
+    textwidth = 80,
     pattern = { "*.bash", "*.sh" },
   },
 }
