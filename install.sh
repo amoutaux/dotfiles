@@ -196,6 +196,12 @@ install_fonts() {
     git clone https://github.com/powerline/fonts "$HOME/fonts"
     "$HOME/fonts/install.sh"
     rm -rf "$HOME/fonts"
+
+    e_header "Installing nerd fonts..."
+    curl -LSsO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/DroidSansMono.zip
+    unzip -d "$HOME/.local/fonts" DroidSansMono.zip
+    fc-cache -fv
+    rm DroidSansMono.zip
 }
 
 init_git() {
