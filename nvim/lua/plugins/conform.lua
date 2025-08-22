@@ -4,6 +4,10 @@ local indents_by_ft = {
     textwidth = 80,
     pattern = { "*.c", "*.cpp" },
   },
+  json = {
+    indent = 2,
+    textwidth = 0,
+  },
   git = {
     indent = 2,
     textwidth = 72,
