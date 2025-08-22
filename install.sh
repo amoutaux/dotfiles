@@ -72,6 +72,7 @@ install_packages() {
         'jq'
         'most'
         'neovim'
+        'npm'
         'python3'
         'ripgrep'
         'task'
