@@ -2,6 +2,7 @@
 
 # Modified starship preset catppuccin-powerline
 format = """
+$docker_context\
 $c\
 $rust\
 $golang\
@@ -9,14 +10,16 @@ $nodejs\
 $php\
 $java\
 $kotlin\
+$kubernetes\
 $haskell\
 $python\
-[](fg:red bg:yellow)\
+[](fg:yellow bg:yellow)\
 $directory\
 [](bg:green fg:yellow)\
 $git_branch\
 $git_status\
 [ ](fg:green)\
+$gcloud\
 $line_break\\$ \
 """
 
@@ -57,7 +60,7 @@ format = '[ $user]($style)'
 
 [directory]
 style = "bg:yellow fg:crust"
-format = "[ $path ]($style)"
+format = "[$path ]($style)"
 truncate_to_repo = false
 #truncation_length = 3
 #truncation_symbol = "…/"
@@ -69,6 +72,13 @@ truncate_to_repo = false
 "Pictures" = " "
 "Developer" = "󰲋 "
 
+[gcloud]
+# would like to add $region but it's always set so
+# conditional doesn't work here
+format = '[($symbol $account)]($style)'
+symbol = '☁️'
+style = 'bold green'
+
 [git_branch]
 symbol = ""
 style = "bg:green"
@@ -76,7 +86,8 @@ format = '[ $symbol $branch ]($style)'
 
 [git_status]
 style = "bg:green"
-format = '[[($all_status$ahead_behind )](fg:red bg:green)]($style)'
+format = '[[($all_status )](fg:dark_red bg:green)]($style)'
+stashed=''
 
 [nodejs]
 symbol = ""
@@ -120,7 +131,7 @@ format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [python]
 symbol = ""
-style = "bg:red"
+style = "fg:dark_red"
 version_format = "${major}.${minor}"
 format = '[ $symbol( $version )(\($virtualenv\)) ]($style)'
 
@@ -129,11 +140,11 @@ symbol = ""
 style = "bg:sapphire"
 format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
-#[conda]
-#symbol = "  "
-#style = "fg:crust bg:sapphire"
-#format = '[$symbol$environment ]($style)'
-#ignore_base = false
+[conda]
+symbol = "  "
+style = "fg:crust bg:sapphire"
+format = '[$symbol$environment ]($style)'
+ignore_base = false
 
 [time]
 disabled = true
@@ -189,7 +200,9 @@ base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
 
+# Do not discard this. Custom changes.
 [palettes.catppuccin_frappe]
+dark_red = "#d62828"
 rosewater = "#f2d5cf"
 flamingo = "#eebebe"
 pink = "#f4b8e4"
@@ -197,8 +210,8 @@ mauve = "#ca9ee6"
 red = "#e78284"
 maroon = "#ea999c"
 peach = "#ef9f76"
-yellow = "#e5c890"
-green = "#a6d189"
+yellow = "#e69f71"
+green = "#8bb87a"
 teal = "#81c8be"
 sky = "#99d1db"
 sapphire = "#85c1dc"
