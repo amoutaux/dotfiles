@@ -81,11 +81,11 @@ vim.diagnostic.handlers["my/debug_diagnostics"] = {
 
 vim.diagnostic.config({
   ["my/debug_diagnostics"] = true,
+  underline = false,
   virtual_text = {
     -- show severity icons as prefixes.
     prefix = function(diagnostic)
-      return diagnostic_icons[vim.diagnostic.severity[diagnostic.severity]]
-        .. " "
+      return diagnostic_icons[vim.diagnostic.severity[diagnostic.severity]] .. " "
     end,
     -- show only the first line of each diagnostic.
     format = function(diagnostic)
