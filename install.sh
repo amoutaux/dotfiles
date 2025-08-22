@@ -167,6 +167,10 @@ install_fonts() {
     git clone https://github.com/powerline/fonts "$HOME/fonts"
     "$HOME/fonts/install.sh"
     rm -rf "$HOME/fonts"
+
+    # https://github.com/ryanoasis/nerd-fonts
+    e_header "Installing nerd fonts..."
+    brew install --cask font-droid-sans-mono-nerd-font
 }
 
 init_git() {
