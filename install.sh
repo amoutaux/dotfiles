@@ -100,7 +100,7 @@ install_packages() {
         git clone -q https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
     fi
 
-    if [[ ! -z "$VIRTUAL_ENV" ]]; then
+    if [[ -n "$VIRTUAL_ENV" ]]; then
         seek_confirmation "Virtual environment ($VIRTUAL_ENV) detected. Install python packages ?"
         if is_confirmed; then
             e_header "Installing python packages..."
