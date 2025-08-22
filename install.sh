@@ -216,6 +216,7 @@ create_symlinks() {
     e_header "Creating symlinks..."
     # Create necessary directories
     mkdir -p "$HOME/.config"
+    mkdir -p "$HOME/.config/karabiner"
     mkdir -p "$HOME/.config/k9s"
     mkdir -p "$HOME/.config/timewarrior"
     mkdir -p "$HOME/.local/share/timewarrior"
@@ -224,6 +225,8 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/git/gitignore" "$HOME/.gitignore"
     ln -nsf "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
     ln -nsf "$DOTFILES_DIR/git/tigrc" "$HOME/.tigrc"
+    # karabiner
+    ln -nsf "$DOTFILES_DIR/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
     # k9s
     ln -nsf "$DOTFILES_DIR/k9s/skins" "$HOME/.config/k9s/skins"
     ln -nsf "$DOTFILES_DIR/k9s/config.yaml" "$HOME/.config/k9s/config.yaml"
