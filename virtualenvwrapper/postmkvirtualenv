@@ -1,6 +1,6 @@
 #!/bin/zsh
 # This hook is sourced after a new virtualenv is activated.
-pip install black flake8 flake518 isort mypy pydocstyle pylint pre-commit
+pip install black flake8 flake518 isort mypy neovim pydocstyle pylint pre-commit
 pre-commit install --install-hooks
 
 VENV=$(basename "$VIRTUAL_ENV")
