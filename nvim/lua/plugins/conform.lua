@@ -48,7 +48,7 @@ return {
     {
       "<leader>f",
       function()
-        require("conform").format()
+        require("conform").format({ async = true })
       end,
       mode = "n",
     },
@@ -60,7 +60,7 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       c = { "clang-format" },
-      chef = { "rubocop" },
+      chef = { "cookstyle" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
       json = { "fixjson" },
       lua = { "stylua" },
@@ -76,13 +76,15 @@ return {
 
     -- Set default options
     default_format_opts = {
+      timeout_ms = 5000, -- cookstyle is very slow
       lsp_format = "never",
     },
 
-    -- Auto format on save
-    format_on_save = {},
-
     formatters = {
+      cookstyle = {
+        command = "cookstyle",
+        args = { "-a", "--stdin", "%", "--stderr" },
+      },
       stylua = {
         prepend_args = {
           "--indent-type",

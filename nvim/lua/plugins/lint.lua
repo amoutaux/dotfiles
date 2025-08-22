@@ -9,7 +9,7 @@ return {
 
     -- Linters by filetype
     lint.linters_by_ft = {
-      chef = { "cookstyle", "rubocop" },
+      chef = { "cookstyle" },
       groovy = { "npm-groovy-lint" },
       markdown = { "markdownlint" },
       python = { "mypy", "pylint" },
@@ -22,8 +22,7 @@ return {
     lint.linters.cookstyle = {
       -- Cookstyle is not built-in so we have to tell nvim-lint how to use it
       cmd = "cookstyle",
-      args = { "--format", "json" },
-      parser = parser.for_sarif(),
+      parser = parser.from_errorformat(),
     }
 
     table.insert(lint.linters.markdownlint.args, 1, "--config")
