@@ -11,6 +11,7 @@ return {
     vim.g.NERDTreeMapRefresh = "l"
     vim.g.NERDTreeMapRefreshRoot = "L"
     vim.g.NERDTreeMinimalUI = 1
+    vim.g.NERDTreeQuitOnOpen = 1
     vim.g.NERDTreeWinSize = 50
     vim.g.NERDTreeShowLineNumbers = true
   end,
