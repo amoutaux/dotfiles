@@ -52,6 +52,21 @@ vim.lsp.config("*", {
   root_markers = { ".git" }, -- base directory for lsp workspace
 })
 
+-- Deactivate diagnostics from LSP for chef files (cookstyle preferred)
+local mygroup = vim.api.nvim_create_augroup("MyCustomLSP", { clear = true })
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = mygroup,
+  callback = function(args)
+    if vim.bo[args.buf].filetype == "chef" then
+      local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+      --https://github.com/neovim/neovim/issues/20745
+      client.handlers["textDocument/publishDiagnostics"] = function(...)
+          local result = select(2, ...)
+          result.diagnostics = {}
+      end
+    end
+  end
+})
 -- Mason takes care of enabling installed LSPs
 -- vim.lsp.enable({ ... })
 
