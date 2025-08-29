@@ -10,6 +10,7 @@ return {
     -- Linters by filetype
     lint.linters_by_ft = {
       chef = { "cookstyle" },
+      dockerfile = { "hadolint" },
       groovy = { "npm-groovy-lint" },
       markdown = { "markdownlint" },
       python = { "mypy", "pylint" },
