@@ -326,8 +326,8 @@ instructions() {
     fi
 
     terminal_instructions="
-TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard' option in chosen terminal.
-TERMINAL: (iTerm) Preferences > Profiles > Keys > Right opt key : Esc+
+TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard'.
+TERMINAL: (iTerm) Preferences > Profiles > Keys > Key Bindings > ^é <-> Send Hey Codes: 0x17.
     "
     printf '%s' "$terminal_instructions"
 }
