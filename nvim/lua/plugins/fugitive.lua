@@ -4,7 +4,7 @@ return {
   lazy = false,
   keys = {
     { "git", "<cmd>Gtabedit :<cr>" }, -- https://github.com/tpope/vim-fugitive/issues/727
-    { "log", "<cmd>Git log --oneline --all --graph<cr>" },
+    { "log", "<cmd>Git log --oneline --all --graph --decorate<cr>" },
     { "S", "<Plug>fugitive:s", mode = { "n", "v" }, ft = { "fugitive", "fugitiveblame" } },
     { "s", "j", mode = { "n", "v" }, ft = { "fugitive", "fugitiveblame" } },
     { "o", "<Plug>fugitive:>", ft = { "fugitive", "fugitiveblame" } },
