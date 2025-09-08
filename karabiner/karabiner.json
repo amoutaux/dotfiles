@@ -4,13 +4,13 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Change right_option+sdfe to arrow keys",
+                        "description": "Change left_control+tsrn to arrow keys",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "s",
+                                    "key_code": "j",
                                     "modifiers": {
-                                        "mandatory": ["right_option"],
+                                        "mandatory": ["left_control"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -19,9 +19,9 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "d",
+                                    "key_code": "k",
                                     "modifiers": {
-                                        "mandatory": ["right_option"],
+                                        "mandatory": ["left_control"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -30,9 +30,9 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "e",
+                                    "key_code": "l",
                                     "modifiers": {
-                                        "mandatory": ["right_option"],
+                                        "mandatory": ["left_control"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -41,9 +41,9 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "f",
+                                    "key_code": "n",
                                     "modifiers": {
-                                        "mandatory": ["right_option"],
+                                        "mandatory": ["left_control"],
                                         "optional": ["any"]
                                     }
                                 },
