@@ -13,7 +13,7 @@ return {
     { "pc", "<Plug>fugitive:(", ft = { "fugitive", "fugitiveblame" } },
     { "bl", "<cmd>Git blame<cr>" },
     { "co", "<cmd>vertical Git commit -v<cr>" },
-    { "di", "<cmd>Gvdiff!<cr>", mode = { "n", "v" } },
+    { "<leader>di", "<cmd>Gvdiff!<cr>", mode = { "n", "v" } },
     { "ge", "<cmd>diffget<cr>", mode = { "n", "v" } },
     { "pu", "<cmd>diffput<cr>", mode = { "n", "v" } },
   },
