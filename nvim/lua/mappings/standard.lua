@@ -24,3 +24,6 @@ vim.keymap.set("", "cp", "<cmd>cprev<cr>")
 -- Rq: %:p:h opens netrw in the current file directory (not the working directory)
 vim.keymap.set("n", "<leader>N", "<cmd>Lexplore %p:h<cr>", { silent = true })
 vim.keymap.set("n", "<leader>NQ", "<cmd>Lexplore<cr>")
+
+-- Undo
+vim.keymap.set("n", "U", "<C-R>")
