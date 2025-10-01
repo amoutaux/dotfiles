@@ -97,5 +97,8 @@ chpwd_functions+=( _manage_venv_on_cd )
 ###########
 source ~/.aliases
 
+# Batch-like word split for for-loops
+setopt shwordsplit
+
 # Keep Starship at the end
 eval "$(starship init zsh)"
