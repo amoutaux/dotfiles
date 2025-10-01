@@ -12,11 +12,14 @@ return {
       chef = { "cookstyle" },
       dockerfile = { "hadolint" },
       groovy = { "npm-groovy-lint" },
+      json = { "jsonlint" },
       markdown = { "markdownlint" },
       python = { "mypy", "pylint" },
       ruby = { "rubocop" },
       yaml = { "yamllint" },
       sh = { "shellcheck" },
+      terraform = { "terraform_validate" },
+      tf = { "terraform_validate" },
     }
 
     -- Configuration

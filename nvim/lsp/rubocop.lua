@@ -1,5 +1,5 @@
 return {
   cmd = { "rubocop", "--lsp" },
-  filetypes = { "ruby" },
+  filetypes = { "ruby", "chef" },
   root_markers = { "Gemfile", ".git" },
 }
