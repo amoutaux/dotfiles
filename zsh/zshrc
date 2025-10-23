@@ -7,7 +7,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_AUTO_TITLE="true"
 
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
-plugins=( git gpg-agent docker kubectl kitchen colored-man-pages fzf ssh-agent zsh-syntax-highlighting )
+plugins=( gcloud git gpg-agent docker kubectl kitchen colored-man-pages fzf ssh-agent zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
