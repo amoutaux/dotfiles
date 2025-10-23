@@ -102,3 +102,4 @@ setopt shwordsplit
 
 # Keep Starship at the end
 eval "$(starship init zsh)"
+ _manage_venv_on_cd # load venv when starting shell
