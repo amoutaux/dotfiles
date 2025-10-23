@@ -69,7 +69,7 @@ return {
       json = { "fixjson" },
       lua = { "stylua" },
       markdown = { "mdformat" },
-      python = { "black", "isort", "autopep8" },
+      python = { "black", "isort" },
       ruby = { "rubocop" },
       sh = { "shfmt" },
       swift = { "swiftformat" },
