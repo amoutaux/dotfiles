@@ -155,6 +155,8 @@ return {
     vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
       group = mygroup,
       pattern = {
+        "Policyfile.rb",
+        "metadata.rb",
         "*/recipes/*.rb",
         "*/providers/*.rb",
         "*/resources/*.rb",
