@@ -1,14 +1,3 @@
--- Generic Diagnostics mappings
-vim.keymap.set("n", "D", function()
-  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end)
-vim.keymap.set("n", "ne", function()
-  vim.diagnostic.jump({ count = 1, float = true })
-end)
-vim.keymap.set("n", "pe", function()
-  vim.diagnostic.jump({ count = -1, float = true })
-end)
-
 -- LSP Mappings
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -41,9 +30,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.diagnostic.jump({ count = -1, float = true })
     end, { buffer = args.buf })
     --Use conform and dedicated formatters, never rely on LSP.
-    vim.keymap.set("n", "<leader>f", function()
-      vim.lsp.buf.format()
-    end, { buffer = args.buf })
+    -- vim.keymap.set("n", "<leader>f", function()
+      -- vim.lsp.buf.format()
+    -- end, { buffer = args.buf })
   end,
 })
 

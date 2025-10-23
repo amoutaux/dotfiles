@@ -1,5 +1,19 @@
 -- Diagnostics
---
+
+-- Generic Diagnostics mappings
+vim.keymap.set("n", "D", function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end)
+vim.keymap.set("n", "ce", function() -- open current error in float window
+  vim.diagnostic.open_float()
+end)
+vim.keymap.set("n", "ne", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end)
+vim.keymap.set("n", "pe", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end)
+
 -- Icons
 local diagnostic_icons = require("icons").diagnostics
 for severity, icon in pairs(diagnostic_icons) do
@@ -25,7 +39,7 @@ vim.diagnostic.handlers["my/debug_diagnostics"] = {
 vim.diagnostic.config({
   ["my/debug_diagnostics"] = true,
   underline = false,
-  virtual_text = {
+  virtual_lines = {
     -- show severity icons as prefixes.
     prefix = function(diagnostic)
       return diagnostic_icons[vim.diagnostic.severity[diagnostic.severity]] .. " "
