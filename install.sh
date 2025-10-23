@@ -3,9 +3,10 @@
 # Exit on failure
 set -e
 
-DOTFILES_DIR=$HOME/dotfiles
-DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/master"
+DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/macos"
 DOTFILES_GIT_REMOTE="git@github.com/amoutaux/dotfiles.git"
+CLOUD_DRIVE_DIR="/replace/me"
 
 # Options
 for opt in "$@"; do
@@ -213,6 +214,13 @@ create_symlinks() {
         return
     fi
 
+    if [[ ! -d "$CLOUD_DRIVE_DIR" ]]; then
+        seek_confirmation "No directory at: $CLOUD_DRIVE_DIR. Proceed with symlinks anyway ?"
+        if ! is_confirmed; then
+            exit 1
+        fi
+    fi
+
     e_header "Creating symlinks..."
     # Create necessary directories
     mkdir -p "$HOME/.config"
@@ -240,10 +248,12 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/nvim/tern-config" "$HOME/.tern-config"
     # shell
     ln -nsf "$DOTFILES_DIR/shell/utils.sh" "$HOME/.utils.sh"
+    # taskwarrior
+    ln -nsf "$CLOUD_DRIVE_DIR/taskchampion.sqlite3" "$HOME/.task/taskchampion.sqlite3"
     # timewarrior
     ln -nsf "$DOTFILES_DIR/timewarrior/extensions" "$HOME/.config/timewarrior/extensions"
     ln -nsf "$DOTFILES_DIR/timewarrior/timewarrior.cfg" "$HOME/.config/timewarrior/timewarrior.cfg"
-    ln -nsf "$DOTFILES_DIR/timewarrior/data" "$HOME/.local/share/timewarrior/data"
+    ln -nsf "$CLOUD_DRIVE_DIR/timewarrior/data" "$HOME/.local/share/timewarrior/data"
     # tmux
     ln -nsf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
     # virtualenvwrapper
