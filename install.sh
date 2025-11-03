@@ -36,7 +36,7 @@ for opt in "$@"; do
         printf "%s\n" "Available flags:" "" \
             "--all:          activate all flags below." \
             "--init-git:     initialize git repository. Add origin. ⚠️ Will run \`git clean -fd\`." \
-            "--fonts:        install powerline fonts." \
+            "--fonts:        install powerline and nerd fonts." \
             "--packages:     install packages." \
             "--symlinks:     create symlinks." \
             "--zsh:          setup ZSH." \
