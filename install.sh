@@ -294,8 +294,7 @@ instructions() {
     fi
 
     terminal_instructions="
-TERMINAL: (iTerm) Check the 'Applications in terminal may access clipboard'.
-TERMINAL: (iTerm) Preferences > Profiles > Keys > Key Bindings > ^é <-> Send Hey Codes: 0x17.
+TERMINAL: (iTerm) Make sure to import 'profile.json'.
     "
     printf '%s' "$terminal_instructions"
 }
