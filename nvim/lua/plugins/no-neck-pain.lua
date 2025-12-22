@@ -3,7 +3,7 @@ return {
   lazy = false,
   opts = {
     autocmds = {
-      enableOnVimEnter = true
+      enableOnVimEnter = "safe" -- fixes `nvim -d` opening 3-way diff view
     }
   },
   keys = {
