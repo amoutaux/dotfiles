@@ -81,7 +81,7 @@ _manage_venv_on_cd() {
     if [[ -z "$VIRTUAL_ENV" ]]; then
       # Check if the current directory name matches a virtualenv name
       for dir_name in $(lsvirtualenv -b); do
-        if [[ "${dir_name}" == "${current_dir}" ]]; then
+        if [[ "${dir_name}" =~ "${current_dir}" ]]; then
             echo "Activating virtual environment...: ${dir_name}"
             workon "${dir_name}" # `workon` activates the venv and sets VIRTUAL_ENV
             break # Found and activated, no need to check others
