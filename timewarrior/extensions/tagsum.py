@@ -130,8 +130,12 @@ def main() -> None:
             report_end = values[0].strip()
 
     data = json.load(stdin)
+    import ipdb;
+    with open("/dev/tty", "r+") as tty:
+        ipdb
     convert_timestamps(data, report_start or None, report_end or None)
-    print_tags(sum_tags(data))
+    from tabulate import tabulate
+    #  print_tags(tabulate(sum_tags(data), headers="keys"))
 
 
 if __name__ == "__main__":
