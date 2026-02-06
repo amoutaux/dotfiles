@@ -90,6 +90,9 @@ install_packages() {
     )
 
     e_header "Installing packages..."
+    # deno is needed by some neovim plugins
+    curl -fsSL https://deno.land/install.sh | sh
+
     read -r -p "Package installation command (ex: 'apt install'): " cmd
     for package in "${packages[@]}"; do
         $cmd "$package" || e_warning "$package installation failed"
