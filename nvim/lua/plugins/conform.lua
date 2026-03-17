@@ -125,13 +125,32 @@ return {
     vim.api.nvim_create_autocmd("BufRead", {
       group = mygroup,
       callback = function(args)
-        local expected_formatters = opts.formatters_by_ft[vim.bo.filetype]
+        local expected_formatters = opts.formatters_by_ft[vim.bo.filetype] or {}
+        local availables = {}
+        local unavailables = {}
+
         for _, ef in pairs(expected_formatters or {}) do
-          local f = conform.get_formatter_info(ef, args.buf)
-          if f.available == false then
-            vim.notify("⚠️ " .. f.name .. " is not available", vim.log.levels.WARN)
+          if type(ef) == "string" then
+            local f = conform.get_formatter_info(ef, args.buf)
+            if f.available == false then
+              table.insert(unavailables, f.name)
+            else
+              table.insert(availables, f.name)
+            end
           end
         end
+
+        for _, f in pairs(availables) do
+          vim.notify("✅ " .. f .. " available.")
+          if expected_formatters["stop_after_first"] then
+            return
+          end
+        end
+
+        for _, f in pairs(unavailables) do
+          vim.notify("⚠️ " .. f .. " is not available.", vim.log.levels.WARN)
+        end
+
       end,
     })
 
