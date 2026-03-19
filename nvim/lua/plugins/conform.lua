@@ -140,11 +140,8 @@ return {
           end
         end
 
-        for _, f in pairs(availables) do
-          vim.notify("✅ " .. f .. " available.")
-          if expected_formatters["stop_after_first"] then
-            return
-          end
+        if availables ~= {} and expected_formatters["stop_after_first"] then
+          return
         end
 
         for _, f in pairs(unavailables) do
