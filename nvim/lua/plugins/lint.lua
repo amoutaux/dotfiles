@@ -41,5 +41,51 @@ return {
         lint.try_lint()
       end,
     })
+
+    -- Ensure all configured linters are available
+    local check_current_linters = function()
+      local ft = vim.bo.filetype
+      local configured = lint.linters_by_ft[ft] or {}
+
+      if vim.tbl_isempty(configured) then
+        print("No linters configured for " .. ft)
+        return
+      end
+
+      local available = {}
+      for _, linter_name in ipairs(configured) do
+        local linter = lint.linters[linter_name]
+        -- check linter exists and vim can find executable
+        if linter and vim.fn.executable(linter.cmd) == 1 then
+          table.insert(available, linter_name)
+        end
+      end
+
+      if #available ~= #configured then
+        -- Construct and print missing table
+        local missing = {}
+        local available_set = {}
+        for _, name in ipairs(available) do
+          available_set[name] = true
+        end
+        for _, name in ipairs(configured) do
+          if not available_set[name] then
+            table.insert(missing, name)
+          end
+        end
+
+        print("⚠️ Some configured linters are not available..")
+        print("Configured: " .. table.concat(configured, ", "))
+        print("Available: " .. table.concat(available, ", "))
+        print("Missing: " .. table.concat(missing, ", "))
+        return
+      else
+        print("✅ All configured linters are available")
+        print("Configured: " .. table.concat(configured, ", "))
+        return
+      end
+    end
+
+    vim.api.nvim_create_user_command("LintersInfo", check_current_linters, {})
   end,
 }
