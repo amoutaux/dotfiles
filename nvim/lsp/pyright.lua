@@ -11,9 +11,11 @@ return {
     ".git",
   },
   settings = {
-    typeCheckingMode = "off", -- let mypy handle typechecking
-    analysis = {
-      diagnosticMode = 'openFilesOnly'
+    python = {
+      analysis = {
+        diagnosticMode = "openFilesOnly",
+        typeCheckingMode = "off", -- let mypy handle typechecking
+      }
     }
   },
 }
