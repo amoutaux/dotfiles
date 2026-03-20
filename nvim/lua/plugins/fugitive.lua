@@ -14,6 +14,7 @@ return {
     { "bl", "<cmd>Git blame<cr>" },
     { "co", "<cmd>vertical Git commit -v<cr>" },
     { "<leader>di", "<cmd>Gvdiff!<cr>", mode = { "n", "v" } },
+    { "<leader>hdi", "<cmd>Gdiff!<cr>", mode = { "n", "v" } },
     { "ge", "<cmd>diffget<cr>", mode = { "n", "v" } },
     { "pu", "<cmd>diffput<cr>", mode = { "n", "v" } },
   },
