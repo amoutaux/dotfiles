@@ -32,14 +32,25 @@ return {
     table.insert(lint.linters.markdownlint.args, 1, "--config")
     table.insert(lint.linters.markdownlint.args, 2, vim.fn.expand("~/.markdownlint.yaml"))
 
+    table.insert(lint.linters.pylint.args, 1, "-j")
+    table.insert(lint.linters.pylint.args, 2, "4")
+
     table.insert(lint.linters.shellcheck.args, 1, "-x")
 
-    -- Automatic linting
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+    -- https://deepwiki.com/mfussenegger/nvim-lint/7-configuration-guide#performance-optimization
+    local lint_timer = nil
+    local function debounced_lint()
+      if lint_timer then
+        lint_timer:stop()
+      end
+      lint_timer = vim.defer_fn(function()
+        require("lint").try_lint()
+      end, 500) -- 500ms delay
+    end
+
+    vim.api.nvim_create_autocmd({ "BufEnter", "TextChanged" }, {
       group = mygroup,
-      callback = function()
-        lint.try_lint()
-      end,
+      callback = debounced_lint,
     })
 
     -- Ensure all configured linters are available
