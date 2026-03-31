@@ -68,6 +68,7 @@ install_packages() {
 
     local -a packages=(
         'bat'
+        'eza'
         'git'
         'htop'
         'jq'
