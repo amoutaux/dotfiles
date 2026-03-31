@@ -15,18 +15,6 @@ return {
     vim.g.NERDTreeWinSize = 50
     vim.g.NERDTreeShowLineNumbers = true
   end,
-  config = function()
-    -- Open NERDTree when neovim is called without arguments
-    local group = vim.api.nvim_create_augroup("CustomNERDTree", { clear = true })
-    vim.api.nvim_create_autocmd("VimEnter", {
-      group = group,
-      callback = function()
-        if vim.fn.argc() == 0 then
-          vim.cmd("NERDTreeExplore")
-        end
-      end,
-    })
-  end,
   keys = {
     { "<leader>n", "<cmd>NERDTreeFind<cr>" },
   },
