@@ -27,6 +27,11 @@ right_format = "$character$line_break"
 
 palette = 'catppuccin_frappe'
 
+[kubernetes]
+disabled = false
+format = '[$context](green) '
+symbol = '🐳'
+
 [os]
 disabled = false
 style = "bg:red fg:crust"
@@ -130,8 +135,9 @@ style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [python]
+disabled = false
 detect_extensions = ["py", "python"]
-symbol = ""
+symbol = " "
 style = "fg:dark_red"
 version_format = "${major}.${minor}"
 format = '[ $symbol( $version )(\($virtualenv\)) ]($style)'
