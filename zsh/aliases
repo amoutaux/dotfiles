@@ -37,15 +37,15 @@ alias twut="timew untag"
 alias twpr="timew start 'PR review'"
 
 # Custom aliases that don't fit elsewhere
-alias mid="echo -ne '\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A'"
-alias python="python3"
-alias rm="rm -i"
-alias letsgo="pip install neovim flake8 flake518 pyright black mypy" # For virtual environments setup
-alias tiga="tig --all"
-alias sshhosts="cat ~/.ssh/config | grep \"^Host\""
-alias lst="ls -lhFt"
 alias cat="bat"
-alias tf="terraform"
 alias ip="ifconfig | grep -A 5 'en0' | grep -oE -m 1 '(\d+\.\d+\.\d+\.\d+)' | head -1 | tee /dev/tty | pbcopy"
+alias letsgo="pip install neovim flake8 flake518 pyright black mypy" # For virtual environments setup
+alias lst="ls -lhFt"
+alias mid="echo -ne '\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\eD\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A\e[A'"
 alias path="echo \$PATH | tr ':' '\n'"
 alias prlog="git log main..HEAD --oneline --reverse | cut -d ' ' -f 2- | sed -E -n 's/^(.*)$/* \1/p'"
+alias python="python3"
+alias rm="rm -i"
+alias sshhosts="cat ~/.ssh/config | grep \"^Host\""
+alias tiga="tig --all"
+alias tf="terraform"
