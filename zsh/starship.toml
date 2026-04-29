@@ -19,7 +19,6 @@ $directory\
 $git_branch\
 $git_status\
 [ ](fg:green)\
-$gcloud\
 $line_break\\$ \
 """
 
@@ -29,7 +28,7 @@ palette = 'catppuccin_frappe'
 
 [kubernetes]
 disabled = false
-format = '[$context](green) '
+format = '[$context](green)'
 symbol = '🐳'
 
 [os]
@@ -137,7 +136,7 @@ format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 [python]
 disabled = false
 detect_extensions = ["py", "python"]
-symbol = " "
+symbol = ""
 style = "fg:dark_red"
 version_format = "${major}.${minor}"
 format = '[ $symbol( $version )(\($virtualenv\)) ]($style)'
