@@ -6,6 +6,12 @@ ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_AUTO_TITLE="true"
 
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/eza
+zstyle ':omz:plugins:eza' 'dirs-first' yes
+zstyle ':omz:plugins:eza' 'git-status' no
+zstyle ':omz:plugins:eza' 'header' no
+zstyle ':omz:plugins:eza' 'icons' yes
+
 # Repo must be cloned in .oh-my-zsh/plugins if it is not done by default
 plugins=( eza gcloud git gpg-agent docker kubectl colored-man-pages fzf ssh-agent zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
