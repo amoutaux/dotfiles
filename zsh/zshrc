@@ -11,14 +11,10 @@ plugins=( eza gcloud git gpg-agent docker kubectl colored-man-pages fzf ssh-agen
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-
 #################
 # Load binaries #
 #################
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # NVM
-eval "$(pyenv init - zsh)" # Pyenv
-source "/opt/homebrew/bin/virtualenvwrapper.sh"
-
 
 ##################
 # Autocompletion #
@@ -64,38 +60,26 @@ bindkey -M menuselect r vi-up-line-or-history
 bindkey -M menuselect n vi-forward-char
 
 
-##########################
-# Virtualenv autotrigger #
-##########################
+##############
+# Virtualenv #
+##############
 
-_manage_venv_on_cd() {
-    local current_dir=$(basename $(pwd))
+# Print uv current venv path before each uv command
+uv() {
+    local venv_path
+    venv_path=$(command uv python find 2>/dev/null)
 
-    # Deactivate if leaving a venv
-    # Check if VIRTUAL_ENV is set AND the current directory is NOT within the venv's path
-    if [[ -n "$VIRTUAL_ENV" ]] && ! [[ "$(pwd)" =~ "$(basename $VIRTUAL_ENV)"/* ]]; then
-      echo "Deactivating virtual environment: $(basename $VIRTUAL_ENV)"
-      deactivate
+    if [ $? -eq 0 ] && [ -n "$venv_path" ]; then
+        echo -e "\033[0;31m[uv-env]\033[0m $venv_path"
     fi
 
-    # Activate if entering a venv (only if no venv is currently active)
-    if [[ -z "$VIRTUAL_ENV" ]]; then
-      # Check if the current directory name matches a virtualenv name
-      for dir_name in $(lsvirtualenv -b); do
-        if [[ "${dir_name}" =~ "${current_dir}" ]]; then
-            echo "Activating virtual environment...: ${dir_name}"
-            workon "${dir_name}" # `workon` activates the venv and sets VIRTUAL_ENV
-            break # Found and activated, no need to check others
-        fi
-      done
-    fi
+    command uv "$@"
 }
-chpwd_functions+=( _manage_venv_on_cd )
-
 
 ###########
 # Aliases #
 ###########
+#
 source ~/.aliases
 
 # Batch-like word split for for-loops

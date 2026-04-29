@@ -83,11 +83,8 @@ install_packages() {
         'tldr'
         'tmux'
         'tree'
+        'uv'
         'zsh'
-    )
-
-    local -a python_packages=(
-        'virtualenvwrapper'
     )
 
     e_header "Installing packages..."
@@ -99,30 +96,6 @@ install_packages() {
         $cmd "$package" || e_warning "$package installation failed"
     done
 
-    e_header "Installing Pyenv..."
-    # pyenv is cloned manually
-    if [[ ! -d "$HOME/.pyenv" ]]; then
-        git clone -q https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
-    fi
-
-    if [[ -n "$VIRTUAL_ENV" ]]; then
-        seek_confirmation "Virtual environment ($VIRTUAL_ENV) detected. Install python packages ?"
-        if is_confirmed; then
-            e_header "Installing python packages..."
-            for package in "${python_packages[@]}"; do
-                pip install "$package" || e_warning "$package installation failed"
-            done
-        fi
-    else
-        seek_confirmation "Not running in a virtual environment. Install python packages on system ?"
-        if is_confirmed; then
-            e_header "Installing python packages..."
-            for package in "${python_packages[@]}"; do
-                pip install --break-system-packages "$package" || e_warning "$package installation failed"
-            done
-
-        fi
-    fi
 }
 
 install_fonts() {
@@ -260,8 +233,6 @@ create_symlinks() {
     ln -nsf "$CLOUD_DRIVE_DIR/timewarrior/data" "$HOME/.local/share/timewarrior/data"
     # tmux
     ln -nsf "$DOTFILES_DIR/tmux/tmux.conf" "$HOME/.tmux.conf"
-    # virtualenvwrapper
-    ln -nsf "$DOTFILES_DIR/virtualenvwrapper/postmkvirtualenv" "$WORKON_HOME/postmkvirtualenv"
     # zsh
     ln -nsf "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
     ln -nsf "$DOTFILES_DIR/zsh/zshenv" "$HOME/.zshenv"
