@@ -3,11 +3,10 @@
 # Exit on failure
 set -e
 
-CLOUD_DRIVE_DIR="$HOME/Library/CloudStorage/ProtonDrive-amoutaux@proton.me-folder"
+CLOUD_DRIVE_DIR="$HOME/Library/CloudStorage/Box-Box/My Box Notes/dotfiles"
 DOTFILES_DIR="$HOME/dotfiles"
 DOTFILES_TARBALL_URL="https://www.github.com/amoutaux/dotfiles/tarball/macos"
 DOTFILES_GIT_REMOTE="git@github.com/amoutaux/dotfiles.git"
-CLOUD_DRIVE_DIR="/replace/me"
 
 # Options
 for opt in "$@"; do
