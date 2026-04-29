@@ -4,6 +4,9 @@
 # Tmux
 *.log
 
+# Claude
+.claude
+
 # Ctags
 tags
 tags.*
