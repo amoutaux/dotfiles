@@ -3,7 +3,7 @@ export CDPATH="$HOME/src:$CDPATH"
 # PATH
 # generic
 export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # zsh
 export ZSH="$HOME/.oh-my-zsh"
 # pip user-installed binaries

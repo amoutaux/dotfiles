@@ -15,6 +15,7 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Load binaries #
 #################
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # NVM
+eval "$(/Users/aurelien.moutaux/.local/bin/mise activate zsh)"
 
 ##################
 # Autocompletion #
