@@ -2,6 +2,15 @@ return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
   lazy = false,
+  keys = {
+    {
+      "<leader>l",
+      function()
+        require("lint").try_lint()
+      end,
+      mode = "n",
+    },
+  },
   config = function()
     local mygroup = vim.api.nvim_create_augroup("MyCustomLint", { clear = true })
     local lint = require("lint")
@@ -48,7 +57,7 @@ return {
       end, 500) -- 500ms delay
     end
 
-    vim.api.nvim_create_autocmd({ "BufEnter", "TextChanged" }, {
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWrite", "TextChanged" }, {
       group = mygroup,
       callback = debounced_lint,
     })
