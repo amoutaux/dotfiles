@@ -76,8 +76,13 @@ return {
       for _, linter_name in ipairs(configured) do
         local linter = lint.linters[linter_name]
         -- check linter exists and vim can find executable
-        if linter and vim.fn.executable(linter.cmd) == 1 then
-          table.insert(available, linter_name)
+        if linter then
+          if type(linter) == "function" then
+            linter = linter()
+          end
+          if vim.fn.executable(linter.cmd) == 1 then
+            table.insert(available, linter_name)
+          end
         end
       end
 
