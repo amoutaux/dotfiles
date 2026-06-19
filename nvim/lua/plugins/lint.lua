@@ -23,7 +23,7 @@ return {
       groovy = { "npm-groovy-lint" },
       json = { "jsonlint" },
       markdown = { "markdownlint" },
-      python = { "mypy", "pylint" },
+      python = { "ruff", "mypy", "pylint" },
       ruby = { "rubocop" },
       yaml = { "yamllint" },
       sh = { "shellcheck" },
