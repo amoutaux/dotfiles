@@ -11,6 +11,7 @@ TAGS = {
     "Deployment",
     "Fix",
     "HR",
+    "Lead",
     "Learning",
     "Improvements",
     "Interview",
@@ -98,7 +99,7 @@ def parse_records(records):
     time_by_annotations_by_tag = {tag: {} for tag in TAGS}
 
     for record in records:
-        if not set(record["tags"]) & TAGS:
+        if not set(record.get("tags", {})) & TAGS:
             print(
                 f'WARNING: @{record["id"]} is missing a top level tag. Skipped.',
                 file=sys.stderr,
