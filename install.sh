@@ -90,8 +90,6 @@ install_packages() {
     e_header "Installing packages..."
     # deno is needed by some neovim plugins
     curl -fsSL https://deno.land/install.sh | sh
-    # https://mise.jdx.dev/getting-started.html
-    curl https://mise.run | sh
 
     read -r -p "Package installation command (ex: 'apt install'): " cmd
     for package in "${packages[@]}"; do
@@ -222,8 +220,6 @@ create_symlinks() {
     ln -nsf "$DOTFILES_DIR/bepo/lesskey" "$HOME/.lesskey"
     # markdownlint
     ln -nsf "$DOTFILES_DIR/nvim/markdownlint.yaml" "$HOME/.markdownlint.yaml"
-    # mise
-    ln -nsf "$DOTFILES_DIR/mise" "$HOME/.config/mise"
     # nvim
     ln -nsf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
     ln -nsf "$DOTFILES_DIR/nvim/tern-config" "$HOME/.tern-config"

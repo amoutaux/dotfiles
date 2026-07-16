@@ -1,6 +1,0 @@
-[settings]
-python.uv_venv_auto = "source"
-
-[tools]
-python = "path:python3"
-uv = "latest"
