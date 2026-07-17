@@ -1,8 +1,3 @@
-[user]
-    name = Aurélien Moutaux
-    email = aurelien.moutaux@gadz.org
-    signingkey = FE178AD69BD844B14057136B9684218706D96509
-
 [alias]
     graph = log --graph \
     --pretty=format:'%C(auto) %h (%an%Cred %cr%C(auto)) %Cgreen%s %C(auto)%d %n %b'
@@ -14,36 +9,44 @@
         git stash pop $(git stash list | grep "stashtopop" | grep -o "stash@{[0-9]*}");\
     }; f"
 
+[commit]
+    gpgsign = true
+
 [core]
     editor = nvim
     # Ignore files specified in ~/.gitgnore (not only in local .gitignore)
     excludesfile = ~/.gitignore
-
-[merge]
-    # Add merged commits messages to resulting commit message
-    log = true
-
-[rebase]
-    # Automatically squash fixup commits
-    autosquash = true
 
 [diff]
     # git diff will detect copies as well as renames
     renames = copies
     tool = nvimdiff
 
-[pull]
-    rebase = false
-
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+
 [init]
-	templateDir = /Users/aurelien.moutaux/.git-template
-	defaultBranch = main
-[commit]
-	gpgsign = true
+   templateDir = /Users/aurelien.moutaux/.git-template
+    defaultBranch = main
+
+[merge]
+    # Add merged commits messages to resulting commit message
+    log = true
+
+[pull]
+    rebase = false
+
+[rebase]
+    # Automatically squash fixup commits
+    autosquash = true
+
 [tag]
-	gpgSign = true
+    gpgSign = true
+
+[user]
+    name = Aurélien Moutaux
+    email = aurelien.moutaux@gadz.org
+    signingkey = FE178AD69BD844B14057136B9684218706D96509
