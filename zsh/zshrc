@@ -70,6 +70,8 @@ bindkey -M menuselect n vi-forward-char
 # Virtualenv #
 ##############
 
+eval "$(direnv hook zsh)" # use direnv to dynamically load venvs
+
 # Print uv current venv path before each uv command
 uv() {
     local venv_path
