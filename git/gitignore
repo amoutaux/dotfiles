@@ -26,3 +26,7 @@ pyrightconfig.json
 
 # Direnv
 .envrc
+
+# Timewarrior
+timewarrior/data/*
+timewarrior/extensions/__pycache__/
