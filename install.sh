@@ -83,20 +83,20 @@ install_packages() {
         'tldr'
         'tmux'
         'tree'
-        'uv'
         'zsh'
     )
 
-    e_header "Installing packages..."
+    e_header "Installing packages from script..."
     # deno is needed by some neovim plugins
-    curl -fsSL https://deno.land/install.sh | sh
-    curl -fsSL https://direnv.net/install.sh | sh
+    curl -fsSL https://deno.land/install.sh | bash
+    curl -fsSL https://direnv.net/install.sh | bash
+    curl -LsSf https://astral.sh/uv/install.sh | bash
 
+    e_header "Installing packages using package manager..."
     read -r -p "Package installation command (ex: 'apt install'): " cmd
     for package in "${packages[@]}"; do
         $cmd "$package" || e_warning "$package installation failed"
     done
-
 }
 
 install_fonts() {
