@@ -13,7 +13,7 @@ return {
   settings = {
     python = {
       analysis = {
-        diagnosticMode = "openFilesOnly",
+        ignore = {"*"}, -- let ruff output diagnostics
         typeCheckingMode = "off", -- let mypy handle typechecking
       }
     }
