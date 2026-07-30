@@ -17,9 +17,6 @@ export PYTHONBREAKPOINT="ipdb.set_trace"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-# Set terminal to use 256 colors
-export TERM="screen-256color"
-
 # Custom pager & editor
 export BAT_THEME="Monokai Extended Light"
 export EDITOR="nvim"
