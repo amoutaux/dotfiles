@@ -89,7 +89,7 @@ install_packages() {
     e_header "Installing packages from script..."
     # deno is needed by some neovim plugins
     curl -fsSL https://deno.land/install.sh | bash
-    curl -fsSL https://direnv.net/install.sh | bash
+    curl -fsSL https://direnv.net/install.sh | env bin_path="$HOME/.local/bin" bash
     curl -LsSf https://astral.sh/uv/install.sh | bash
 
     e_header "Installing packages using package manager..."
