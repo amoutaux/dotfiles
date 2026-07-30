@@ -1,5 +1,7 @@
+local theme = require("config.theme")
 -- Global options
 vim.opt.autoread = true -- reload file if it has been changed outside of nvim
+vim.opt.background = theme.background
 vim.opt.clipboard = "unnamedplus" -- cut/copy/paste shared between vim instances and computer
 vim.opt.directory = vim.fn.expand("~/.config/nvim/tmp") -- swap files
 vim.opt.expandtab = true -- insert spaces instead of tabs
