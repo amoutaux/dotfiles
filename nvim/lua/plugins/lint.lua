@@ -57,7 +57,7 @@ return {
       end, 500) -- 500ms delay
     end
 
-    vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+    vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged" }, {
       group = mygroup,
       callback = debounced_lint,
     })
