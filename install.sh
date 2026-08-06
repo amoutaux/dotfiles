@@ -23,6 +23,9 @@ for opt in "$@"; do
     '--fonts')
         fonts=true
         ;;
+    '--no-brew')
+        no_brew=true
+        ;;
     '--packages')
         packages=true
         ;;
@@ -70,11 +73,13 @@ install_packages() {
         return
     fi
 
-    e_header "Installing Homebrew"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    e_bold "Updating Homebrew"
-    brew update
-    brew doctor
+    if [[ ! ($no_brew) ]]; then
+        e_header "Installing Homebrew"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        e_bold "Updating Homebrew"
+        brew update
+        brew doctor
+    fi
 
     local -a packages=(
         'bat'
