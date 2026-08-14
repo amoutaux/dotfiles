@@ -11,6 +11,11 @@ return {
           ["dv"] = "close",
           ["s"] = "move_selection_next",
           ["r"] = "move_selection_previous",
+          ["q"] = function(prompt_bufr)
+            local actions = require('telescope.actions')
+            actions.send_selected_to_qflist(prompt_bufr)
+            actions.open_qflist(prompt_bufr)
+          end,
         },
       },
       vimgrep_arguments = {
@@ -25,17 +30,17 @@ return {
     },
   },
   config = function(_, opts)
-    require('telescope').setup(opts)
-    local builtin = require('telescope.builtin')
+    require("telescope").setup(opts)
+    local builtin = require("telescope.builtin")
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "TelescopeResults",
       command = "setlocal nofoldenable",
     })
 
-    -- vim.keymap.set("n", "<leader>sw", builtin.find_files)
+    -- For mappings within Telescope buffer, see opts.defaults.mappings above.
     vim.keymap.set("n", "<leader>sb", builtin.buffers)
-    vim.keymap.set("n", "<leader>sc", function ()
-      builtin.git_commits({sorting_strategy = "ascending"})
+    vim.keymap.set("n", "<leader>sc", function()
+      builtin.git_commits({ sorting_strategy = "ascending" })
     end)
     vim.keymap.set("n", "<leader>sd", builtin.lsp_definitions)
     vim.keymap.set("n", "<leader>sf", builtin.find_files)
