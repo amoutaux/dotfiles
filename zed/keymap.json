@@ -1,0 +1,115 @@
+[
+  // Workspace bindings: active everywhere except in an Editor in INSERT mode.
+  {
+    "context": "Workspace && !(Editor && vim_mode == insert) && !Picker && !TextFinder",
+    "bindings": {
+      // Projects
+      "e p e": "projects::OpenRecent",
+      "e p c": "workspace::Open",
+      "e p l": "multi_workspace::ToggleWorkspaceSidebar",
+      "e p p": "multi_workspace::PreviousProject",
+      "e p n": "multi_workspace::NextProject",
+      // Tabs
+      "ctrl-p": "pane::ActivatePreviousItem",
+      "ctrl-n": "pane::ActivateNextItem",
+      // Panes
+      "ctrl-é ctrl-é": "workspace::ResetPaneSizes",
+      "ctrl-é ctrl-t": "vim::ResizePaneRight",
+      "ctrl-é ctrl-s": "vim::ResizePaneDown",
+      "ctrl-é ctrl-r": "vim::ResizePaneUp",
+      "ctrl-é ctrl-n": "vim::ResizePaneLeft",
+      "ctrl-é q": "pane::CloseActiveItem",
+      "ctrl-é t": "workspace::ActivatePaneLeft",
+      "ctrl-é T": "workspace::MovePaneLeft",
+      "ctrl-é s": "workspace::ActivatePaneDown",
+      "ctrl-é S": "workspace::MovePaneDown",
+      "ctrl-é r": "workspace::ActivatePaneUp",
+      "ctrl-é R": "workspace::MovePaneUp",
+      "ctrl-é n": "workspace::ActivatePaneRight",
+      "ctrl-é N": "workspace::MovePaneRight",
+      "ctrl-é z": "workspace::ToggleZoom",
+      "ctrl-é c": "workspace::ToggleCenteredLayout",
+      "e s v": "workspace::NewFileSplitVertical",
+      "e s h": "workspace::NewFileSplitHorizontal",
+      // Panels
+      "e t b": "workspace::ToggleBottomDock",
+      "e t r": "workspace::ToggleRightDock",
+      "e t l": "workspace::ToggleLeftDock",
+      "ctrl-f": "project_panel::Toggle",
+      "ctrl-g": "git_panel::Toggle",
+      // Finder
+      "e s f": "file_finder::Toggle",
+      "e s w": "text_finder::Toggle",
+      "e s é": "text_finder::Toggle",
+    },
+  },
+  // Editor: works regardless on vim mode, including INSERT.
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-p": "pane::ActivatePreviousItem",
+      "ctrl-n": "pane::ActivateNextItem",
+      "d v": ["workspace::SendKeystrokes", "escape"],
+      "é": ["workspace::SendKeystrokes", "w"],
+    }
+  },
+  // VimControl: NORMAL, VISUAL and OPERATOR
+  {
+    "context": "VimControl",
+    "bindings": {
+      "ctrl-s t": "workspace::ActivatePaneLeft",
+      "ctrl-s s": "workspace::ActivatePaneDown",
+      "ctrl-s r": "workspace::ActivatePaneUp",
+      "ctrl-s n": "workspace::ActivatePaneRight",
+      "ctrl-s N": "workspace::MovePaneRight",
+      "ctrl-g": "git_panel::Toggle",
+      "ctrl-f": "project_panel::Toggle",
+      // Git
+      "b l": "git::Blame",
+      "e d i": "git::Diff",
+      "e D i": "git::OpenFileDiff",
+      "g c": "git::Commit",
+      "g b": "git::Branch",
+      "g p h": "editor::GoToPreviousHunk",
+      "g n h": "editor::GoToHunk",
+      "g s h": "git::StageAndNext",
+      "g s f": "git::StageFile",
+      "g u h": "git::UnstageAndNext",
+      "g u f": "git::UnstageFile",
+      // BÉPO
+      "c é": ["workspace::SendKeystrokes", "c w"],
+      "d é": ["workspace::SendKeystrokes", "d w"],
+      "y é": ["workspace::SendKeystrokes", "y w"],
+      "t": "vim::Left",
+      "s":"vim::Down",
+      "r": "vim::Up",
+      "n": "vim::Right",
+      "e r": "vim::PushReplace",
+      "l": "vim::MoveToNextMatch",
+      "L": "vim::MoveToPreviousMatch",
+      // Misc
+      "ctrl-T": "workspace::NewCenterTerminal",
+      "D": "editor::ToggleDiagnostics",
+      "U": "vim::Redo",
+      "e r n": "editor::Rename",
+      "e c c": "vim::ToggleComments",
+    },
+  },
+  // Terminal-specific bindings.
+  {
+    "context": "Terminal",
+    "bindings": {
+      "alt-b": null, // Fix '|' on bepo
+      "ctrl-r": "workspace::ActivatePaneUp",
+      "ctrl-w v": "terminal::ToggleViMode",
+      "ctrl-é v": "terminal::ToggleViMode",
+    }
+  },
+  // Agent
+  {
+    "context": "AgentPanel",
+    "bindings": {
+      "ctrl-r": "workspace::ActivatePaneUp",
+    }
+  }
+]
